@@ -39,13 +39,13 @@ function ife_register_custom_post_types() {
         'query_var'          => true,
         'rewrite'            => array( 'slug' => 'vendors' ),
         'capability_type'    => 'post',
-        'has_archive'        => true,
+        'has_archive'        => false,
         'hierarchical'       => false,
         'menu_position'      => 5,
         'menu_icon'          => 'dashicons-archive',
         'supports'           => array( 'title', 'thumbnail' ),
     );
-    register_post_type( 'vendors', $args );
+    register_post_type( 'ife-vendor', $args );
     
     //Register Events cpt
     
@@ -81,11 +81,9 @@ function ife_register_custom_post_types() {
         'menu_position'      => 7,
         'menu_icon'          => 'dashicons-heart',
         'supports'           => array( 'title', 'thumbnail' ),
-        'template'           => array( array( 'core/quote' ) ),
-        'template_lock'      => 'all'
     );
     
-    register_post_type( 'events', $args );
+    register_post_type( 'ife-event', $args );
 }
 add_action( 'init', 'ife_register_custom_post_types' );
     
@@ -94,18 +92,18 @@ add_action( 'init', 'ife_register_custom_post_types' );
 function fwd_register_taxonomies() {
     // Add Vendor Category taxonomy
     $labels = array(
-        'name'              => _x( 'Vendor Categories', 'taxonomy general name' ),
-        'singular_name'     => _x( 'Vendor Category', 'taxonomy singular name' ),
-        'search_items'      => __( 'Search Vendor Categories' ),
-        'all_items'         => __( 'All Vendor Category' ),
-        'parent_item'       => __( 'Parent Vendor Category' ),
-        'parent_item_colon' => __( 'Parent Vendor Category:' ),
-        'edit_item'         => __( 'Edit Vendor Category' ),
-        'view_item'         => __( 'Vview Vendor Category' ),
-        'update_item'       => __( 'Update Vendor Category' ),
-        'add_new_item'      => __( 'Add New Vendor Category' ),
-        'new_item_name'     => __( 'New Vendor Category Name' ),
-        'menu_name'         => __( 'Vendor Category' ),
+        'name'              => _x( 'Vendor Types', 'taxonomy general name' ),
+        'singular_name'     => _x( 'Vendor Type', 'taxonomy singular name' ),
+        'search_items'      => __( 'Search Vendor Types' ),
+        'all_items'         => __( 'All Vendor Type' ),
+        'parent_item'       => __( 'Parent Vendor Type' ),
+        'parent_item_colon' => __( 'Parent Vendor Type:' ),
+        'edit_item'         => __( 'Edit Vendor Type' ),
+        'view_item'         => __( 'Vview Vendor Type' ),
+        'update_item'       => __( 'Update Vendor Type' ),
+        'add_new_item'      => __( 'Add New Vendor Type' ),
+        'new_item_name'     => __( 'New Vendor Type Name' ),
+        'menu_name'         => __( 'Vendor Type' ),
     );
     $args = array(
         'hierarchical'      => true,
@@ -116,25 +114,25 @@ function fwd_register_taxonomies() {
         'show_in_rest'      => true,
         'show_admin_column' => true,
         'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'vencate' ),
+        'rewrite'           => array( 'slug' => 'vendor-type' ),
     );
-    register_taxonomy( 'vencategory', array( 'vendors' ), $args );
+    register_taxonomy( 'ife-vendor-type', array( 'vendors' ), $args );
     
     
     //Add Events Taxonomy
     
 $labels = array(
-    'name'              => _x( 'Events', 'taxonomy general name' ),
-    'singular_name'     => _x( 'Event', 'taxonomy singular name' ),
-    'search_items'      => __( 'Search Events' ),
-    'all_items'         => __( 'All Events' ),
-    'parent_item'       => __( 'Parent Events' ),
-    'parent_item_colon' => __( 'Parent Events:' ),
-    'edit_item'         => __( 'Edit Events' ),
-    'update_item'       => __( 'Update Events' ),
-    'add_new_item'      => __( 'Add New Events' ),
-    'new_item_name'     => __( 'New Work Events' ),
-    'menu_name'         => __( 'EventsCategory' ),
+    'name'              => _x( 'Events Types', 'taxonomy general name' ),
+    'singular_name'     => _x( 'Event Type', 'taxonomy singular name' ),
+    'search_items'      => __( 'Search Events Type' ),
+    'all_items'         => __( 'All Events Type' ),
+    'parent_item'       => __( 'Parent Events Type' ),
+    'parent_item_colon' => __( 'Parent Events Type:' ),
+    'edit_item'         => __( 'Edit Events Type' ),
+    'update_item'       => __( 'Update Events Type' ),
+    'add_new_item'      => __( 'Add New Events Type' ),
+    'new_item_name'     => __( 'New Work Events Type' ),
+    'menu_name'         => __( 'Events Type' ),
 );
 $args = array(
     'hierarchical'      => true,
@@ -143,10 +141,10 @@ $args = array(
     'show_admin_column' => true,
     'show_in_rest'      => true,
         'query_var'         => true,
-        'rewrite'           => array( 'slug' => 'evecate' ),
+        'rewrite'           => array( 'slug' => 'event-type' ),
     );
     
-    register_taxonomy( 'evecategory', array( 'events' ), $args );
+    register_taxonomy( 'ife-event-type', array( 'events' ), $args );
     
 }
 add_action( 'init', 'ife_register_taxonomies');
