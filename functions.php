@@ -154,6 +154,10 @@ add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
  */
 require get_template_directory() . '/inc/custom-header.php';
 
+//Custom post types & taxonomies
+
+require get_template_directory() . '/inc/cpt-taxonomy.php';
+
 /**
  * Custom template tags for this theme.
  */
@@ -182,3 +186,5 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
+
+
