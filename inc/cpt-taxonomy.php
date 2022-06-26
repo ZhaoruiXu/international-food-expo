@@ -88,8 +88,8 @@ function ife_register_custom_post_types() {
 add_action( 'init', 'ife_register_custom_post_types' );
     
     
-// // Register vendor taxonmies
-function fwd_register_taxonomies() {
+// Register vendor taxonmies
+function ife_register_taxonomies() {
     // Add Vendor Category taxonomy
     $labels = array(
         'name'              => _x( 'Vendor Types', 'taxonomy general name' ),
