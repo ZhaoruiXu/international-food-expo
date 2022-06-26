@@ -42,7 +42,7 @@ function ife_register_custom_post_types() {
         'has_archive'        => false,
         'hierarchical'       => false,
         'menu_position'      => 5,
-        'menu_icon'          => 'dashicons-archive',
+        'menu_icon'          => 'dashicons-store',
         'supports'           => array( 'title', 'thumbnail' ),
     );
     register_post_type( 'ife-vendor', $args );
@@ -79,7 +79,7 @@ function ife_register_custom_post_types() {
         'has_archive'        => false,
         'hierarchical'       => false,
         'menu_position'      => 7,
-        'menu_icon'          => 'dashicons-heart',
+        'menu_icon'          => 'dashicons-calendar-alt',
         'supports'           => array( 'title', 'thumbnail' ),
     );
     
