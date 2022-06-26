@@ -128,7 +128,7 @@ function ife_register_taxonomies() {
         'query_var'         => true,
         'rewrite'           => array( 'slug' => 'vendor-type' ),
     );
-    register_taxonomy( 'ife-vendor-type', array( 'vendors' ), $args );
+    register_taxonomy( 'ife-vendor-type', array( 'ife-vendor' ), $args );
     
     
     //Add Events Taxonomy
@@ -158,15 +158,14 @@ $args = array(
     'rewrite'           => array( 'slug' => 'event-type' ),
     );
     
-    register_taxonomy( 'ife-event-type', array( 'events' ), $args );
+    register_taxonomy( 'ife-event-type', array( 'ife-event' ), $args );
     
 }
 add_action( 'init', 'ife_register_taxonomies');
     
     
-    // flushes Permalinks when switching themes
-    
-    function ife_rewrite_flush() {
+// Flushes Permalinks when switching themes
+function ife_rewrite_flush() {
     ife_register_custom_post_types();
     ife_register_taxonomies();
     flush_rewrite_rules();
