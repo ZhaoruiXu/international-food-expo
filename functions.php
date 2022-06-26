@@ -189,4 +189,15 @@ if ( class_exists( 'WooCommerce' ) ) {
 	require get_template_directory() . '/inc/woocommerce.php';
 }
 
+// Hide block editor on selected pages
+function ife_post_filter( $use_block_editor, $post ) {
+	// ID: 60 - About Page
+	$page_ids = array( 60 );
+	if( in_array( $post->ID, $page_ids ) ) {
+		return false;
+	} else {
+		return $use_block_editor;
+	}
+}
+add_filter( 'use_block_editor_for_post', 'ife_post_filter', 10, 2 );
 
