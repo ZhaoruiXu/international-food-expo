@@ -154,9 +154,11 @@ add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
  */
 require get_template_directory() . '/inc/custom-header.php';
 
-//Custom post types & taxonomies
-
+// Custom post types & taxonomies
 require get_template_directory() . '/inc/cpt-taxonomy.php';
+
+// Add Google api key
+require get_template_directory() . '/inc/google-api.php';
 
 /**
  * Custom template tags for this theme.
