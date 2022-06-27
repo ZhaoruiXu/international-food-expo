@@ -201,3 +201,34 @@ function ife_post_filter( $use_block_editor, $post ) {
 }
 add_filter( 'use_block_editor_for_post', 'ife_post_filter', 10, 2 );
 
+// Replacing The Title Placeholder Text in WordPress
+function wpb_change_title_text( $title ){
+     $screen = get_current_screen();
+   
+		 // target the individual CPT
+     if  ( 'ife-event' == $screen->post_type ) {
+					// change the placeholder text in $title
+          $title = 'Event Name';
+     }
+
+		 if  ( 'ife-vendor' == $screen->post_type ) {
+          $title = 'Vendor Name';
+     }
+
+     return $title;
+}
+   
+add_filter( 'enter_title_here', 'wpb_change_title_text' );
+
+// Add a new customized WYSIWYG toolbar
+function my_toolbars( $toolbars )
+{
+	// Add a new toolbar called "Very Simple"
+	// this toolbar has only 1 row of buttons
+	$toolbars['Very Simple' ][1] = array('bold' , 'italic' , 'underline' );
+
+	// return $toolbars - IMPORTANT!
+	return $toolbars;
+}
+
+add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
