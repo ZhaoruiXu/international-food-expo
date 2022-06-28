@@ -36,7 +36,7 @@ if( $terms && !is_wp_error( $terms ) ) :
   
   if ( $query -> have_posts() ){
     ?>
-    <section class="featured-vendors">
+    <section class="section-featured-vendors">
       <h2>Featured Vendors</h2>
       <div class="vendors swiper swiper-vendors">
         <button class="swiper-button-prev swiper-vendors-button-prev"></button>
