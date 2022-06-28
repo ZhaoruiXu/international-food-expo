@@ -281,6 +281,67 @@ function my_toolbars( $toolbars )
 
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
 
+<<<<<<< HEAD
+// Save acf_form to send an email to admin
+function my_save_post( $post_id ) {
+	
+	// bail early if not a contact_form post
+	if( get_post_type($post_id) !== 'ife-vendor' ) {
+		return;	
+	}
+
+	// bail early if editing in admin
+	if( is_admin() ) {
+		return;
+	}
+	
+	// vars
+	$post = get_post( $post_id );
+	
+	// get custom fields (field group exists for content_form)
+	$name = get_field('name', $post_id);
+	$email = get_field('email', $post_id);
+	
+	// email data
+	$to = 'xzr0429@gmail.com';
+	$headers = 'From: ' . $name . ' <' . $email . '>' . "\r\n";
+	$subject = $post->post_title;
+	// $body = $post->post_content;
+	
+	// send email
+	wp_mail($to, $subject, $headers );
+	
+}
+
+add_action('acf/save_post', 'my_save_post');
+
+
+// Modify ACF Form Label for Post Title Field
+function wd_post_title_acf_name( $field ) {
+     if( is_page($page = 'vendor-application') ) { // if on the vendor page
+          $field['label'] = 'Company Name';
+     } else {
+          $field['label'] = 'Name';
+     }
+     return $field;
+}
+add_filter('acf/load_field/name=_post_title', 'wd_post_title_acf_name');
+
+// Set ACF image as featured image
+function acf_set_featured_image( $value, $post_id ){
+    
+    if($value != ''){
+	    //Add the value which is the image ID to the _thumbnail_id meta data for the current post
+	    add_post_meta($post_id, '_thumbnail_id', $value);
+    }
+ 
+    return $value;
+}
+
+// acf/update_value/name={$field_name} - filter for a specific field based on it's name
+add_filter('acf/update_value/name=logo', 'acf_set_featured_image', 10, 3);
+ 
+=======
 // Change the excerpt length
 function ife_excerpt_length ( $length ) {
 	return 30;
@@ -293,3 +354,4 @@ function ife_excerpt_more ( $more ) {
 	return $more;
 }
 add_filter( 'excerpt_more', 'ife_excerpt_more' );
+>>>>>>> ac67bead0d0e98dc0a52896d3d67e2d65a0bb9b4
