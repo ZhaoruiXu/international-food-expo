@@ -281,7 +281,6 @@ function my_toolbars( $toolbars )
 
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
 
-<<<<<<< HEAD
 // Save acf_form to send an email to admin
 function my_save_post( $post_id ) {
 	
@@ -341,7 +340,6 @@ function acf_set_featured_image( $value, $post_id ){
 // acf/update_value/name={$field_name} - filter for a specific field based on it's name
 add_filter('acf/update_value/name=logo', 'acf_set_featured_image', 10, 3);
  
-=======
 // Change the excerpt length
 function ife_excerpt_length ( $length ) {
 	return 30;
@@ -354,4 +352,3 @@ function ife_excerpt_more ( $more ) {
 	return $more;
 }
 add_filter( 'excerpt_more', 'ife_excerpt_more' );
->>>>>>> ac67bead0d0e98dc0a52896d3d67e2d65a0bb9b4
