@@ -38,8 +38,8 @@ if( $terms && !is_wp_error( $terms ) ) :
     ?>
     <section class="featured-vendors">
       <h2>Featured Vendors</h2>
-      <div class="vendors swiper">
-        <button class="swiper-button-prev"></button>
+      <div class="vendors swiper swiper-vendors">
+        <button class="swiper-button-prev swiper-vendors-button-prev"></button>
         <div class="vendor-wrapper swiper-wrapper">
           <?php
           while ( $query -> have_posts() ) {
@@ -55,7 +55,7 @@ if( $terms && !is_wp_error( $terms ) ) :
           wp_reset_postdata();
           ?>
         </div>
-        <button class="swiper-button-next"></button>
+        <button class="swiper-button-next swiper-vendors-button-next"></button>
       </div>
       <a class="vendor-page-link" href="<?php echo esc_url( get_page_link( 40 ) ) ?>">
         See All Vendors

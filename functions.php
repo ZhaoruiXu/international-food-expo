@@ -149,14 +149,14 @@ function food_expo_scripts() {
 
 	// Enqueue Swiper on all pages to enable featured vendors carousel
 	wp_enqueue_style(
-		'fwd-swiper-styles',
+		'ife-swiper-styles',
 		get_template_directory_uri() . '/css/swiper-bundle.css',
 		array(),
 		'8.1.4'
 	);
 
 	wp_enqueue_script(
-		'fwd-swiper-scripts',
+		'ife-swiper-scripts',
 		get_template_directory_uri() . '/js/swiper-bundle.min.js',
 		array(),
 		'8.1.4',
@@ -164,9 +164,9 @@ function food_expo_scripts() {
 	);
 
 	wp_enqueue_script(
-		'fwd-swiper-settings',
-		get_template_directory_uri() . '/js/swiper-settings.js',
-		array( 'fwd-swiper-scripts' ),
+		'ife-swiper-settings',
+		get_template_directory_uri() . '/js/featured-vendors-swiper-settings.js',
+		array( 'ife-swiper-scripts' ),
 		_S_VERSION,
 		true	// load in footer
 	);
