@@ -284,31 +284,56 @@ add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
 // Save acf_form to send an email to admin
 function my_save_post( $post_id ) {
 	
-	// bail early if not a contact_form post
+	// bail early if not a ife-vendor post
 	if( get_post_type($post_id) !== 'ife-vendor' ) {
 		return;	
 	}
 
 	// bail early if editing in admin
-	if( is_admin() ) {
-		return;
-	}
+	// if( is_admin() ) {
+	// 	return;
+	// }
 	
 	// vars
 	$post = get_post( $post_id );
 	
-	// get custom fields (field group exists for content_form)
-	$name = get_field('name', $post_id);
-	$email = get_field('email', $post_id);
-	
-	// email data
-	$to = 'xzr0429@gmail.com';
-	$headers = 'From: ' . $name . ' <' . $email . '>' . "\r\n";
-	$subject = $post->post_title;
-	// $body = $post->post_content;
-	
-	// send email
-	wp_mail($to, $subject, $headers );
+	// if ( function_exists ( 'get_field' ) ) {
+
+	// 	// get custom fields (field group exists for ife-vendor CPT)
+	// 	if ( get_field( 'full_name', $post_id ) ) {
+	// 			$full_name = get_field( 'full_name', $post_id );
+	// 	}
+
+	// 	if ( get_field( 'email_address', $post_id ) ) {
+	// 			$email_address = get_field( 'email_address', $post_id );
+	// 	}
+		
+		// email data
+		$to = 'xzr0429@gmail.com';
+		// $headers = 'From: ' . $full_name . ' <' . $email_address . '>' . "\r\n";
+		// $subject = $post->post_title;
+		// $body = $post->post_content;
+
+		$post_title = get_the_title( $post_id );
+		$post_url 	= get_permalink( $post_id );
+		$subject 	= "A New Vendor Application Has Been Submmited to Your Site";
+		$message 	= "Please review the application before publishing:\n\n";
+		$message   .= $post_title . ": " . $post_url;
+		
+		// $administrators 	= get_users(array(
+		// 'role'	=> 'administrator'
+		// ));
+
+		// foreach ($administrators as &$administrator) {
+		// 	wp_mail( $administrator->data->user_email, $subject, $body );
+		// }
+
+
+		// send email
+		wp_mail($to, $subject, $message );
+
+	// }
+
 	
 }
 
@@ -338,7 +363,7 @@ function acf_set_featured_image( $value, $post_id ){
 }
 
 // acf/update_value/name={$field_name} - filter for a specific field based on it's name
-add_filter('acf/update_value/name=logo', 'acf_set_featured_image', 10, 3);
+add_filter('acf/update_value/name=upload_company_logo', 'acf_set_featured_image', 10, 3);
  
 // Change the excerpt length
 function ife_excerpt_length ( $length ) {
