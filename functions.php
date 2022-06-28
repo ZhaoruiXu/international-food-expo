@@ -170,6 +170,30 @@ function food_expo_scripts() {
 		_S_VERSION,
 		true	// load in footer
 	);
+
+	// If on the front page or in a selection of pages, setup the google maps
+	// ID: 60 - About Page
+	if ( is_front_page() || is_page( array( 60 ) ) ) :
+
+		// Google Maps code
+		wp_enqueue_script(
+			'ife-google-maps',
+			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBXXzioydGJrV3pWfn5Pe0eYp6iOGyuhco',
+			array(),
+			_S_VERSION,
+			true	// load in footer
+		);
+
+		// Helper functions/setup
+		wp_enqueue_script(
+			'ife-google-maps-setup',
+			get_template_directory_uri() . '/js/google-maps-setup.js',
+			array( 'ife-google-maps' ),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
+
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
 
@@ -256,3 +280,16 @@ function my_toolbars( $toolbars )
 }
 
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+
+// Change the excerpt length
+function ife_excerpt_length ( $length ) {
+	return 30;
+}
+add_filter( 'excerpt_length', 'ife_excerpt_length', 999 );
+
+// Chante the excerpt ending
+function ife_excerpt_more ( $more ) {
+	$more = "... <a href='" . get_permalink() . "' class='read-more'>Continue Reading</a>";
+	return $more;
+}
+add_filter( 'excerpt_more', 'ife_excerpt_more' );
