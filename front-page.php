@@ -39,22 +39,21 @@ get_header();
 				</div>
 				<div class="right-column">
 					<?php 
+					get_template_part( 'template-parts/event-map' );
+
 					// ID: 60 - About Page
 					if ( function_exists( 'get_field' ) ) :
 						if( get_field('event_address', 60) ): 
-							// $location = get_field('event_address', 60);
-							// echo $location['name'];
+							$location = get_field('event_address', 60);
 							?>
-							<!-- <div class="acf-map" data-zoom="16">
-									<div class="marker" data-lat="<?php echo esc_attr($location['lat']); ?>" data-lng="<?php echo esc_attr($location['lng']); ?>"></div>
-							</div> -->
+							<p class="event-address"><?php echo $location['address']; ?></p>
 							<?php 
 						endif; 
-						
+
 						// Event Dates
 						if( have_rows('event_dates', 60) ):
 							?>
-							<section class="event-dates">
+							<div class="event-dates">
 								<h3>Event Dates</h3>
 								<ul class="date-list">
 									<?php
@@ -70,12 +69,42 @@ get_header();
 									endwhile;
 									?>
 								</ul>
-							</section>
+								</div>
 							<?php
 						endif;
 					endif;
 					?>
 				</div>
+			</section>
+
+			<section class="section-news">
+				<h2>News and Updates</h2>
+				<?php 
+				$args = array(
+					'post_type' => 'post',
+					'posts_per_page' => 3,
+				);
+				
+				$query = new WP_Query( $args );
+				
+				if ( $query -> have_posts() ){
+					while ( $query -> have_posts() ) {
+						$query -> the_post();
+
+						?>
+						<article>
+							<a href=<?php echo get_page_link() ?>>
+								<?php the_post_thumbnail() ?>
+								<h3><?php the_title() ?></h3>
+							</a>
+							<p><?php echo get_the_date() ?></p>
+							<p><?php the_excerpt() ?></p>
+						</article>
+						<?php
+					}
+					wp_reset_postdata();
+				}
+				?>
 			</section>
 			<?php
 		endwhile; // End of the loop.

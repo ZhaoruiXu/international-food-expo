@@ -280,3 +280,16 @@ function my_toolbars( $toolbars )
 }
 
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+
+// Change the excerpt length
+function ife_excerpt_length ( $length ) {
+	return 30;
+}
+add_filter( 'excerpt_length', 'ife_excerpt_length', 999 );
+
+// Chante the excerpt ending
+function ife_excerpt_more ( $more ) {
+	$more = "... <a href='" . get_permalink() . "' class='read-more'>Continue Reading</a>";
+	return $more;
+}
+add_filter( 'excerpt_more', 'ife_excerpt_more' );
