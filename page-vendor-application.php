@@ -39,7 +39,7 @@ get_header();
           'post_status'	=> 'pending'
         ),
         'return'		=> home_url('vendor-thank-you'), // redirect to thank-you page
-        'submit_value'	=> 'Send'
+        'submit_value'	=> 'Submit Application'
       ));
       
       ?>
