@@ -25,16 +25,21 @@ get_header();
 			
 			?>
 			<section class="section-about">
-				<?php 
-				// ID: 60 - About Page
-				if ( function_exists( 'get_field' ) ) {
-					if ( get_field( 'description', 60 ) ) {
-						the_field( 'description', 60 );
+				<div class="left-column">
+					<?php
+					// ID: 60 - About Page
+					if ( function_exists( 'get_field' ) ) {
+						if ( get_field( 'description', 60 ) ) {
+							the_field( 'description', 60 );
+						}
 					}
-				}
-				?>
-				
-				<a href=<?php echo get_page_link(60) ?>>More Info <span class="screen-reader-text">About the Convention</span></a>
+					?>
+					
+					<a href=<?php echo get_page_link(60) ?>>More Info <span class="screen-reader-text">About the Convention</span></a>
+				</div>
+				<div class="right-column">
+
+				</div>
 			</section>
 			<?php
 		endwhile; // End of the loop.
