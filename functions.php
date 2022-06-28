@@ -149,14 +149,14 @@ function food_expo_scripts() {
 
 	// Enqueue Swiper on all pages to enable featured vendors carousel
 	wp_enqueue_style(
-		'fwd-swiper-styles',
+		'ife-swiper-styles',
 		get_template_directory_uri() . '/css/swiper-bundle.css',
 		array(),
 		'8.1.4'
 	);
 
 	wp_enqueue_script(
-		'fwd-swiper-scripts',
+		'ife-swiper-scripts',
 		get_template_directory_uri() . '/js/swiper-bundle.min.js',
 		array(),
 		'8.1.4',
@@ -164,12 +164,36 @@ function food_expo_scripts() {
 	);
 
 	wp_enqueue_script(
-		'fwd-swiper-settings',
-		get_template_directory_uri() . '/js/swiper-settings.js',
-		array( 'fwd-swiper-scripts' ),
+		'ife-swiper-settings',
+		get_template_directory_uri() . '/js/featured-vendors-swiper-settings.js',
+		array( 'ife-swiper-scripts' ),
 		_S_VERSION,
 		true	// load in footer
 	);
+
+	// If on the front page or in a selection of pages, setup the google maps
+	// ID: 60 - About Page
+	if ( is_front_page() || is_page( array( 60 ) ) ) :
+
+		// Google Maps code
+		wp_enqueue_script(
+			'ife-google-maps',
+			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBXXzioydGJrV3pWfn5Pe0eYp6iOGyuhco',
+			array(),
+			_S_VERSION,
+			true	// load in footer
+		);
+
+		// Helper functions/setup
+		wp_enqueue_script(
+			'ife-google-maps-setup',
+			get_template_directory_uri() . '/js/google-maps-setup.js',
+			array( 'ife-google-maps' ),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
+
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
 
@@ -257,6 +281,7 @@ function my_toolbars( $toolbars )
 
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
 
+<<<<<<< HEAD
 // Save acf_form to send an email to admin
 function my_save_post( $post_id ) {
 	
@@ -316,3 +341,17 @@ function acf_set_featured_image( $value, $post_id ){
 // acf/update_value/name={$field_name} - filter for a specific field based on it's name
 add_filter('acf/update_value/name=logo', 'acf_set_featured_image', 10, 3);
  
+=======
+// Change the excerpt length
+function ife_excerpt_length ( $length ) {
+	return 30;
+}
+add_filter( 'excerpt_length', 'ife_excerpt_length', 999 );
+
+// Chante the excerpt ending
+function ife_excerpt_more ( $more ) {
+	$more = "... <a href='" . get_permalink() . "' class='read-more'>Continue Reading</a>";
+	return $more;
+}
+add_filter( 'excerpt_more', 'ife_excerpt_more' );
+>>>>>>> ac67bead0d0e98dc0a52896d3d67e2d65a0bb9b4

@@ -1,4 +1,4 @@
-const swiper = new Swiper('.swiper', {
+const swiperFeaturedVendors = new Swiper('.swiper-vendors', {
   loop: true,
   autoplay: {
     delay: 1500,
@@ -6,8 +6,8 @@ const swiper = new Swiper('.swiper', {
   },
   autoHeight: true,
   navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev',
+      nextEl: '.swiper-vendors-button-next',
+      prevEl: '.swiper-vendors-button-prev',
   },
   slidesPerView: 2,
   spaceBetween: 10,
