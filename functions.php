@@ -146,6 +146,30 @@ function food_expo_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	// Enqueue Swiper on all pages to enable featured vendors carousel
+	wp_enqueue_style(
+		'fwd-swiper-styles',
+		get_template_directory_uri() . '/css/swiper-bundle.css',
+		array(),
+		'8.1.4'
+	);
+
+	wp_enqueue_script(
+		'fwd-swiper-scripts',
+		get_template_directory_uri() . '/js/swiper-bundle.min.js',
+		array(),
+		'8.1.4',
+		true	// load in footer
+	);
+
+	wp_enqueue_script(
+		'fwd-swiper-settings',
+		get_template_directory_uri() . '/js/swiper-settings.js',
+		array( 'fwd-swiper-scripts' ),
+		_S_VERSION,
+		true	// load in footer
+	);
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
 
