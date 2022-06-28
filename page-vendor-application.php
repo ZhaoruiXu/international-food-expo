@@ -23,9 +23,8 @@ get_header();
 
 			get_template_part( 'template-parts/content', 'page' );
 
-      get_template_part( 'template-parts/featured-vendors' );
-
       ?>
+
       <div id="content">
 	
       <?php
@@ -38,14 +37,21 @@ get_header();
           'post_type'		=> 'ife-vendor',
           'post_status'	=> 'pending'
         ),
-        'return'		=> home_url('vendor-thank-you'), // redirect to thank-you page
+        'html_before_fields' => '<input type="text" id="issubmitform" name="issubmitform" value="yes" style="display:none;">',
+        // 'return'		=> home_url('vendor-thank-you/?thankid=' . $post_id), // redirect to thank-you page
         'submit_value'	=> 'Submit Application'
       ));
       
       ?>
       
-    </div>
+      </div>
 
+      <?php  
+
+      get_template_part( 'template-parts/featured-vendors' );
+
+      ?>
+   
     <?php  
 		endwhile; // End of the loop.
 		?>

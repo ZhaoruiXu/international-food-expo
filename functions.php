@@ -290,12 +290,12 @@ function my_save_post( $post_id ) {
 	}
 
 	// bail early if editing in admin
-	// if( is_admin() ) {
-	// 	return;
-	// }
+	if( is_admin() ) {
+		return;
+	}
 	
 	// vars
-	$post = get_post( $post_id );
+	// $post = get_post( $post_id );
 	
 	// if ( function_exists ( 'get_field' ) ) {
 
@@ -320,6 +320,7 @@ function my_save_post( $post_id ) {
 		$message 	= "Please review the application before publishing:\n\n";
 		$message   .= $post_title . ": " . $post_url;
 		
+		// To send all admin accounts the email notification
 		// $administrators 	= get_users(array(
 		// 'role'	=> 'administrator'
 		// ));
@@ -328,17 +329,21 @@ function my_save_post( $post_id ) {
 		// 	wp_mail( $administrator->data->user_email, $subject, $body );
 		// }
 
-
-		// send email
+		
+		// send one email
 		wp_mail($to, $subject, $message );
+
+		// Redirect to thank-you page with the newly created post id embedded
+		if ($_POST['issubmitform'] === "yes"){
+        wp_redirect( 'http://localhost:8888/Capstone/food-expo/vendor-thank-you/?thankid=' . $post_id ); exit;
+    }
 
 	// }
 
 	
 }
 
-add_action('acf/save_post', 'my_save_post');
-
+add_action('acf/save_post', 'my_save_post', 99);
 
 // Modify ACF Form Label for Post Title Field
 function wd_post_title_acf_name( $field ) {
