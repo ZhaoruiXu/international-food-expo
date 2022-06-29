@@ -90,8 +90,8 @@ get_header();
 					<?php 
 					get_template_part( 'template-parts/event-map' );
 
-					// ID: 60 - About Page
 					if ( function_exists( 'get_field' ) ) :
+						// ID: 60 - About Page
 						if( get_field('event_address', 60) ): 
 							$location = get_field('event_address', 60);
 							?>
@@ -123,6 +123,10 @@ get_header();
 						endif;
 					endif;
 					?>
+					
+					<a class="schedule-page-link" href="<?php echo esc_url( get_page_link( 42 ) ) ?>">
+						See Event Schedule
+					</a>
 				</div>
 			</section>
 
