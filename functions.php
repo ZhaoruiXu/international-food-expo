@@ -151,6 +151,64 @@ function food_expo_scripts() {
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
 	}
+
+	// Enqueue Swiper on all pages to enable featured vendors carousel
+	wp_enqueue_style(
+		'ife-swiper-styles',
+		get_template_directory_uri() . '/css/swiper-bundle.css',
+		array(),
+		'8.1.4'
+	);
+
+	wp_enqueue_script(
+		'ife-swiper-scripts',
+		get_template_directory_uri() . '/js/swiper-bundle.min.js',
+		array(),
+		'8.1.4',
+		true	// load in footer
+	);
+
+	wp_enqueue_script(
+		'ife-swiper-settings-vendors',
+		get_template_directory_uri() . '/js/swiper-settings-vendors.js',
+		array( 'ife-swiper-scripts' ),
+		_S_VERSION,
+		true	// load in footer
+	);
+
+	if ( is_front_page() ) :
+		wp_enqueue_script(
+			'ife-swiper-settings-home',
+			get_template_directory_uri() . '/js/swiper-settings-home.js',
+			array( 'ife-swiper-scripts' ),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
+
+	// If on the front page or in a selection of pages, setup the google maps
+	// ID: 60 - About Page
+	if ( is_front_page() || is_page( array( 60 ) ) ) :
+
+		// Google Maps code
+		wp_enqueue_script(
+			'ife-google-maps',
+			'https://maps.googleapis.com/maps/api/js?key=AIzaSyBXXzioydGJrV3pWfn5Pe0eYp6iOGyuhco',
+			array(),
+			_S_VERSION,
+			true	// load in footer
+		);
+
+		// Helper functions/setup
+		wp_enqueue_script(
+			'ife-google-maps-setup',
+			get_template_directory_uri() . '/js/google-maps-setup.js',
+			array( 'ife-google-maps' ),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
+
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
 
@@ -215,3 +273,136 @@ function ife_post_filter( $use_block_editor, $post ) {
 }
 add_filter( 'use_block_editor_for_post', 'ife_post_filter', 10, 2 );
 
+// Replacing The Title Placeholder Text in WordPress
+function wpb_change_title_text( $title ){
+     $screen = get_current_screen();
+   
+		 // target the individual CPT
+     if  ( 'ife-event' == $screen->post_type ) {
+					// change the placeholder text in $title
+          $title = 'Event Name';
+     }
+
+		 if  ( 'ife-vendor' == $screen->post_type ) {
+          $title = 'Vendor Name';
+     }
+
+     return $title;
+}
+   
+add_filter( 'enter_title_here', 'wpb_change_title_text' );
+
+// Add a new customized WYSIWYG toolbar
+function my_toolbars( $toolbars )
+{
+	// Add a new toolbar called "Very Simple"
+	// this toolbar has only 1 row of buttons
+	$toolbars['Very Simple' ][1] = array('bold' , 'italic' , 'underline' );
+
+	// return $toolbars - IMPORTANT!
+	return $toolbars;
+}
+
+add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+
+// Save acf_form to send an email to admin
+function my_save_post( $post_id ) {
+	
+	// bail early if not a ife-vendor post
+	if( get_post_type($post_id) !== 'ife-vendor' ) {
+		return;	
+	}
+
+	// bail early if editing in admin
+	if( is_admin() ) {
+		return;
+	}
+	
+	// vars
+	// $post = get_post( $post_id );
+	
+	// if ( function_exists ( 'get_field' ) ) {
+
+	// 	// get custom fields (field group exists for ife-vendor CPT)
+	// 	if ( get_field( 'full_name', $post_id ) ) {
+	// 			$full_name = get_field( 'full_name', $post_id );
+	// 	}
+
+	// 	if ( get_field( 'email_address', $post_id ) ) {
+	// 			$email_address = get_field( 'email_address', $post_id );
+	// 	}
+		
+		// email data
+		$to = 'xzr0429@gmail.com';
+		// $headers = 'From: ' . $full_name . ' <' . $email_address . '>' . "\r\n";
+		// $subject = $post->post_title;
+		// $body = $post->post_content;
+
+		$post_title = get_the_title( $post_id );
+		$post_url 	= get_permalink( $post_id );
+		$subject 	= "A New Vendor Application Has Been Submmited to Your Site";
+		$message 	= "Please review the application before publishing:\n\n";
+		$message   .= $post_title . ": " . $post_url;
+		
+		// To send all admin accounts the email notification
+		// $administrators 	= get_users(array(
+		// 'role'	=> 'administrator'
+		// ));
+
+		// foreach ($administrators as &$administrator) {
+		// 	wp_mail( $administrator->data->user_email, $subject, $body );
+		// }
+
+		
+		// send one email
+		wp_mail($to, $subject, $message );
+
+		// Redirect to thank-you page with the newly created post id embedded
+		if ($_POST['issubmitform'] === "yes"){
+        wp_redirect( home_url('vendor-thank-you/?thankid=' . $post_id) ); exit;
+    }
+
+	// }
+
+	
+}
+
+add_action('acf/save_post', 'my_save_post', 99);
+
+// Modify ACF Form Label for Post Title Field
+function wd_post_title_acf_name( $field ) {
+     if( is_page($page = 'vendor-application') ) { // if on the vendor page
+          $field['label'] = 'Company Name';
+     } else {
+          $field['label'] = 'Name';
+     }
+     return $field;
+}
+add_filter('acf/load_field/name=_post_title', 'wd_post_title_acf_name');
+
+// Set ACF image as featured image
+function acf_set_featured_image( $value, $post_id ){
+    
+    if($value != ''){
+	    //Add the value which is the image ID to the _thumbnail_id meta data for the current post
+	    add_post_meta($post_id, '_thumbnail_id', $value);
+    }
+ 
+    return $value;
+}
+
+// acf/update_value/name={$field_name} - filter for a specific field based on it's name
+add_filter('acf/update_value/name=upload_company_logo', 'acf_set_featured_image', 10, 3);
+ 
+// Change the excerpt length
+function ife_excerpt_length ( $length ) {
+	return 30;
+}
+add_filter( 'excerpt_length', 'ife_excerpt_length', 999 );
+
+// Chante the excerpt ending
+function ife_excerpt_more ( $more ) {
+	$more = "... <a href='" . get_permalink() . "' class='read-more'>Continue Reading</a>";
+	return $more;
+}
+add_filter( 'excerpt_more', 'ife_excerpt_more' );
