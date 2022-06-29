@@ -435,3 +435,19 @@ function ife_excerpt_more ( $more ) {
 	return $more;
 }
 add_filter( 'excerpt_more', 'ife_excerpt_more' );
+
+// Initialize WooCommerce theme config
+function food_expo_woocommerce_init () {
+
+	// Remove Price from Single Product page
+  remove_action(
+    'woocommerce_single_product_summary',
+    'woocommerce_template_single_title',
+    5
+  );
+
+
+
+}
+
+add_action( 'init', 'food_expo_woocommerce_init');
