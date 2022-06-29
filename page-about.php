@@ -21,15 +21,13 @@ get_header();
 		while ( have_posts() ) :
 			the_post();
 
-			// get_template_part( 'template-parts/content', 'page' );
-
       if ( function_exists ( 'get_field' ) ) {
 
             if ( get_field( 'description' ) ) {
             ?>
 
                 <section class="about-description">
-                  <?php the_title( '<h2>', '</h2>' ); ?>
+                  <h2>Who We are</h2>
                   <?php the_field( 'description' ); ?>
                 </section>
 
