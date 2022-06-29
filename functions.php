@@ -45,6 +45,11 @@ function food_expo_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
+	
+
+	//custom image crop sizes
+
+	add_image_size('day-1-pass',300,200,true);
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
@@ -206,6 +211,15 @@ function food_expo_scripts() {
 
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
+
+
+//acf for banner image
+
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page();
+	
+}
 
 /**
  * Implement the Custom Header feature.
