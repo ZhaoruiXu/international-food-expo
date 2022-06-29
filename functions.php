@@ -45,6 +45,11 @@ function food_expo_setup() {
 		* @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
 		*/
 	add_theme_support( 'post-thumbnails' );
+	
+
+	//custom image crop sizes
+
+	add_image_size('day-1-pass',300,200,true);
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
@@ -164,12 +169,22 @@ function food_expo_scripts() {
 	);
 
 	wp_enqueue_script(
-		'ife-swiper-settings',
-		get_template_directory_uri() . '/js/featured-vendors-swiper-settings.js',
+		'ife-swiper-settings-vendors',
+		get_template_directory_uri() . '/js/swiper-settings-vendors.js',
 		array( 'ife-swiper-scripts' ),
 		_S_VERSION,
 		true	// load in footer
 	);
+
+	if ( is_front_page() ) :
+		wp_enqueue_script(
+			'ife-swiper-settings-home',
+			get_template_directory_uri() . '/js/swiper-settings-home.js',
+			array( 'ife-swiper-scripts' ),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
 
 	// If on the front page or in a selection of pages, setup the google maps
 	// ID: 60 - About Page
@@ -196,6 +211,15 @@ function food_expo_scripts() {
 
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
+
+
+//acf for banner image
+
+if( function_exists('acf_add_options_page') ) {
+	
+	acf_add_options_page();
+	
+}
 
 /**
  * Implement the Custom Header feature.

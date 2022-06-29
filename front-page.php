@@ -20,6 +20,55 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
+			
+			// Home Banner Carousel
+			if( have_rows('carousel_slides') ):
+				?>
+				<section class="section-home-banner">
+					<div class="swiper swiper-home">
+						<button class="swiper-button-prev swiper-home-button-prev"></button>
+						<div class="swiper-wrapper">
+							<?php
+							while( have_rows('carousel_slides') ) :
+								the_row();
+								$text = get_sub_field('text');
+								$image = get_sub_field('background_image');
+								$page_link = get_sub_field('page_link');
+								?>
+								<div class="swiper-slide">
+									<?php
+										if ($page_link) :
+											?>
+											<a href=<?php echo $page_link ?>>
+											<?php
+										endif;
+											if ($image) :
+												?>
+												<img src=<?php echo esc_url($image['url']) ?> alt=<?php echo esc_attr($image['alt']) ?> class="banner-image" >
+												<?php
+											endif;
+											if ($text) :
+												?>
+												<p class="banner-text"><?php echo $text ?></p>
+												<?php
+											endif;
+										if ($page_link) :
+											?>
+											</a>
+											<?php
+										endif;
+									?>
+								</div>
+								<?php
+							endwhile;
+							?>
+						</div>
+						<nav class="swiper-home-pagination"></nav>
+						<button class="swiper-button-next swiper-home-button-next"></button>
+					</div>
+				</section>
+				<?php
+			endif;
 
 			get_template_part( 'template-parts/featured-vendors' );
 			
@@ -41,8 +90,8 @@ get_header();
 					<?php 
 					get_template_part( 'template-parts/event-map' );
 
-					// ID: 60 - About Page
 					if ( function_exists( 'get_field' ) ) :
+						// ID: 60 - About Page
 						if( get_field('event_address', 60) ): 
 							$location = get_field('event_address', 60);
 							?>
@@ -74,6 +123,10 @@ get_header();
 						endif;
 					endif;
 					?>
+					
+					<a class="schedule-page-link" href="<?php echo esc_url( get_page_link( 42 ) ) ?>">
+						See Event Schedule
+					</a>
 				</div>
 			</section>
 
@@ -107,6 +160,7 @@ get_header();
 				?>
 			</section>
 			<?php
+			the_content();
 		endwhile; // End of the loop.
 		?>
 

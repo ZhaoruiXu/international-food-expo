@@ -96,15 +96,16 @@ get_header();
                 while( have_rows('organizers') ) : the_row();
 
                     // Load sub field value.
-                    $sub_value_name = get_sub_field('name');
-                    $sub_value_description = get_sub_field('description');
-                    $sub_value_image = get_sub_field('image');
-                    ?>
-
-                    <div class="about-organizer">
-                    <h3><?php echo $sub_value_name ?></h3>
-                    <p><?php echo $sub_value_description ?></p>
-                    <?php  
+                    if(get_sub_field('name') && get_sub_field('description') && get_sub_field('image')){
+                      $sub_value_name = get_sub_field('name');
+                      $sub_value_description = get_sub_field('description');
+                      $sub_value_image = get_sub_field('image');
+                      ?>
+                      <div class="about-organizer">
+                      <h3><?php echo $sub_value_name ?></h3>
+                      <p><?php echo $sub_value_description ?></p>
+                    <?php    
+                    }
                     echo wp_get_attachment_image( $sub_value_image, 'thumbnail' );
                     ?>
                     </div>
@@ -118,9 +119,37 @@ get_header();
             endif;
             ?>
             </section>
-
+            
             <section class="about-location-time">
+              
+              <div class="location-time-info">
+                <ul>
+                <?php 
+                
+                while( have_rows('event_dates') ) : the_row();
+                    
+                    // Load sub field value.
+                    if( get_sub_field('date') ){
+                      $sub_value_date = get_sub_field('date');
+                    ?>
+                      <li><?php echo $sub_value_date ?></li>
+                    <?php    
+                    }
 
+                // End loop.
+                endwhile;
+
+                ?>
+                </ul>
+                <a href="<?php echo home_url('vendors') ?>">See Our Vendors</a>
+                <a href="<?php echo home_url('schedule') ?>">See Our Schedules</a>
+
+              </div>
+
+              <?php 
+              get_template_part( 'template-parts/event-map' );
+              ?>
+              
             </section>
 
             <?php  
