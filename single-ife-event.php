@@ -13,12 +13,16 @@ get_header();
 
 	<main id="primary" class="site-main">
 	<?php the_post_thumbnail(); ?>
+	<p><?php the_field('date'); ?></p>
+
 
 		<?php
 		while ( have_posts() ) :
 			the_post();
+			
 
 			get_template_part( 'template-parts/content', get_post_type() );
+			
 
 
           	if ( function_exists('get_field' ) ) {
