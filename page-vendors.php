@@ -20,51 +20,50 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
-			
-			$terms = get_terms(array(
-				'taxonomy' => 'ife-vendor-type',
-			));
-			
-			if( $terms && !is_wp_error( $terms ) ) :
-				foreach($terms as $term) :
-					$args = array(
-						'post_type' =>	'ife-vendor',
-						'orderby' =>		'name',
-						'order' =>			'ASC',
-						'tax_query'		=> array(
-							array(
-								'taxonomy'	=> 'ife-vendor-type',
-								'field'			=> 'slug',
-								'terms'			=> $term->slug,
-							)
-						)
-					);
-					
-					$query = new WP_Query( $args );
-					
-					if ( $query -> have_posts() ) :
-						?>
-						<section class="vendor-type-<?php echo $term->slug ?>">
-							<h2><?php echo $term->name ?></h2>
-							<?php
-							while ( $query -> have_posts() ) :
-								$query -> the_post();
-								?>
-								<article class="vendor vendor-<?php echo get_the_ID() ?> vendor-<?php echo get_post()->post_name ?>">
-									<h3><?php the_title() ?></h3>
-									<?php the_post_thumbnail('medium') ?>
-								</article>
-								<?php
-							endwhile;
-							wp_reset_postdata();
-							?>
-						</section>
-						<?php
-					endif;
-				endforeach;
-			endif;
 
+			get_template_part( 'template-parts/featured-vendors' );
 			
+			$args = array(
+				'post_type' =>	'ife-vendor',
+				'orderby' =>		'name',
+				'order' =>			'ASC',
+			);
+			
+			$query = new WP_Query( $args );
+			
+			if ( $query -> have_posts() ) :
+				?>
+				<section class="all-vendors-section">
+					<h2>All Vendors</h2>
+					<form>
+						<label for="vendor-search">Looking for a vendor?</label>
+						<input type="search" class="vendor-search" id="vendor-search" name="vendor-search" placeholder="Search here...">
+					</form>
+
+					<div class="vendors-grid">
+						<?php
+						while ( $query -> have_posts() ) :
+							$query -> the_post();
+
+							// Assign vendor type classes
+							$term_obj_list = get_the_terms( get_the_ID(), 'ife-vendor-type' );
+							$terms_classlist = empty($term_obj_list) ? "" : ".vendor-type-" . join(' .vendor-type-', wp_list_pluck($term_obj_list, 'slug'));
+
+							?>
+							<article 
+								class="vendor vendor-<?php echo get_the_ID() ?> vendor-<?php echo get_post()->post_name ?> <?php echo $terms_classlist ?>"	
+							>
+								<h3><?php the_title() ?></h3>
+								<?php the_post_thumbnail('medium') ?>
+							</article>
+							<?php
+						endwhile;
+						wp_reset_postdata();
+						?>
+					</div>
+				</section>
+				<?php
+			endif;
 
 		endwhile; // End of the loop.
 		?>

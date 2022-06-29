@@ -168,6 +168,7 @@ function food_expo_scripts() {
 		true	// load in footer
 	);
 
+	// Featured Vendors Template Part Carousel (every page)
 	wp_enqueue_script(
 		'ife-swiper-settings-vendors',
 		get_template_directory_uri() . '/js/swiper-settings-vendors.js',
@@ -176,6 +177,7 @@ function food_expo_scripts() {
 		true	// load in footer
 	);
 
+	// Home Page Carousel Banner
 	if ( is_front_page() ) :
 		wp_enqueue_script(
 			'ife-swiper-settings-home',
@@ -186,6 +188,7 @@ function food_expo_scripts() {
 		);
 	endif;
 
+	// About Page Organizers Carousel
 	wp_enqueue_script(
 		'ife-swiper-settings-organizers',
 		get_template_directory_uri() . '/js/swiper-settings-organizers.js',
@@ -217,6 +220,24 @@ function food_expo_scripts() {
 		);
 	endif;
 
+	// Isotope Js for Vendor Page
+	if ( is_page( array( 40 ) ) ) {
+		wp_enqueue_script(
+			'ife-isotope',
+			get_template_directory_uri() . '/js/isotope.pkgd.min.js',
+			array(),
+			_S_VERSION,
+			true	// load in footer
+		);
+
+		wp_enqueue_script(
+			'ife-isotope-settings-vendors',
+			get_template_directory_uri() . '/js/isotope-settings-vendors.js',
+			array( 'ife-isotope' ),
+			_S_VERSION,
+			true	// load in footer
+		);
+	}
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
 
