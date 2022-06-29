@@ -164,8 +164,8 @@ function food_expo_scripts() {
 	);
 
 	wp_enqueue_script(
-		'ife-swiper-settings',
-		get_template_directory_uri() . '/js/featured-vendors-swiper-settings.js',
+		'ife-swiper-settings-vendors',
+		get_template_directory_uri() . '/js/swiper-settings-vendors.js',
 		array( 'ife-swiper-scripts' ),
 		_S_VERSION,
 		true	// load in footer
