@@ -23,6 +23,26 @@ get_header();
 
 			get_template_part( 'template-parts/content', 'page' );
 
+      $new_post_id = $_GET["thankid"];
+
+      if(function_exists( 'get_field' )){
+        if(get_field('full_name', $new_post_id )){
+          $full_name = get_field('full_name', $new_post_id );
+          echo $full_name;
+        }
+        if(get_field('select_vendor_tier', $new_post_id )){
+          $select_vendor_tier = get_field('select_vendor_tier', $new_post_id );
+          echo $select_vendor_tier->name;
+          // echo '<pre>'; print_r($select_vendor_tier); echo '</pre>';
+        }
+      }
+     
+
+      $new_post = get_post( $new_post_id );
+      echo $new_post -> post_title;
+
+      echo "Today is " . date("M d, Y") . "<br>";
+
       get_template_part( 'template-parts/featured-vendors' );
      
 		endwhile; // End of the loop.

@@ -335,7 +335,7 @@ function my_save_post( $post_id ) {
 
 		// Redirect to thank-you page with the newly created post id embedded
 		if ($_POST['issubmitform'] === "yes"){
-        wp_redirect( 'http://localhost:8888/Capstone/food-expo/vendor-thank-you/?thankid=' . $post_id ); exit;
+        wp_redirect( home_url('vendor-thank-you/?thankid=' . $post_id) ); exit;
     }
 
 	// }
