@@ -186,6 +186,14 @@ function food_expo_scripts() {
 		);
 	endif;
 
+	wp_enqueue_script(
+		'ife-swiper-settings-organizers',
+		get_template_directory_uri() . '/js/swiper-settings-organizers.js',
+		array( 'ife-swiper-scripts' ),
+		_S_VERSION,
+		true	// load in footer
+	);
+
 	// If on the front page or in a selection of pages, setup the google maps
 	// ID: 60 - About Page
 	if ( is_front_page() || is_page( array( 60 ) ) ) :
