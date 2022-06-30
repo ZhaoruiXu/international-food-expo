@@ -472,8 +472,6 @@ function food_expo_woocommerce_init () {
     'woocommerce_output_product_data_tabs',
     10
   );
-
-
 }
 
 add_action( 'init', 'food_expo_woocommerce_init');
@@ -513,36 +511,30 @@ function change_in_stock_text( $availability, $product ) {
 add_filter( 'woocommerce_get_availability', 'change_in_stock_text', 1, 2);
 
 // Remove sidebar in single product page
-function bbloomer_remove_sidebar_product_pages() {
+function ife_remove_sidebar_product_pages() {
 	if ( is_product() ) {
 		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 	}
 }
-add_action( 'wp', 'bbloomer_remove_sidebar_product_pages' );
-
-
-add_filter( 'woocommerce_add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment' );
-
-function woocommerce_header_add_to_cart_fragment( $fragments ) {
-	global $woocommerce;
-
-	ob_start();
-
-	?>
-	<a class="cart-customlocation" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>">
-	<?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?>
-  <?php echo $woocommerce->cart->get_cart_total(); ?>
-	</a>
-	<?php
-	$fragments['a.cart-customlocation'] = ob_get_clean();
-	return $fragments;
-}
+add_action( 'wp', 'ife_remove_sidebar_product_pages' );
 
 // Add wc cart in the single product page
-function ife_cart_on_checkout_page_only() {
+function ife_cart_on_single_product_page() {
 	
 	echo do_shortcode('[woocommerce_cart]');
 	
 }
-add_action( 'woocommerce_after_single_product_summary', 'ife_cart_on_checkout_page_only', 5 );
+add_action( 'woocommerce_after_single_product_summary', 'ife_cart_on_single_product_page', 5 );
 
+
+// Resume update cart button in cart page
+function remove_update_cart_button() { 
+	if (is_cart()) { 
+		?><style>.woocommerce button[name="update_cart"],.woocommerce input[name="update_cart"]{display:none}</style> <script>jQuery( function( $ ) {
+				$(".woocommerce").on("change", "input.qty", function(){
+					$("[name='update_cart']").trigger("click");
+				});
+			});</script> <?php
+	} 
+}
+add_action( 'wp_footer', 'remove_update_cart_button' ); 
