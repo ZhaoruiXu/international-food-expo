@@ -516,7 +516,7 @@ function ife_remove_sidebar_product_pages() {
 		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
 	}
 }
-add_action( 'wp', 'ife_remove_sidebar_product_pages' );
+add_action( 'woocommerce_before_main_content', 'ife_remove_sidebar_product_pages' );
 
 // Add wc cart in the single product page
 function ife_cart_on_single_product_page() {
@@ -526,3 +526,12 @@ function ife_cart_on_single_product_page() {
 }
 add_action( 'woocommerce_after_single_product_summary', 'ife_cart_on_single_product_page', 5 );
 
+// Remove cart item image
+add_filter( 'woocommerce_cart_item_thumbnail', '__return_false' );
+
+// Remove cart item link
+function ife_remove_cart_product_link( $product_link, $cart_item, $cart_item_key ) {
+    $product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+    return $product->get_title();
+}
+add_filter( 'woocommerce_cart_item_name', 'ife_remove_cart_product_link', 10, 3 );
