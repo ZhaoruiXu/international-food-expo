@@ -526,15 +526,3 @@ function ife_cart_on_single_product_page() {
 }
 add_action( 'woocommerce_after_single_product_summary', 'ife_cart_on_single_product_page', 5 );
 
-
-// Resume update cart button in cart page
-function remove_update_cart_button() { 
-	if (is_cart()) { 
-		?><style>.woocommerce button[name="update_cart"],.woocommerce input[name="update_cart"]{display:none}</style> <script>jQuery( function( $ ) {
-				$(".woocommerce").on("change", "input.qty", function(){
-					$("[name='update_cart']").trigger("click");
-				});
-			});</script> <?php
-	} 
-}
-add_action( 'wp_footer', 'remove_update_cart_button' ); 
