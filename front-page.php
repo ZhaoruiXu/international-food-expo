@@ -29,38 +29,38 @@ get_header();
 						<button class="swiper-button-prev swiper-home-button-prev"></button>
 						<div class="swiper-wrapper">
 							<?php
-							while( have_rows('carousel_slides') ) :
-								the_row();
-								$text = get_sub_field('text');
-								$image = get_sub_field('background_image');
-								$page_link = get_sub_field('page_link');
-								?>
-								<div class="swiper-slide">
-									<?php
-										if ($page_link) :
-											?>
-											<a href=<?php echo $page_link ?>>
-											<?php
-										endif;
-											if ($image) :
-												?>
-												<img src=<?php echo esc_url($image['url']) ?> alt=<?php echo esc_attr($image['alt']) ?> class="banner-image" >
-												<?php
-											endif;
-											if ($text) :
-												?>
-												<p class="banner-text"><?php echo $text ?></p>
-												<?php
-											endif;
-										if ($page_link) :
-											?>
-											</a>
-											<?php
-										endif;
+							if ( function_exists('have_rows') ) :
+								while( have_rows('carousel_slides') ) :
+									the_row();
+									$text = get_sub_field('text');
+									$image = get_sub_field('background_image');
+									$page_link = get_sub_field('page_link');
 									?>
-								</div>
-								<?php
-							endwhile;
+									<div class="swiper-slide">
+										<?php
+											if ($page_link) :
+												?>
+												<a href=<?php echo $page_link ?>>
+												<?php
+											endif;
+												if ($image) :
+													echo wp_get_attachment_image($image);
+												endif;
+												if ($text) :
+													?>
+													<p class="banner-text"><?php echo $text ?></p>
+													<?php
+												endif;
+											if ($page_link) :
+												?>
+												</a>
+												<?php
+											endif;
+										?>
+									</div>
+									<?php
+								endwhile;
+							endif;
 							?>
 						</div>
 						<nav class="swiper-home-pagination"></nav>
