@@ -44,7 +44,7 @@ get_header();
 												<?php
 											endif;
 												if ($image) :
-													echo wp_get_attachment_image($image);
+													echo wp_get_attachment_image($image,'full');
 												endif;
 												if ($text) :
 													?>
