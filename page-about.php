@@ -62,7 +62,7 @@ get_header();
                 if( get_sub_field('year') ){
                   $year = get_sub_field('year');
                   ?>
-                    <button class="year-btn <?php echo $rowCount===0 ? "active" : "" ?>" value=<?php echo "history-" . $year ?>>
+                    <button class="year-btn <?php echo $rowCount===0 ? "active" : "" ?> <?php echo "history-" . $year ?>" value=<?php echo "history-" . $year ?>>
                       <?php echo $year ?>
                     </button>
                   <?php    
@@ -85,7 +85,7 @@ get_header();
                   $year = get_sub_field('year');
                   $description = get_sub_field('description');
                   ?>
-                    <div class="<?php echo "history-" . $year ?> <?php echo $rowCount===0 ? "active" : "" ?>" >
+                    <div class="year-description <?php echo "history-" . $year ?> <?php echo $rowCount===0 ? "active" : "" ?>" >
                       <p>
                         <?php echo $description ?>
                       </p>
