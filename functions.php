@@ -445,6 +445,68 @@ function food_expo_woocommerce_init () {
     'woocommerce_template_single_title',
     5
   );
+
+	// Remove product meta from Single Product page
+  remove_action(
+    'woocommerce_single_product_summary',
+    'woocommerce_template_single_meta',
+    40
+  );
+
+	// Remove additional info from Single Product page
+  remove_action(
+    'woocommerce_after_single_product_summary',
+    'woocommerce_output_product_data_tabs',
+    10
+  );
+
+
 }
 
 add_action( 'init', 'food_expo_woocommerce_init');
+
+// // Change add to cart text on single product page
+// function woocommerce_add_to_cart_button_text_single() {
+// 	return __( 'Add to Cart Button Text', 'woocommerce' ); 
+// }
+// add_filter( 'woocommerce_product_single_add_to_cart_text', 'woocommerce_add_to_cart_button_text_single' ); 
+
+// Add label in front of the quantity field
+function wp_echo_qty_front_add_cart() {
+	echo '<label class="qty">Select Ticket Quantity</label>'; 
+}
+add_action( 'woocommerce_before_add_to_cart_quantity', 'wp_echo_qty_front_add_cart' );
+
+// Move variation price below the quantity field
+function move_variation_price() {
+    remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );
+    add_action( 'woocommerce_after_add_to_cart_quantity', 'woocommerce_single_variation', 10 );
+		 
+}
+add_action( 'woocommerce_before_add_to_cart_form', 'move_variation_price' );
+
+// // Add label in front of the variation price
+// function wp_echo_label_front_var_price() {
+// 	echo '<label class="qty">Price per Selected Ticket</label>'; 
+// }
+// add_action( 'woocommerce_before_add_to_cart_quantity', 'wp_echo_label_front_var_price' );
+
+// Add label in front of the variation price
+function wp_echo_label_front_var_price($price) {
+	// echo '<label class="qty">Price per Selected Ticket</label>'; 
+	$text_to_add_before_price  = ' Price per Selected Ticket '; //change text in bracket to your preferred text 
+	return $text_to_add_before_price . $price   ;
+}
+add_filter( 'woocommerce_get_price_html', 'wp_echo_label_front_var_price' );
+
+// Change In Stock text to custom text
+function change_in_stock_text( $availability, $product ) {
+
+	// Change In Stock Text
+	if ( $product->managing_stock() ) {
+		$availability['availability'] = __('There are only (' . $product->get_stock_quantity() . ') tickets left available for selected ticket', 'woocommerce');
+	} 
+	
+	return $availability;
+}
+add_filter( 'woocommerce_get_availability', 'change_in_stock_text', 1, 2);
