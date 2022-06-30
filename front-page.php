@@ -135,7 +135,7 @@ get_header();
 								<h3><?php the_title() ?></h3>
 							</a>
 							<p><?php echo get_the_date() ?></p>
-							<p><?php the_excerpt() ?></p>
+							<?php the_excerpt() ?>
 						</article>
 						<?php
 					}
