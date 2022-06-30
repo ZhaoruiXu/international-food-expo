@@ -13,16 +13,7 @@ get_header();
 		while ( have_posts() ) :
 			the_post();
 
-			get_template_part( 'template-parts/content', 'page' );
-
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-				comments_template();
-			endif;
-
-		endwhile; // End of the loop.
-		?>
-          <?php the_post_thumbnail(); ?>
+			the_post_thumbnail(); ?>
             
             
             <header class="page-header">
@@ -67,11 +58,12 @@ get_header();
             echo '</section>';
             wp_reset_postdata();
         };
-        // else :
-        //     get_template_part( 'template-parts/content', 'none' );
-        // endif;
         ?>
-        <?php get_template_part('template-parts/featured-vendors');?>
+        <?php get_template_part('template-parts/featured-vendors');
+
+		endwhile; // End of the loop.
+		?>
+          
     </main><!-- #primary -->
 <?php
 get_footer();

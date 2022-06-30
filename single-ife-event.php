@@ -12,19 +12,19 @@ get_header();
 ?>
 
 	<main id="primary" class="site-main">
-	<?php the_post_thumbnail(); ?>
+	<?php get_template_part( 'template-parts/banner' ); ?>
 	<p><?php the_field('date'); ?></p>
 
+
+	<article>
+
+	<div class = 'events'>
 
 		<?php
 		while ( have_posts() ) :
 			the_post();
 			
-
-			get_template_part( 'template-parts/content', get_post_type() );
-			
-
-
+		
           	if ( function_exists('get_field' ) ) {
 
                 if ( get_field( 'description' ) ) {
@@ -34,18 +34,20 @@ get_header();
 
 			if( have_rows('guests') ):
 
-				echo '<h2> FEATURED GUESTS </h2>';
+				echo '<h2> Featured Guests</h2>';
 				// loop through the rows of data
 			   while ( have_rows('guests') ) : the_row();
 		   
 				   // display a sub field value
 				   the_sub_field('name');
 				   $image = get_sub_field('image');
-				   echo "<img src=".$image['url']." />";
+				   echo wp_get_attachment_image($image,'full');
 				   the_sub_field('description');
 					
 			   endwhile;
+			   
 			endif;
+			
 
 			// If comments are open or we have at least one comment, load up the comment template.
 			if ( comments_open() || get_comments_number() ) :
@@ -54,10 +56,15 @@ get_header();
 
 		endwhile; // End of the loop.
 		?>
-	<?php get_template_part('template-parts/featured-vendors');?>
-
+		
+		<?php get_template_part('template-parts/featured-vendors');?>
+		
+	</div>
+	</article>
 	</main><!-- #main -->
 
 <?php
+
+
 get_sidebar();
 get_footer();
