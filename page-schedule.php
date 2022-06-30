@@ -23,7 +23,6 @@ get_header();
 		endwhile; // End of the loop.
 		?>
           <?php the_post_thumbnail(); ?>
-           <?php if ( have_posts() ) : ?>
             
             
             <header class="page-header">
@@ -68,11 +67,11 @@ get_header();
             echo '</section>';
             wp_reset_postdata();
         };
-        else :
-            get_template_part( 'template-parts/content', 'none' );
-        endif;
+        // else :
+        //     get_template_part( 'template-parts/content', 'none' );
+        // endif;
         ?>
-        <?php get_template_part('template-parts/vendors', 'featured');?>
+        <?php get_template_part('template-parts/featured-vendors');?>
     </main><!-- #primary -->
 <?php
 get_footer();
