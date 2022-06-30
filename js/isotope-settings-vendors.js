@@ -1,3 +1,4 @@
+jQuery.noConflict();
 (($) => {
   const vendorsIso = {
     // Search Parameters

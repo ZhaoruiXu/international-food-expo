@@ -1,5 +1,5 @@
 // Helper Code from https://www.advancedcustomfields.com/resources/google-map/
-
+jQuery.noConflict();
 (function( $ ) {
 
   /**
