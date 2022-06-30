@@ -445,9 +445,6 @@ function food_expo_woocommerce_init () {
     'woocommerce_template_single_title',
     5
   );
-
-
-
 }
 
 add_action( 'init', 'food_expo_woocommerce_init');
