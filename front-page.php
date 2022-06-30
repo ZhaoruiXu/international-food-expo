@@ -91,36 +91,20 @@ get_header();
 					get_template_part( 'template-parts/event-map' );
 
 					if ( function_exists( 'get_field' ) ) :
-						// ID: 60 - About Page
-						if( get_field('event_address', 60) ): 
-							$location = get_field('event_address', 60);
-							?>
-							<p class="event-address"><?php echo $location['address']; ?></p>
-							<?php 
-						endif; 
-
 						// Event Dates
-						if( have_rows('event_dates', 60) ):
-							?>
-							<div class="event-dates">
-								<h3>Event Dates</h3>
-								<ul class="date-list">
-									<?php
-									while( have_rows('event_dates', 60) ) : 
-										the_row();
+            if ( get_field( 'start_date', 60 ) && get_field( 'end_date', 60 ) ) {
+              ?>
+              <p class="event-dates"><?php the_field( 'start_date', 60 )?> - <?php the_field( 'end_date', 60 )?></p>
+              <?php
+            }
 
-										// Format as Day of Week, Month Day Year
-										$date = date( 'l, F j Y', strtotime( get_sub_field('date') ) );
-
-										?>
-										<li><?php echo $date ?></li>
-										<?php
-									endwhile;
-									?>
-								</ul>
-								</div>
-							<?php
-						endif;
+            // Event Address
+            if( get_field('event_address', 60) ): 
+              $location = get_field('event_address', 60);
+              ?>
+              <p class="event-address"><?php echo $location['address']; ?></p>
+              <?php 
+            endif; 
 					endif;
 					?>
 					
