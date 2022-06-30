@@ -20,7 +20,8 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
-
+      
+      get_template_part( 'template-parts/banner' );
       ?>
 
       <div id="vendor-application-form">
