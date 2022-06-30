@@ -465,12 +465,6 @@ function food_expo_woocommerce_init () {
 
 add_action( 'init', 'food_expo_woocommerce_init');
 
-// // Change add to cart text on single product page
-// function woocommerce_add_to_cart_button_text_single() {
-// 	return __( 'Add to Cart Button Text', 'woocommerce' ); 
-// }
-// add_filter( 'woocommerce_product_single_add_to_cart_text', 'woocommerce_add_to_cart_button_text_single' ); 
-
 // Add label in front of the quantity field
 function wp_echo_qty_front_add_cart() {
 	echo '<label class="qty">Select Ticket Quantity</label>'; 
@@ -484,12 +478,6 @@ function move_variation_price() {
 		 
 }
 add_action( 'woocommerce_before_add_to_cart_form', 'move_variation_price' );
-
-// // Add label in front of the variation price
-// function wp_echo_label_front_var_price() {
-// 	echo '<label class="qty">Price per Selected Ticket</label>'; 
-// }
-// add_action( 'woocommerce_before_add_to_cart_quantity', 'wp_echo_label_front_var_price' );
 
 // Add label in front of the variation price
 function wp_echo_label_front_var_price($price) {
@@ -510,3 +498,38 @@ function change_in_stock_text( $availability, $product ) {
 	return $availability;
 }
 add_filter( 'woocommerce_get_availability', 'change_in_stock_text', 1, 2);
+
+// Remove sidebar in single product page
+function bbloomer_remove_sidebar_product_pages() {
+	if ( is_product() ) {
+		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+	}
+}
+add_action( 'wp', 'bbloomer_remove_sidebar_product_pages' );
+
+
+add_filter( 'woocommerce_add_to_cart_fragments', 'woocommerce_header_add_to_cart_fragment' );
+
+function woocommerce_header_add_to_cart_fragment( $fragments ) {
+	global $woocommerce;
+
+	ob_start();
+
+	?>
+	<a class="cart-customlocation" href="<?php echo esc_url(wc_get_cart_url()); ?>" title="<?php _e('View your shopping cart', 'woothemes'); ?>">
+	<?php echo sprintf(_n('%d item', '%d items', $woocommerce->cart->cart_contents_count, 'woothemes'), $woocommerce->cart->cart_contents_count);?>
+  <?php echo $woocommerce->cart->get_cart_total(); ?>
+	</a>
+	<?php
+	$fragments['a.cart-customlocation'] = ob_get_clean();
+	return $fragments;
+}
+
+// Add wc cart in the single product page
+function ife_cart_on_checkout_page_only() {
+	
+	echo do_shortcode('[woocommerce_cart]');
+	
+}
+add_action( 'woocommerce_after_single_product_summary', 'ife_cart_on_checkout_page_only', 5 );
+
