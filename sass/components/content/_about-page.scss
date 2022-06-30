@@ -1,0 +1,19 @@
+.page-id-60 {
+
+  .about-history {
+    .year-btn {
+      &.active {
+        background-color: red;
+      }
+    }
+
+
+    .year-description {
+      display: none;
+
+      &.active {
+        display: unset;
+      }
+    }
+  }
+}
