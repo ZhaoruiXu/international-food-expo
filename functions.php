@@ -189,13 +189,26 @@ function food_expo_scripts() {
 	endif;
 
 	// About Page Organizers Carousel
-	wp_enqueue_script(
-		'ife-swiper-settings-organizers',
-		get_template_directory_uri() . '/js/swiper-settings-organizers.js',
-		array( 'ife-swiper-scripts' ),
-		_S_VERSION,
-		true	// load in footer
-	);
+	if ( is_page( array( 60 ) ) ) :
+		wp_enqueue_script(
+			'ife-swiper-settings-organizers',
+			get_template_directory_uri() . '/js/swiper-settings-organizers.js',
+			array( 'ife-swiper-scripts' ),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
+
+	// About Page History section
+	if ( is_page( array( 60 ) ) ) :
+		wp_enqueue_script(
+			'ife-about-history',
+			get_template_directory_uri() . '/js/about-history.js',
+			array(),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
 
 	// If on the front page or in a selection of pages, setup the google maps
 	// ID: 60 - About Page
@@ -446,8 +459,79 @@ function food_expo_woocommerce_init () {
     5
   );
 
+	// Remove product meta from Single Product page
+  remove_action(
+    'woocommerce_single_product_summary',
+    'woocommerce_template_single_meta',
+    40
+  );
 
-
+	// Remove additional info from Single Product page
+  remove_action(
+    'woocommerce_after_single_product_summary',
+    'woocommerce_output_product_data_tabs',
+    10
+  );
 }
 
 add_action( 'init', 'food_expo_woocommerce_init');
+
+// Add label in front of the quantity field
+function wp_echo_qty_front_add_cart() {
+	echo '<label class="qty">Select Ticket Quantity</label>'; 
+}
+add_action( 'woocommerce_before_add_to_cart_quantity', 'wp_echo_qty_front_add_cart' );
+
+// Move variation price below the quantity field
+function move_variation_price() {
+    remove_action( 'woocommerce_single_variation', 'woocommerce_single_variation', 10 );
+    add_action( 'woocommerce_after_add_to_cart_quantity', 'woocommerce_single_variation', 10 );
+		 
+}
+add_action( 'woocommerce_before_add_to_cart_form', 'move_variation_price' );
+
+// Add label in front of the variation price
+function wp_echo_label_front_var_price($price) {
+	// echo '<label class="qty">Price per Selected Ticket</label>'; 
+	$text_to_add_before_price  = ' Price per Selected Ticket '; //change text in bracket to your preferred text 
+	return $text_to_add_before_price . $price   ;
+}
+add_filter( 'woocommerce_get_price_html', 'wp_echo_label_front_var_price' );
+
+// Change In Stock text to custom text
+function change_in_stock_text( $availability, $product ) {
+
+	// Change In Stock Text
+	if ( $product->managing_stock() ) {
+		$availability['availability'] = __('There are only (' . $product->get_stock_quantity() . ') tickets left available for selected ticket', 'woocommerce');
+	} 
+	
+	return $availability;
+}
+add_filter( 'woocommerce_get_availability', 'change_in_stock_text', 1, 2);
+
+// Remove sidebar in single product page
+function ife_remove_sidebar_product_pages() {
+	if ( is_product() ) {
+		remove_action( 'woocommerce_sidebar', 'woocommerce_get_sidebar', 10 );
+	}
+}
+add_action( 'woocommerce_before_main_content', 'ife_remove_sidebar_product_pages' );
+
+// Add wc cart in the single product page
+function ife_cart_on_single_product_page() {
+	
+	echo do_shortcode('[woocommerce_cart]');
+	
+}
+add_action( 'woocommerce_after_single_product_summary', 'ife_cart_on_single_product_page', 5 );
+
+// Remove cart item image
+add_filter( 'woocommerce_cart_item_thumbnail', '__return_false' );
+
+// Remove cart item link
+function ife_remove_cart_product_link( $product_link, $cart_item, $cart_item_key ) {
+    $product = apply_filters( 'woocommerce_cart_item_product', $cart_item['data'], $cart_item, $cart_item_key );
+    return $product->get_title();
+}
+add_filter( 'woocommerce_cart_item_name', 'ife_remove_cart_product_link', 10, 3 );

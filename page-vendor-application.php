@@ -20,12 +20,11 @@ get_header();
 		<?php
 		while ( have_posts() ) :
 			the_post();
-
-			get_template_part( 'template-parts/content', 'page' );
-
+      
+      get_template_part( 'template-parts/banner' );
       ?>
 
-      <div id="content">
+      <div id="vendor-application-form">
 	
       <?php
       // To create a new vendor post (typeof ife-vendor CPT)
@@ -47,6 +46,18 @@ get_header();
       </div>
 
       <?php  
+      $terms = get_terms(array(
+        'taxonomy' => 'ife-vendor-type',
+      ));
+
+      if( $terms && !is_wp_error( $terms ) ) :
+        foreach($terms as $term) :
+          ?>
+          <p><?php echo $term->name ?></p>
+          <p><?php echo $term->description ?></p>
+          <?php
+        endforeach;
+      endif;
 
       get_template_part( 'template-parts/featured-vendors' );
 
