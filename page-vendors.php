@@ -57,7 +57,7 @@ get_header();
 							>
 								<a href="" class="vendor-link" id="<?php echo get_the_ID() ?>" >
 									<h3 class="vendor-heading"><?php the_title() ?></h3>
-									<?php the_post_thumbnail('medium') ?>
+									<?php the_post_thumbnail('ife-vendor-logo') ?>
 								</a>
 							</article>
 							<?php
