@@ -210,6 +210,17 @@ function food_expo_scripts() {
 		);
 	endif;
 
+	// Vendor Page Modal
+	if ( is_page( array( 40 ) ) ) :
+		wp_enqueue_script(
+			'ife-vendor-modal',
+			get_template_directory_uri() . '/js/vendor-modal.js',
+			array(),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
+
 	// If on the front page or in a selection of pages, setup the google maps
 	// ID: 60 - About Page
 	if ( is_front_page() || is_page( array( 60 ) ) ) :

@@ -5,6 +5,15 @@
     .vendor {
       width: 25%;
       padding: 1rem;
+
+      .vendor-link {
+        display: block;
+
+        &:hover,
+        &:focus {
+          // outline: 1px solid black;
+        }
+      }
     }
   }
 }

@@ -1,0 +1,8 @@
+.vendor-modal {
+  background-color: red;
+  min-height: 10rem;
+
+  &.hidden {
+    display: none;
+  }
+}
