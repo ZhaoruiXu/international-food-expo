@@ -7,9 +7,11 @@
   margin: 1rem;
   background-color: red;
   z-index: 1;
-  min-height: 10rem;
+  transition: max-height 0.8s ease-in-out;
+  max-height: 100%;
+  overflow: hidden;
 
   &.hidden {
-    display: none;
+    max-height: 0;
   }
 }

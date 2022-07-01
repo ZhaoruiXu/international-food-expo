@@ -32,7 +32,6 @@ jQuery.noConflict();
     init: () => {
       const vendorPath = `https://foodexpo.bcitwebdeveloper.ca/wp-json/wp/v2/ife-vendor?_embed`
 
-
       const fetchData = async () => {
         const response = await fetch(vendorPath)
         if ( response.ok ) {
@@ -56,12 +55,27 @@ jQuery.noConflict();
           vendorModal.currentVendor = vendorModal.vendorData.find(vendor => vendor.id == vendorId)
           
           // Update the modal
+          // Heading
           vendorModal.$heading.text(vendorModal.currentVendor.title.rendered);
+
+          // Body Text
           vendorModal.$text.text(vendorModal.currentVendor.acf.company_description);
-          vendorModal.$img.attr('src',vendorModal.currentVendor["_embedded"]["wp:featuredmedia"][0].media_details.sizes['ife-vendor-logo'].source_url)
-          vendorModal.$img.attr('alt',`${vendorModal.currentVendor.title.rendered} logo`)
-  
-          vendorModal.openModal();
+
+          // Img
+          const updateModal = async () => {
+            let imageDetails = vendorModal.currentVendor["_embedded"]["wp:featuredmedia"][0];
+            let imgSrc = imageDetails.source_url;
+            if (imageDetails.media_details.width > 500 || imageDetails.media_details.height > 500) {
+              imgSrc = imageDetails.media_details.sizes['ife-vendor-logo'].source_url;  
+            }
+            await vendorModal.$img.attr('src',imgSrc)
+            vendorModal.$img.attr('alt',`${vendorModal.currentVendor.title.rendered} logo`)
+            vendorModal.openModal();
+          }
+          updateModal()
+
+          
+          
         }
       })
 

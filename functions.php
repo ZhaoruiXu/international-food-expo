@@ -51,7 +51,7 @@ function food_expo_setup() {
 
 	add_image_size('day-1-pass',300,200,true);
 
-	add_image_size('ife-vendor-logo',512,512,true);
+	add_image_size('ife-vendor-logo',500,500,true);
 
 
 	// This theme uses wp_nav_menu() in one location.
