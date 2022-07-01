@@ -30,8 +30,7 @@ jQuery.noConflict();
     },
 
     init: () => {
-      // const vendorPath = `https://foodexpo.bcitwebdeveloper.ca/wp-json/wp/v2/ife-vendor?_embed`
-      const vendorPath = `http://localhost/food-expo/wp-json/wp/v2/ife-vendor?_embed`
+      const vendorPath = `https://foodexpo.bcitwebdeveloper.ca/wp-json/wp/v2/ife-vendor?_embed`
 
 
       const fetchData = async () => {
