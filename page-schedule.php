@@ -30,8 +30,9 @@ get_header();
         $args = array(
             'post_type'     =>'ife-event',
             'posts_per_page' => -1,
-            'orderby'       => 'title',
-            'order'         => 'asc'
+            'meta_key'	=> 'time',
+	        'orderby'   => 'meta_value',
+            'order'     => 'asc'
         );
 
         
