@@ -51,6 +51,9 @@ function food_expo_setup() {
 
 	add_image_size('day-1-pass',300,200,true);
 
+	add_image_size('ife-vendor-logo',512,512,true);
+
+
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(
 		array(
@@ -204,6 +207,17 @@ function food_expo_scripts() {
 		wp_enqueue_script(
 			'ife-about-history',
 			get_template_directory_uri() . '/js/about-history.js',
+			array(),
+			_S_VERSION,
+			true	// load in footer
+		);
+	endif;
+
+	// Vendor Page Modal
+	if ( is_page( array( 40 ) ) ) :
+		wp_enqueue_script(
+			'ife-vendor-modal',
+			get_template_directory_uri() . '/js/vendor-modal.js',
 			array(),
 			_S_VERSION,
 			true	// load in footer

@@ -55,8 +55,10 @@ get_header();
 							<article 
 								class="vendor vendor-<?php echo get_the_ID() ?> vendor-<?php echo get_post()->post_name ?> <?php echo $terms_classlist ?>"	
 							>
-								<h3><?php the_title() ?></h3>
-								<?php the_post_thumbnail('medium') ?>
+								<a href="" class="vendor-link" id="<?php echo get_the_ID() ?>" >
+									<h3 class="vendor-heading"><?php the_title() ?></h3>
+									<?php the_post_thumbnail('ife-vendor-logo') ?>
+								</a>
 							</article>
 							<?php
 						endwhile;
@@ -64,6 +66,12 @@ get_header();
 						?>
 					</div>
 				</section>
+				<div class="vendor-modal hidden">
+					<h2 class="vendor-modal-heading"></h2>
+					<div class="vendor-modal-text"></div>
+					<img class="vendor-modal-image" src="" alt="">
+					<button class="vendor-modal-close-btn">Close</button>
+				</div>
 				<?php
 			endif;
 

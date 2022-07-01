@@ -1,0 +1,15 @@
+.vendor-modal {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  margin: 1rem;
+  background-color: red;
+  z-index: 1;
+  min-height: 10rem;
+
+  &.hidden {
+    display: none;
+  }
+}
