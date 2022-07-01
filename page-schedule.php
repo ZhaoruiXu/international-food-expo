@@ -9,58 +9,50 @@
 get_header();
 ?>
     <main id="primary" class="site-main">
-    <?php
+        <?php
 		while ( have_posts() ) :
 			the_post();
 
-			the_post_thumbnail(); ?>
-            
-            
-            <header class="page-header">
+			get_template_part('template-parts/banner');
 
-                <h1 class="page-header"></h1>
-                
-                
-            </header>
-            
+            $args = array(
+                'post_type'     =>'ife-event',
+                'posts_per_page' => -1,
+                'meta_key'	=> 'time',
+                'orderby'   => 'meta_value',
+                'order'     => 'asc'
+            );
+
+            $query = new WP_Query( $args );
+            if( $query -> have_posts() ) {
+                echo '<section class="events">';
+                while(  $query->have_posts() ) {
+                    $query->the_post();
+                    ?>
+                    <article class="ife-events">
+                        <h2 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h2>
+                        <p class="event-time"><?php the_field('time'); ?></p>
+                        <?php the_post_thumbnail( 'day-1-pass') ?>
+                        <div class="event-description">
+                            <?php the_field('description'); ?>
+                        </div>
+                        <a href="<?php the_permalink(); ?> ">More Info</a>
+                        <div class="event-type">
+                            <?php 
+                            $currentID = get_the_ID();
+                            echo get_the_term_list( get_the_ID(), 'ife-event-type');
+                            ?>
+                        </div>
+                    </article>
+                    <?php
+                }
+                echo '</section>';
+                wp_reset_postdata();
+            };
+            ?>
+        <?php 
         
-            <!-- .page-header -->
-        <?php
-
-        $args = array(
-            'post_type'     =>'ife-event',
-            'posts_per_page' => -1,
-            'meta_key'	=> 'time',
-	        'orderby'   => 'meta_value',
-            'order'     => 'asc'
-        );
-
-        
-    
-        $query = new WP_Query( $args );
-        if( $query -> have_posts() ) {
-            echo '<section class="events">';
-            while(  $query->have_posts() ) {
-                $query->the_post();
-                ?>
-                <article class="ife-events">
-                    <a href="<?php the_permalink(); ?> "><h2><?php the_title() ?></h2></a>
-                    <p><?php the_field('time'); ?></p>
-                    <?php the_post_thumbnail( 'day-1-pass') ?>
-                    <p> <?php the_field('description'); ?></p>
-                    <a href="<?php the_permalink(); ?> "><h2>More Info</h2></a>
-                    <?php the_excerpt() ?>
-                    <?php $currentID = get_the_ID();
-                        echo get_the_term_list( get_the_ID(), 'ife-event-type');
-                        ?></p>
-                </article>
-				<?php
-            }
-            echo '</section>';
-            wp_reset_postdata();
-        };
-        ?>
-        <?php get_template_part('template-parts/featured-vendors');
+        get_template_part('template-parts/featured-vendors');
 
 		endwhile; // End of the loop.
 		?>
