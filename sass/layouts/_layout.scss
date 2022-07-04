@@ -1,0 +1,29 @@
+.site {
+	display: grid;
+	grid-template-columns: minmax(1rem, 1fr) minmax(0, $size__site-main) minmax(1rem, 1fr);
+	grid-template-areas:
+		"header header header"
+		". main ."
+		". sidebar ."
+		"footer footer footer";
+	overflow: hidden;
+}
+
+.site-header {
+	grid-area: header;
+}
+
+.site-main {
+	grid-area: main;
+	padding: 0 1rem;
+	margin-top: 5rem;
+}
+
+.widget-area {
+	grid-area: sidebar;
+	padding: 3rem 1rem 0;
+}
+
+.site-footer {
+	grid-area: footer;
+}
