@@ -2,13 +2,27 @@
 --------------------------------------------- */
 @import "navigation/navigation";
 
+
+
 /* Posts and pages
 --------------------------------------------- */
 @import "content/posts-and-pages";
-@import "content/google-map";
-@import "content/about-page";
-@import "content/vendor-modal";
-@import "content/vendors-page";
+
+/* Components
+--------------------------------------------- */
+@import "content/components/google-map";
+@import "content/components/vendor-modal";
+
+
+/* Pages
+--------------------------------------------- */
+@import "content/pages/home-page";
+@import "content/pages/about-page";
+@import "content/pages/vendors-page";
+@import "content/pages/schedule-page";
+@import "content/pages/single-event-page";
+@import "content/pages/news-page";
+@import "content/pages/single-news-page";
 
 /* Comments
 --------------------------------------------- */

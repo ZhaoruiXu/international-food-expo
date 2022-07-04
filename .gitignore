@@ -76,6 +76,9 @@ node_modules/
 gulpfile.js
 package.json
 package-lock.json
+composer.json
+composer.lock
+vendor
 .eslintrc.js
 
 
