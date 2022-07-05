@@ -26,9 +26,9 @@ get_header();
 			get_template_part( 'template-parts/featured-vendors' );
 			
 			$args = array(
-				'post_type' 				=> 'ife-vendor',
-				'orderby' 					=> 'name',
-				'order' 						=> 'ASC',
+				'post_type' 			=> 'ife-vendor',
+				'orderby' 				=> 'name',
+				'order' 					=> 'ASC',
 				'posts_per_page' 	=> -1.
 			);
 			
