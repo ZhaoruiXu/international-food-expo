@@ -48,8 +48,8 @@ function food_expo_setup() {
 	
 
 	//custom image crop sizes
-
 	add_image_size('ife-banner',1920,860,true);
+
 	add_image_size('ife-event-thumbnail',600,400,true);
 
 	add_image_size('ife-event-guest',300,300,true);
@@ -149,6 +149,14 @@ add_action( 'widgets_init', 'food_expo_widgets_init' );
  * Enqueue scripts and styles.
  */
 function food_expo_scripts() {
+	
+	wp_enqueue_style( 
+		'ife-google-fonts', // Unique Handle 
+		"https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap", 
+		array(), // Dependencies
+		null, // Need null for version number with Google fonts since it can re-use query terms (e.g. family)
+		'all'
+	); 
 	wp_enqueue_style( 'food-expo-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'food-expo-style', 'rtl', 'replace' );
 

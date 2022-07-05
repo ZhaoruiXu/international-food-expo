@@ -47,7 +47,7 @@ if( $terms && !is_wp_error( $terms ) ) :
             ?>
             <figure class="vendor swiper-slide">
               <figcaption class="vendor-name"><?php echo get_the_title() ?></figcaption>
-              <?php the_post_thumbnail('post-thumbnail', ['class' => 'vendor-image']) ?>
+              <?php the_post_thumbnail('ife-vendor-logo', ['class' => 'vendor-image']) ?>
             </figure>
             <?php
           
