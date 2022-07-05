@@ -4,13 +4,18 @@
   .vendors-grid {
     .vendor {
       width: 50%;
-      padding: 0.5em;
+      padding: 1rem;
 
-      @media (min-width: $bp-tablet) {
-        width: 50%
-      }
+      // @media (min-width: $bp-tablet) {
+      //   width: 50%
+      // }
+
       @media (min-width: $bp-laptop) {
         width: 25%
+      }
+
+      @media (min-width: $bp-desktop) {
+        width: 20%
       }
 
       .vendor-link {

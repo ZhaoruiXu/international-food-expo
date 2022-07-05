@@ -1,17 +1,41 @@
 .vendor-modal {
   position: fixed;
-  top: 50%;
-  left: 0;
-  right: 0;
-  transform: translateY(-50%);
-  margin: 1rem;
-  background-color: red;
-  z-index: 1;
-  transition: max-height 0.8s ease-in-out;
-  max-height: 100%;
-  overflow: hidden;
+  inset: 0;
+  background-color: rgba($color_primary, 0.8);
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  
+  .vendor-modal-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    max-width: 50rem;
+    max-height: 100%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: $color_main_background;
+    z-index: 1;
+    overflow-y: scroll;
+    transition: max-height 0.8s ease-in-out;
 
+    .vendor-modal-close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+    }
+  
+  }
+  
   &.hidden {
-    max-height: 0;
+    // display: none;
+    opacity: 0;
+    visibility: hidden;
+
+    .vendor-modal-wrapper {
+      max-height: 0;
+    }
   }
 }

@@ -8,74 +8,72 @@ jQuery.noConflict();
 
     // DOM References
     $modal: $(".vendor-modal"),
+    $wrapper: $(".vendor-modal-wrapper"),
     $heading: $(".vendor-modal-heading"),
     $text: $(".vendor-modal-text"),
     $img: $(".vendor-modal-image"),
     $closeBtn: $(".vendor-modal-close-btn"),
     $vendorLinks: $(".vendor-link"),
+    $body: $("body"),
 
     openModal: () => {
       vendorModal.$modal.removeClass("hidden")
+      vendorModal.$body.addClass("stop-scroll")
       vendorModal.modalIsOpen = true;
     },
-
+    
     closeModal: () => {
       vendorModal.$modal.addClass("hidden")
+      vendorModal.$body.removeClass("stop-scroll")
       vendorModal.modalIsOpen = false;
     },
 
     toggleModal: () => {
       vendorModal.$modal.toggleClass("hidden")
+      vendorModal.$body.toggleClass("stop-scroll")
       vendorModal.modalIsOpen = !vendorModal.modalIsOpen;
     },
 
     init: () => {
-      const vendorPath = `https://foodexpo.bcitwebdeveloper.ca/wp-json/wp/v2/ife-vendor?_embed`
-
-      const fetchData = async () => {
-        const response = await fetch(vendorPath)
-        if ( response.ok ) {
-          vendorModal.vendorData = await response.json();
-          vendorModal.dataLoaded = true;
-        }
-      }
-      fetchData()
       
       // On vendor click, open the vendor modal
       vendorModal.$vendorLinks.click((e) => {
         e.preventDefault();
+        // e.stopPropagation();
         
-        // Get vendor id stored in modal's id prop
-        const vendorId = e.currentTarget.id;
-        
-        if (vendorModal.dataLoaded && !vendorModal.modalIsOpen) {
-          e.stopPropagation();
+        if (!vendorModal.modalIsOpen) {
+          // Get vendor id stored in modal's id prop
+          const vendorId = e.currentTarget.id;
 
-          // Find the correct vendor data
-          vendorModal.currentVendor = vendorModal.vendorData.find(vendor => vendor.id == vendorId)
-          
-          // Update the modal
-          // Heading
-          vendorModal.$heading.text(vendorModal.currentVendor.title.rendered);
+          const vendorPath = `https://foodexpo.bcitwebdeveloper.ca/wp-json/wp/v2/ife-vendor/${vendorId}?_embed`
+    
+          const fetchData = async () => {
+            const response = await fetch(vendorPath)
+            if ( response.ok ) {
+              const currentVendor = await response.json();
 
-          // Body Text
-          vendorModal.$text.text(vendorModal.currentVendor.acf.company_description);
-
-          // Img
-          const updateModal = async () => {
-            let imageDetails = vendorModal.currentVendor["_embedded"]["wp:featuredmedia"][0];
-            let imgSrc = imageDetails.source_url;
-            if (imageDetails.media_details.width > 500 || imageDetails.media_details.height > 500) {
-              imgSrc = imageDetails.media_details.sizes['ife-vendor-logo'].source_url;  
+              // Update the modal
+              // Heading
+              vendorModal.$heading.html(currentVendor.title.rendered);
+    
+              // Body Text
+              vendorModal.$text.html(currentVendor.acf.company_description);
+    
+              // Img
+              const updateModal = async () => {
+                let imageDetails = currentVendor["_embedded"]["wp:featuredmedia"][0];
+                let imgSrc = imageDetails.source_url;
+                if (imageDetails.media_details.width > 500 || imageDetails.media_details.height > 500) {
+                  imgSrc = imageDetails.media_details.sizes['ife-vendor-logo'].source_url;  
+                }
+                await vendorModal.$img.attr('src',imgSrc)
+                vendorModal.$img.attr('alt',`${currentVendor.title.rendered} logo`)
+                vendorModal.openModal();
+              }
+              updateModal()
             }
-            await vendorModal.$img.attr('src',imgSrc)
-            vendorModal.$img.attr('alt',`${vendorModal.currentVendor.title.rendered} logo`)
-            vendorModal.openModal();
           }
-          updateModal()
-
-          
-          
+          fetchData()
         }
       })
 
