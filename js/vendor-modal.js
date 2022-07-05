@@ -10,7 +10,7 @@ jQuery.noConflict();
     $modal: $(".vendor-modal"),
     $wrapper: $(".vendor-modal-wrapper"),
     $heading: $(".vendor-modal-heading"),
-    $text: $(".vendor-modal-text"),
+    $description: $(".vendor-modal-description"),
     $img: $(".vendor-modal-image"),
     $closeBtn: $(".vendor-modal-close-btn"),
     $vendorLinks: $(".vendor-link"),
@@ -57,7 +57,7 @@ jQuery.noConflict();
               vendorModal.$heading.html(currentVendor.title.rendered);
     
               // Body Text
-              vendorModal.$text.html(currentVendor.acf.company_description);
+              vendorModal.$description.html(currentVendor.acf.company_description);
     
               // Img
               const updateModal = async () => {

@@ -69,8 +69,10 @@ get_header();
 				</section>
 				<div class="vendor-modal hidden">
 					<div class="vendor-modal-wrapper">
-						<h2 class="vendor-modal-heading"></h2>
-						<div class="vendor-modal-text"></div>
+						<div class="vendor-modal-text">
+							<h2 class="vendor-modal-heading"></h2>
+							<div class="vendor-modal-description"></div>
+						</div>
 						<img class="vendor-modal-image" src="" alt="">
 						<button class="vendor-modal-close-btn">Close</button>
 					</div>
