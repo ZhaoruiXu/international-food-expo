@@ -1,3 +1,12 @@
 .single-ife-event {
   
+  .guest-wrapper {
+    @include common-grid;
+
+    .guest {
+      img {
+        width: 100%;
+      }
+    }
+  }
 }
