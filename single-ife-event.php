@@ -53,7 +53,7 @@ get_header();
 									<h3 class="guest-name"><?php the_sub_field('name') ?></h3>
 									<?php
 									$image = get_sub_field('image');
-									echo wp_get_attachment_image($image,'full');
+									echo wp_get_attachment_image($image,'ife-event-guest');
 									?>
 									<p class="guest-description"><?php the_sub_field('description') ?></p>
 								</article>

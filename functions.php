@@ -49,7 +49,10 @@ function food_expo_setup() {
 
 	//custom image crop sizes
 
-	add_image_size('day-1-pass',300,200,true);
+	add_image_size('ife-banner',1920,860,true);
+	add_image_size('ife-event-thumbnail',600,400,true);
+
+	add_image_size('ife-event-guest',300,300,true);
 
 	add_image_size('ife-vendor-logo',500,500,true);
 
