@@ -1,7 +1,7 @@
 .vendor-modal {
   position: fixed;
   inset: 0;
-  background-color: rgba($color_primary, 0.8);
+  background-color: rgba($blue, 0.8);
   opacity: 1;
   visibility: visible;
   transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
