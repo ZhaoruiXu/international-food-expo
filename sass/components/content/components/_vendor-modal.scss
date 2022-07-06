@@ -15,8 +15,8 @@
     max-width: 50rem;
     max-height: 100%;
     margin: 0 auto;
-    padding: 2rem;
-    background-color: $color_main_background;
+    padding: $site-padding;
+    background-color: $white;
     z-index: 1;
     overflow-y: scroll;
     transition: max-height 0.8s ease-in-out;

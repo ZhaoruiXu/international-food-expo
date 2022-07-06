@@ -1,6 +1,6 @@
 .site {
 	display: grid;
-	grid-template-columns: minmax(1rem, 1fr) minmax(0, $size__site-main) minmax(1rem, 1fr);
+	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $size__site-main) minmax($site-padding, 1fr);
 	grid-template-areas:
 		"header header header"
 		". main ."
@@ -15,7 +15,7 @@
 
 .site-main {
 	grid-area: main;
-	padding: 0 1rem;
+	// padding: 0 1rem;
 	// margin-top: 5rem;
 }
 
