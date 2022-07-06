@@ -28,14 +28,39 @@
 	<header id="masthead" class="site-header">
 		<div class="site-branding">
 			<?php
-			the_custom_logo();
+			function the_logo () {
+				$custom_logo_id = get_theme_mod( 'custom_logo' );
+	
+				$logo = wp_get_attachment_image_src( $custom_logo_id , 'ife-site-log' );
+	
+				if ( has_custom_logo() ) :
+					?>
+					<img src=<?php echo esc_url( $logo[0] ) ?> alt=<?php echo get_bloginfo( 'name' ) ?> >
+					<?php
+				endif;
+			}
+
 			if ( is_front_page() && is_home() ) :
 				?>
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
+				<h1 class="site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php 
+						the_logo();
+						bloginfo( 'name' ); 
+						?>
+					</a>
+				</h1>
 				<?php
 			else :
 				?>
-				<p class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></p>
+				<p class="site-title">
+					<a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home">
+						<?php 
+						the_logo();
+						bloginfo( 'name' ); 
+						?>
+					</a>
+				</p>
 				<?php
 			endif;
 			$food_expo_description = get_bloginfo( 'description', 'display' );
