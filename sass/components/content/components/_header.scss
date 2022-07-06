@@ -1,0 +1,21 @@
+.site-header {
+  background-color: $blue;
+  // display: flex;
+  // align-items: center;
+  // justify-content: space-between;
+  display: grid;
+  grid-template-columns: minmax($site-padding, 1fr) minmax(0,$max-site-width) minmax($site-padding, 1fr);
+  grid-template-areas: ". content .";
+
+  .header-content {
+    grid-area: content;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .site-logo {
+    width: 5rem;
+    display: block;
+  }
+}
