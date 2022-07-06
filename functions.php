@@ -152,7 +152,7 @@ function food_expo_scripts() {
 	
 	wp_enqueue_style( 
 		'ife-google-fonts', // Unique Handle 
-		"https://fonts.googleapis.com/css2?family=Jost:wght@400;700&display=swap", 
+		"https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap", 
 		array(), // Dependencies
 		null, // Need null for version number with Google fonts since it can re-use query terms (e.g. family)
 		'all'
