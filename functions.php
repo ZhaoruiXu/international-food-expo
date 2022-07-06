@@ -48,8 +48,6 @@ function food_expo_setup() {
 	
 
 	//custom image crop sizes
-	add_image_size('ife-site-logo',48,48,false);
-
 	add_image_size('ife-banner',1920,860,true);
 
 	add_image_size('ife-event-thumbnail',600,400,true);
