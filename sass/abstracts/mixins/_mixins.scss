@@ -31,23 +31,11 @@
 @mixin use-full-width($vertical-padding: 0) {
   width: 100vw;
   margin: $vertical-padding calc(calc(100% - 100vw)/2);
-	display: grid;
-	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $max-site-width) minmax($site-padding, 1fr);
-	& > * {
-		grid-column: 2/3;
-		width: 100%;
-	}
 }
 
 @mixin disable-full-width($vertical-padding: 0) {
-  margin: $vertical-padding 0;
   width: 100%;
-	display: block;
-	grid-template-columns: unset;
-	& > * {
-		grid-column: unset;
-		width: unset;
-	}
+  margin: $vertical-padding 0;
 }
 
 @mixin use-blue-section {
@@ -63,5 +51,23 @@
 	h1,
 	h2 {
 		color: $dark_blue;
+	}
+}
+
+@mixin use-center-site-layout {
+	display: grid;
+	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $max-site-width) minmax($site-padding, 1fr);
+	& > * {
+		grid-column: 2/3;
+		width: 100%;
+	}
+}
+
+@mixin disable-center-site-layout {
+	display: block;
+	grid-template-columns: unset;
+	& > * {
+		grid-column: unset;
+		width: unset;
 	}
 }
