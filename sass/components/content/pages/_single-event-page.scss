@@ -2,11 +2,22 @@
   
   .guest-wrapper {
     @include common-grid;
+    gap: 2rem;
+    grid-column: 1/5;
+    display: flex;
 
     .guest {
       img {
         width: 100%;
       }
     }
+  }
+
+   .featured-guests h2{
+    text-align: center;
+  }
+
+  .section-featured-vendors h2{
+    text-align: center;
   }
 }

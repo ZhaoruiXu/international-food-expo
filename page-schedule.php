@@ -30,18 +30,15 @@ get_header();
                     $query->the_post();
                     ?>
                     <article class="ife-events">
-                        <h2 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h2>
                         <p class="event-time"><?php the_field('time'); ?></p>
                         <?php the_post_thumbnail( 'ife-event-thumbnail') ?>
+                        <h2 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h2>
                         <div class="event-description">
                             <?php the_field('description'); ?>
                         </div>
-                        <a href="<?php the_permalink(); ?> ">More Info</a>
                         <div class="event-type">
-                            <?php 
-                            $currentID = get_the_ID();
-                            echo get_the_term_list( get_the_ID(), 'ife-event-type');
-                            ?>
+                          
+                            <a href="<?php the_permalink();  ?> ">More Info</a>
                         </div>
                     </article>
                     <?php
