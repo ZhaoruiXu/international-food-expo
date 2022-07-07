@@ -30,9 +30,12 @@ get_header();
                     $query->the_post();
                     ?>
                     <article class="ife-events">
-                        <p class="event-time"><?php the_field('time'); ?></p>
                         <?php the_post_thumbnail( 'ife-event-thumbnail') ?>
-                        <h2 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h2>
+                        
+                        <article class = 'eventwrapper'>
+                            <h2 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h2>
+                            <p class="event-time"><?php the_field('time'); ?></p>
+                        </article>
                         <div class="event-description">
                             <?php the_field('description'); ?>
                         </div>
