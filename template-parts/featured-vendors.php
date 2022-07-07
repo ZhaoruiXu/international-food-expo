@@ -59,9 +59,15 @@ if( $terms && !is_wp_error( $terms ) ) :
         <button class="swiper-button-next swiper-vendors-button-next"></button>
         <nav class="swiper-pagination swiper-vendors-pagination"></nav>
       </div>
-      <a class="vendor-page-link" href="<?php echo esc_url( get_page_link( 40 ) ) ?>">
-        See All Vendors
-      </a>
+      <?php 
+      if ( !is_page( 40 ) ) :
+        ?>
+        <a class="vendor-page-link" href="<?php echo esc_url( get_page_link( 40 ) ) ?>">
+          See All Vendors
+        </a>
+        <?php
+      endif
+      ?>
     </section>
     <?php
   }
