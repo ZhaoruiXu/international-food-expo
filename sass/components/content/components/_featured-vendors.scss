@@ -1,3 +1,13 @@
 .section-featured-vendors {
-  
+
+  .vendor {
+    margin: 0;
+  }
+
+  .vendor-page-link {
+    @include use-button-style;
+    max-width: 15rem;
+    display: block;
+    margin: 2rem auto 0;
+  }
 }

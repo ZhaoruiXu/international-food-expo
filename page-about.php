@@ -111,35 +111,37 @@ get_header();
               // Loop through rows.
               ?>
               <h2>Organizers</h2>
-              <div class="swiper swiper-organizers">
+              <div class="carousel">
                 <button class="swiper-button-prev swiper-organizers-button-prev"></button>
-                <div class="swiper-wrapper">
-                  <?php  
-                  while( have_rows('organizers') ) : the_row();
-
-                    // Load sub field value.
-                    if(get_sub_field('name') && get_sub_field('description') && get_sub_field('image')){
-                      $sub_value_name = get_sub_field('name');
-                      $sub_value_description = get_sub_field('description');
-                      $sub_value_image = get_sub_field('image');
-                      ?>
-                      <div class=swiper-slide>
-                        <h3><?php echo $sub_value_name ?></h3>
-                        <p><?php echo $sub_value_description ?></p>
-                        <?php    
-                        }
-                        echo wp_get_attachment_image( $sub_value_image, 'thumbnail' );
+                <div class="swiper swiper-organizers">
+                  <div class="swiper-wrapper">
+                    <?php
+                    while( have_rows('organizers') ) : the_row();
+                      // Load sub field value.
+                      if(get_sub_field('name') && get_sub_field('description') && get_sub_field('image')){
+                        $sub_value_name = get_sub_field('name');
+                        $sub_value_description = get_sub_field('description');
+                        $sub_value_image = get_sub_field('image');
                         ?>
-                      </div>
-                    <?php  
-
-                  // End loop.
-                  endwhile;
-                  ?>
+                        <div class=swiper-slide>
+                          <article class="organizer">
+                            <?php
+                            echo wp_get_attachment_image( $sub_value_image, 'thumbnail' );
+                            ?>
+                            <h3><?php echo $sub_value_name ?></h3>
+                            <p><?php echo $sub_value_description ?></p>
+                          </article>
+                        </div>
+                        <?php
+                      }
+                    // End loop.
+                    endwhile;
+                    ?>
+                </div>
               </div>
-              <nav class="swiper-organizers-pagination"></nav>
               <button class="swiper-button-next swiper-organizers-button-next"></button>
-            </div>
+              <nav class="swiper-pagination  swiper-organizers-pagination"></nav>
+              </div>
           <?php 
           endif;
           ?>

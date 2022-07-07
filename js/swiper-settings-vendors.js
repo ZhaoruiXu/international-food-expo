@@ -4,21 +4,27 @@ const swiperFeaturedVendors = new Swiper('.swiper-vendors', {
     delay: 1500,
     disableOnInteraction: false,
   },
-  autoHeight: true,
+  // autoHeight: true,
   navigation: {
       nextEl: '.swiper-vendors-button-next',
       prevEl: '.swiper-vendors-button-prev',
   },
-  slidesPerView: 2,
-  spaceBetween: 10,
+  pagination: {
+    el: ".swiper-vendors-pagination",
+    clickable: true,
+  },
+  slidesPerView: 1,
+  spaceBetween: 16,
   breakpoints: {
-      450: {
-          slidesPerView: 3,
-          spaceBetween: 20
-      },
-      800: {
-          slidesPerView: 5,
-          spaceBetween: 30
-      },
+    390: {
+        slidesPerView: 2,
+    },
+    560: {
+        slidesPerView: 3,
+    },
+    800: {
+        slidesPerView: 5,
+        spaceBetween: 32
+    },
   }
 });
