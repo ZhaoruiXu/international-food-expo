@@ -469,7 +469,7 @@ function ife_excerpt_length ( $length ) {
 }
 add_filter( 'excerpt_length', 'ife_excerpt_length', 999 );
 
-// Chante the excerpt ending
+// Change the excerpt ending
 function ife_excerpt_more ( $more ) {
 	$more = "... <a href='" . get_permalink() . "' class='read-more'>Continue Reading</a>";
 	return $more;

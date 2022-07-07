@@ -24,6 +24,8 @@ get_header();
 				get_template_part( 'template-parts/banner' );
 			endif;
 
+			
+
 			/* Start the Loop */
 			while ( have_posts() ) :
 				the_post();
@@ -36,6 +38,7 @@ get_header();
 				get_template_part( 'template-parts/content', get_post_type() );
 
 			endwhile;
+			// get_template_part('template-parts/featured-vendors');
 
 			the_posts_navigation();
 
@@ -44,10 +47,13 @@ get_header();
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif;
+		
 		?>
 
-	</main><!-- #main -->
 
-<?php
-get_sidebar();
-get_footer();
+		</main><!-- #main -->
+
+
+		<?php
+		get_sidebar();
+		get_footer();

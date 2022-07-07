@@ -11,6 +11,7 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
+		<?php food_expo_post_thumbnail(); ?>
 		<?php
 		if ( is_singular() ) :
 			the_title( '<h1 class="entry-title">', '</h1>' );
@@ -28,34 +29,43 @@
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
 	</header><!-- .entry-header -->
-
-	<?php food_expo_post_thumbnail(); ?>
-
+	
+	
 	<div class="entry-content">
-		<?php
-		the_content(
-			sprintf(
-				wp_kses(
-					/* translators: %s: Name of current post. Only visible to screen readers */
-					__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'food-expo' ),
-					array(
-						'span' => array(
-							'class' => array(),
-						),
-					)
-				),
-				wp_kses_post( get_the_title() )
-			)
-		);
 
-		wp_link_pages(
-			array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'food-expo' ),
-				'after'  => '</div>',
-			)
-		);
-		?>
-	</div><!-- .entry-content -->
+	<article class = 'description'>
+		<?php
+		// the_content(
+		// 	sprintf(
+		// 		wp_kses(
+		// 			/* translators: %s: Name of current post. Only visible to screen readers */
+		// 			__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'food-expo' ),
+		// 			array(
+						
+		// 				'span' => array(
+		// 					'class' => array(),
+		// 				),
+		// 				)
+		// 			),
+		// 			wp_kses_post( get_the_title() )
+		// 			)
+		// 		);
+				
+		// 		wp_link_pages(
+		// 			array(
+		// 				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'food-expo' ),
+		// 				'after'  => '</div>',
+		// 				)
+		// 			);
+		if(is_single()) {
+			the_content();
+		}
+		else {
+			the_excerpt();
+		}
+					?>
+			</article>
+			</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
 		<?php food_expo_entry_footer(); ?>
