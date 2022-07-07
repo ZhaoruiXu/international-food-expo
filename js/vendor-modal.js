@@ -7,8 +7,8 @@ jQuery.noConflict();
     modalIsOpen: false,
 
     // DOM References
-    $modal: $(".vendor-modal"),
-    $wrapper: $(".vendor-modal-wrapper"),
+    $modalBackground: $(".vendor-modal"),
+    $modalWrapper: $(".vendor-modal-wrapper"),
     $heading: $(".vendor-modal-heading"),
     $description: $(".vendor-modal-description"),
     $img: $(".vendor-modal-image"),
@@ -17,19 +17,19 @@ jQuery.noConflict();
     $body: $("body"),
 
     openModal: () => {
-      vendorModal.$modal.removeClass("hidden")
+      vendorModal.$modalBackground.removeClass("hidden")
       vendorModal.$body.addClass("stop-scroll")
       vendorModal.modalIsOpen = true;
     },
     
     closeModal: () => {
-      vendorModal.$modal.addClass("hidden")
+      vendorModal.$modalBackground.addClass("hidden")
       vendorModal.$body.removeClass("stop-scroll")
       vendorModal.modalIsOpen = false;
     },
 
     toggleModal: () => {
-      vendorModal.$modal.toggleClass("hidden")
+      vendorModal.$modalBackground.toggleClass("hidden")
       vendorModal.$body.toggleClass("stop-scroll")
       vendorModal.modalIsOpen = !vendorModal.modalIsOpen;
     },
@@ -85,13 +85,9 @@ jQuery.noConflict();
         vendorModal.closeModal();
       })
 
-      $("body").click((e) => {
-        // Close the modal if clicking outside the modal
-        if( 
-          vendorModal.modalIsOpen && 
-          !jQuery.contains(vendorModal.$modal[0], e.target) && 
-          vendorModal.$modal[0] !== e.target 
-        ) {
+      vendorModal.$modalBackground.click((e) => {
+        e.stopPropagation();
+        if( vendorModal.modalIsOpen && e.target === vendorModal.$modalBackground[0] ) {
           vendorModal.closeModal();
         }
       })
