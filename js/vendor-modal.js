@@ -27,6 +27,7 @@ jQuery.noConflict();
     closeModal: () => {
       vendorModal.$modalBackground.addClass("hidden")
       vendorModal.$content.addClass("hidden")
+      vendorModal.$closeBtn.addClass("hidden")
       vendorModal.$body.removeClass("stop-scroll")
       vendorModal.modalIsOpen = false;
     },
@@ -47,6 +48,7 @@ jQuery.noConflict();
           // Open modal with loading icon showing and content hidden
           vendorModal.$loading.removeClass("hidden")
           vendorModal.$content.addClass("hidden")
+          vendorModal.$closeBtn.addClass("hidden")
           
           // Reset vendor details
           vendorModal.$heading.html("")
@@ -71,17 +73,16 @@ jQuery.noConflict();
               if (imageDetails.media_details.width > 500 || imageDetails.media_details.height > 500) {
                 imgSrc = imageDetails.media_details.sizes['ife-vendor-logo'].source_url;  
               }
-              vendorModal.$img.attr('src',imgSrc)
-              vendorModal.$img.attr('alt',`${currentVendor.title.rendered} logo`)
 
               vendorModal.$heading.html(`${currentVendor.title.rendered}`)
               vendorModal.$text.html(`${currentVendor.acf.company_description}`)
-              vendorModal.$heading.attr('src', imgSrc)
-              vendorModal.$heading.attr('alt', `${currentVendor.title.rendered} logo`)
+              vendorModal.$img.attr('src', imgSrc)
+              vendorModal.$img.attr('alt', `${currentVendor.title.rendered} logo`)
 
               // Hide loading and show content
               vendorModal.$loading.addClass("hidden")
               vendorModal.$content.removeClass("hidden")
+              vendorModal.$closeBtn.removeClass("hidden")
           
             }
           }
