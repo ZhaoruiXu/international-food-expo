@@ -156,7 +156,16 @@ function food_expo_scripts() {
 		array(), // Dependencies
 		null, // Need null for version number with Google fonts since it can re-use query terms (e.g. family)
 		'all'
-	); 
+	);
+
+	// Enqueue Swiper on all pages to enable featured vendors carousel
+	wp_enqueue_style(
+		'ife-swiper-styles',
+		get_template_directory_uri() . '/css/swiper-bundle.css',
+		array(),
+		'8.1.4'
+	);
+
 	wp_enqueue_style( 'food-expo-style', get_stylesheet_uri(), array(), _S_VERSION );
 	wp_style_add_data( 'food-expo-style', 'rtl', 'replace' );
 
@@ -167,13 +176,6 @@ function food_expo_scripts() {
 	}
 
 	// Enqueue Swiper on all pages to enable featured vendors carousel
-	wp_enqueue_style(
-		'ife-swiper-styles',
-		get_template_directory_uri() . '/css/swiper-bundle.css',
-		array(),
-		'8.1.4'
-	);
-
 	wp_enqueue_script(
 		'ife-swiper-scripts',
 		get_template_directory_uri() . '/js/swiper-bundle.min.js',
