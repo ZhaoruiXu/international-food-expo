@@ -29,7 +29,7 @@ get_header();
 				'post_type' 			=> 'ife-vendor',
 				'orderby' 				=> 'name',
 				'order' 					=> 'ASC',
-				'posts_per_page' 	=> -1.
+				'posts_per_page' 	=> -1
 			);
 			
 			$query = new WP_Query( $args );
@@ -57,8 +57,8 @@ get_header();
 								class="vendor vendor-<?php echo get_the_ID() ?> vendor-<?php echo get_post()->post_name ?> <?php echo $terms_classlist ?>"	
 							>
 								<a href="" class="vendor-link" id="<?php echo get_the_ID() ?>" >
-									<h3 class="vendor-heading"><?php the_title() ?></h3>
 									<?php the_post_thumbnail('ife-vendor-logo') ?>
+									<h3 class="vendor-heading"><?php the_title() ?></h3>
 								</a>
 							</article>
 							<?php
@@ -68,10 +68,14 @@ get_header();
 					</div>
 				</section>
 				<div class="vendor-modal hidden">
-					<h2 class="vendor-modal-heading"></h2>
-					<div class="vendor-modal-text"></div>
-					<img class="vendor-modal-image" src="" alt="">
-					<button class="vendor-modal-close-btn">Close</button>
+					<div class="vendor-modal-wrapper">
+						<div class="vendor-modal-text">
+							<h2 class="vendor-modal-heading"></h2>
+							<div class="vendor-modal-description"></div>
+						</div>
+						<img class="vendor-modal-image" src="" alt="">
+						<button class="vendor-modal-close-btn">Close</button>
+					</div>
 				</div>
 				<?php
 			endif;

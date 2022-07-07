@@ -1,20 +1,55 @@
 .page-id-40 {
+  section {
+    padding: 4rem 0;
+  }
 
+  .section-featured-vendors {
+    @include use-full-width;
+    @include use-center-site-layout;
+    @include use-blue-section;
+  }
+
+  .all-vendors-section {
+    form {
+      max-width: 25rem;
+      margin: 2rem auto;
+
+      label {
+        display: block;
+      }
+      input {
+        display: block;
+        width: 100%;
+        padding: 0.5rem 1rem;
+        border-radius: 0;
+      }
+    }
+  }
 
   .vendors-grid {
     .vendor {
       width: 50%;
-      padding: 0.5em;
+      padding: 0.5rem;
 
-      @media (min-width: $bp-tablet) {
-        width: 50%
-      }
       @media (min-width: $bp-laptop) {
         width: 25%
       }
 
+      @media (min-width: $bp-desktop) {
+        width: 20%
+      }
+
       .vendor-link {
         display: block;
+        color: $black;
+        text-decoration: none;
+        text-align: center;
+
+        .vendor-heading {
+          display: block;
+          margin: 0;
+          padding: 0.5rem;
+        }
 
         &:hover,
         &:focus {
