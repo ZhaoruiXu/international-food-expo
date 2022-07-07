@@ -27,3 +27,41 @@
 		grid-template-columns: repeat(5, 1fr);
 	}
 }
+
+@mixin use-full-width($vertical-padding: 0) {
+  width: 100vw;
+  margin: $vertical-padding calc(calc(100% - 100vw)/2);
+	display: grid;
+	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $max-site-width) minmax($site-padding, 1fr);
+	& > * {
+		grid-column: 2/3;
+		width: 100%;
+	}
+}
+
+@mixin disable-full-width($vertical-padding: 0) {
+  margin: $vertical-padding 0;
+  width: 100%;
+	display: block;
+	grid-template-columns: unset;
+	& > * {
+		grid-column: unset;
+		width: unset;
+	}
+}
+
+@mixin use-blue-section {
+	background-color: $blue;
+	h1,
+	h2 {
+		color: $black;
+	}
+}
+
+@mixin use-white-section {
+	background-color: transparent;
+	h1,
+	h2 {
+		color: $dark_blue;
+	}
+}
