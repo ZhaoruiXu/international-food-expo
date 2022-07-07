@@ -7,16 +7,16 @@
   transition: opacity 0.5s ease-in-out;  
   z-index: 1;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: minmax(0,1fr) minmax(auto, 50rem) minmax(0,1fr);
+  grid-template-rows: 0 auto minmax(0,1fr);
+  grid-template-areas: 
+    ". . ."
+    ". wrapper ."
+    ". . ."
+  ;
   
   @media (min-width: $bp-tablet) {
-    grid-template-columns: minmax(0,1fr) minmax(auto, 50rem) minmax(0,1fr);
     grid-template-rows: minmax(0,1fr) auto minmax(0,1fr);
-    grid-template-areas: 
-      ". . ."
-      ". wrapper ."
-      ". . ."
-    ;
   }
   
   .vendor-modal-wrapper {
