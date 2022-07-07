@@ -24,7 +24,6 @@ const swiperOrganizers = new Swiper(".swiper-organizers", {
     },
     800: {
         slidesPerView: 5,
-        spaceBetween: 32
     },
   },
 });

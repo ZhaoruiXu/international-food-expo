@@ -1,0 +1,22 @@
+.loading-icon {
+  padding: 1rem;
+  
+  img {
+    transform-origin: center;
+    // animation: name duration timing-function delay iteration-count direction fill-mode;
+    animation: spin 1s linear infinite;
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  }
+
+  &.hidden {
+    display: none;
+  }
+}
