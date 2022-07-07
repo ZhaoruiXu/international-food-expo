@@ -4,38 +4,83 @@
   background-color: rgba($blue, 0.8);
   opacity: 1;
   visibility: visible;
-  transition: opacity 1s ease-in-out, visibility 1s ease-in-out;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) minmax(auto, 50rem) minmax(0,1fr);
+  grid-template-rows: minmax(0,1fr) auto minmax(0,1fr);
+  grid-template-areas: 
+    ". . ."
+    ". wrapper ."
+    ". . ."
+  ;
+  transition: opacity 0.5s ease-in-out;  
   
   .vendor-modal-wrapper {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    transform: translateY(-50%);
-    max-width: 50rem;
-    max-height: 100%;
-    margin: 0 auto;
+    position: relative;
+    grid-area: wrapper;
     padding: $site-padding;
     background-color: $white;
+    min-width: 8rem;
+    min-height: 8rem;
     z-index: 1;
     overflow-y: scroll;
-    transition: max-height 0.8s ease-in-out;
+    
+    @media (min-width: $bp-tablet) {
+      overflow-y: unset;
+    }
+    
+    .loading-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    
+    .vendor-modal-content {
+      opacity: 1;
+      transition: opacity 0.5s ease-in-out;
+      
+      @media (min-width: $bp-tablet) {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        grid-template-areas: 
+        "heading image"
+        "text image"
+        ;
+        gap: 0 2rem;
+      }
+      
+      &.hidden {
+        opacity: 0;
+        visibility: 0;
+      }
+
+      .vendor-modal-heading {
+        grid-area: heading;
+        margin-top: 0;
+      }
+
+      .vendor-modal-text {
+        grid-area: text;
+
+      }
+      
+      .vendor-modal-image {
+        grid-area: image;
+        align-self: center;
+      }
+
+
+    }
 
     .vendor-modal-close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
+      display: block;
+      max-width: 5.5rem;
+      margin: 1rem auto 0;
     }
-  
   }
   
   &.hidden {
-    // display: none;
     opacity: 0;
     visibility: hidden;
-
-    .vendor-modal-wrapper {
-      max-height: 0;
-    }
   }
 }
