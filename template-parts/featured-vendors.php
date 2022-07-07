@@ -38,23 +38,26 @@ if( $terms && !is_wp_error( $terms ) ) :
     ?>
     <section class="section-featured-vendors">
       <h2>Featured Vendors</h2>
-      <div class="vendors swiper swiper-vendors">
+      <div class="carousel">
         <button class="swiper-button-prev swiper-vendors-button-prev"></button>
-        <div class="vendor-wrapper swiper-wrapper">
-          <?php
-          while ( $query -> have_posts() ) {
-            $query -> the_post();
-            ?>
-            <div class="vendor swiper-slide">
-              <?php the_post_thumbnail('ife-vendor-logo', ['class' => 'vendor-image']) ?>
-            </div>
+        <div class="vendors swiper swiper-vendors">
+          <div class="vendor-wrapper swiper-wrapper">
             <?php
-          
-          }
-          wp_reset_postdata();
-          ?>
+            while ( $query -> have_posts() ) {
+              $query -> the_post();
+              ?>
+              <div class="vendor swiper-slide">
+                <?php the_post_thumbnail('ife-vendor-logo', ['class' => 'vendor-image']) ?>
+              </div>
+              <?php
+        
+            }
+            wp_reset_postdata();
+            ?>
+          </div>
         </div>
         <button class="swiper-button-next swiper-vendors-button-next"></button>
+        <nav class="swiper-pagination swiper-vendors-pagination"></nav>
       </div>
       <a class="vendor-page-link" href="<?php echo esc_url( get_page_link( 40 ) ) ?>">
         See All Vendors

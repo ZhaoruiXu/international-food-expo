@@ -26,44 +26,46 @@ get_header();
 				if( have_rows('carousel_slides') ):
 					?>
 					<section class="section-home-banner">
-						<div class="swiper swiper-home">
+						<div class="carousel">
 							<button class="swiper-button-prev swiper-home-button-prev"></button>
-							<div class="swiper-wrapper">
-								<?php
-								while( have_rows('carousel_slides') ) :
-									the_row();
-									$text = get_sub_field('text');
-									$image = get_sub_field('background_image');
-									$page_link = get_sub_field('page_link');
-									?>
-									<div class="swiper-slide">
-										<?php
-											if ($page_link) :
-												?>
-												<a href=<?php echo $page_link ?>>
-												<?php
-											endif;
-											if ($image) :
-												echo wp_get_attachment_image($image,'full');
-											endif;
-											if ($text) :
-												?>
-												<p class="banner-text"><?php echo $text ?></p>
-												<?php
-											endif;
-											if ($page_link) :
-												?>
-												</a>
-												<?php
-											endif;
-										?>
-									</div>
+							<div class="swiper swiper-home">
+								<div class="swiper-wrapper">
 									<?php
-								endwhile;
-								?>
+									while( have_rows('carousel_slides') ) :
+										the_row();
+										$text = get_sub_field('text');
+										$image = get_sub_field('background_image');
+										$page_link = get_sub_field('page_link');
+										?>
+										<div class="swiper-slide">
+											<?php
+												if ($page_link) :
+													?>
+													<a href=<?php echo $page_link ?>>
+													<?php
+												endif;
+												if ($image) :
+													echo wp_get_attachment_image($image,'full');
+												endif;
+												if ($text) :
+													?>
+													<p class="banner-text"><?php echo $text ?></p>
+													<?php
+												endif;
+												if ($page_link) :
+													?>
+													</a>
+													<?php
+												endif;
+											?>
+										</div>
+										<?php
+									endwhile;
+									?>
+								</div>
 							</div>
-							<nav class="swiper-home-pagination"></nav>
 							<button class="swiper-button-next swiper-home-button-next"></button>
+							<nav class="swiper-pagination swiper-home-pagination"></nav>
 						</div>
 					</section>
 					<?php

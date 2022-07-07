@@ -13,16 +13,18 @@ const swiperOrganizers = new Swiper(".swiper-organizers", {
     el: ".swiper-organizers-pagination",
     clickable: true,
   },
-  slidesPerView: 2,
-  spaceBetween: 10,
+  slidesPerView: 1,
+  spaceBetween: 16,
   breakpoints: {
-    450: {
-      slidesPerView: 3,
-      spaceBetween: 20,
+    390: {
+        slidesPerView: 2,
+    },
+    560: {
+        slidesPerView: 3,
     },
     800: {
-      slidesPerView: 5,
-      spaceBetween: 30,
+        slidesPerView: 5,
+        spaceBetween: 32
     },
   },
 });
