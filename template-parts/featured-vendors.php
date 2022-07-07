@@ -45,10 +45,9 @@ if( $terms && !is_wp_error( $terms ) ) :
           while ( $query -> have_posts() ) {
             $query -> the_post();
             ?>
-            <figure class="vendor swiper-slide">
-              <figcaption class="vendor-name"><?php echo get_the_title() ?></figcaption>
+            <div class="vendor swiper-slide">
               <?php the_post_thumbnail('ife-vendor-logo', ['class' => 'vendor-image']) ?>
-            </figure>
+            </div>
             <?php
           
           }

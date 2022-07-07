@@ -4,7 +4,7 @@ const swiperFeaturedVendors = new Swiper('.swiper-vendors', {
     delay: 1500,
     disableOnInteraction: false,
   },
-  autoHeight: true,
+  // autoHeight: true,
   navigation: {
       nextEl: '.swiper-vendors-button-next',
       prevEl: '.swiper-vendors-button-prev',

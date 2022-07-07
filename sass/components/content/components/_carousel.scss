@@ -1,0 +1,32 @@
+.swiper {
+  position: relative;
+  
+  .swiper-button-prev,
+  .swiper-button-next {
+    color: $black;
+    background-color: transparent;
+    padding: 0 2rem;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    margin: 0;
+
+    &::after {
+      font-size: 2rem;
+      line-height: 1;
+    }
+  }
+  
+  .swiper-button-prev {
+    left: 0;
+    &::after {
+      content: "\276E"; 
+    }
+  }
+  .swiper-button-next {
+    right: 0;
+    &::after {
+      content: "\276F";
+    }
+  }
+}
