@@ -28,8 +28,13 @@
 
   .vendors-grid {
     .vendor {
-      width: 50%;
-      padding: 0.5rem;
+      width: 100%;
+      padding: 0.5rem 0;
+
+      @media (min-width: $bp-phone-md) {
+        width: 50%;
+        padding: 0.5rem;
+      }
 
       @media (min-width: $bp-laptop) {
         width: 25%

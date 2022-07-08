@@ -56,7 +56,7 @@ get_header();
 							<article 
 								class="vendor vendor-<?php echo get_the_ID() ?> vendor-<?php echo get_post()->post_name ?> <?php echo $terms_classlist ?>"	
 							>
-								<a href="" class="vendor-link" id="<?php echo get_the_ID() ?>" >
+								<a href="" src="<?php echo get_the_post_thumbnail_url() ?>" class="vendor-link" id="<?php echo get_the_ID() ?>" >
 									<?php the_post_thumbnail('ife-vendor-logo') ?>
 									<h3 class="vendor-heading"><?php the_title() ?></h3>
 								</a>
@@ -69,11 +69,14 @@ get_header();
 				</section>
 				<div class="vendor-modal hidden">
 					<div class="vendor-modal-wrapper">
-						<div class="vendor-modal-text">
+						<?php 
+						get_template_part("template-parts/loading")
+						?>
+						<div class="vendor-modal-content">
 							<h2 class="vendor-modal-heading"></h2>
-							<div class="vendor-modal-description"></div>
+							<p class="vendor-modal-text"></p>
+							<img class="vendor-modal-image" src="" alt="">
 						</div>
-						<img class="vendor-modal-image" src="" alt="">
 						<button class="vendor-modal-close-btn">Close</button>
 					</div>
 				</div>

@@ -8,13 +8,15 @@ jQuery.noConflict();
 
     // DOM References
     $modalBackground: $(".vendor-modal"),
-    $modalWrapper: $(".vendor-modal-wrapper"),
-    $heading: $(".vendor-modal-heading"),
-    $description: $(".vendor-modal-description"),
-    $img: $(".vendor-modal-image"),
-    $closeBtn: $(".vendor-modal-close-btn"),
+    $modalWrapper: $(".vendor-modal .vendor-modal-wrapper"),
+    $content: $(".vendor-modal .vendor-modal-content"),
+    $heading: $(".vendor-modal .vendor-modal-heading"),
+    $text: $(".vendor-modal .vendor-modal-text"),
+    $img: $(".vendor-modal .vendor-modal-image"),
+    $closeBtn: $(".vendor-modal .vendor-modal-close-btn"),
     $vendorLinks: $(".vendor-link"),
     $body: $("body"),
+    $loading: $(".vendor-modal .loading-icon"),
 
     openModal: () => {
       vendorModal.$modalBackground.removeClass("hidden")
@@ -24,6 +26,8 @@ jQuery.noConflict();
     
     closeModal: () => {
       vendorModal.$modalBackground.addClass("hidden")
+      vendorModal.$content.addClass("hidden")
+      vendorModal.$closeBtn.addClass("hidden")
       vendorModal.$body.removeClass("stop-scroll")
       vendorModal.modalIsOpen = false;
     },
@@ -39,9 +43,21 @@ jQuery.noConflict();
       // On vendor click, open the vendor modal
       vendorModal.$vendorLinks.click((e) => {
         e.preventDefault();
-        // e.stopPropagation();
         
         if (!vendorModal.modalIsOpen) {
+          // Open modal with loading icon showing and content hidden
+          vendorModal.$loading.removeClass("hidden")
+          vendorModal.$content.addClass("hidden")
+          vendorModal.$closeBtn.addClass("hidden")
+          
+          // Reset vendor details
+          vendorModal.$heading.html("")
+          vendorModal.$text.html("")
+          vendorModal.$img.attr('src', "")
+          vendorModal.$img.attr('alt', "")
+          
+          vendorModal.openModal();
+
           // Get vendor id stored in modal's id prop
           const vendorId = e.currentTarget.id;
 
@@ -51,26 +67,23 @@ jQuery.noConflict();
             const response = await fetch(vendorPath)
             if ( response.ok ) {
               const currentVendor = await response.json();
-
-              // Update the modal
-              // Heading
-              vendorModal.$heading.html(currentVendor.title.rendered);
-    
-              // Body Text
-              vendorModal.$description.html(currentVendor.acf.company_description);
-    
-              // Img
-              const updateModal = async () => {
-                let imageDetails = currentVendor["_embedded"]["wp:featuredmedia"][0];
-                let imgSrc = imageDetails.source_url;
-                if (imageDetails.media_details.width > 500 || imageDetails.media_details.height > 500) {
-                  imgSrc = imageDetails.media_details.sizes['ife-vendor-logo'].source_url;  
-                }
-                await vendorModal.$img.attr('src',imgSrc)
-                vendorModal.$img.attr('alt',`${currentVendor.title.rendered} logo`)
-                vendorModal.openModal();
+              
+              let imageDetails = currentVendor["_embedded"]["wp:featuredmedia"][0];
+              let imgSrc = imageDetails.source_url;
+              if (imageDetails.media_details.width > 500 || imageDetails.media_details.height > 500) {
+                imgSrc = imageDetails.media_details.sizes['ife-vendor-logo'].source_url;  
               }
-              updateModal()
+
+              vendorModal.$heading.html(`${currentVendor.title.rendered}`)
+              vendorModal.$text.html(`${currentVendor.acf.company_description}`)
+              vendorModal.$img.attr('src', imgSrc)
+              vendorModal.$img.attr('alt', `${currentVendor.title.rendered} logo`)
+
+              // Hide loading and show content
+              vendorModal.$loading.addClass("hidden")
+              vendorModal.$content.removeClass("hidden")
+              vendorModal.$closeBtn.removeClass("hidden")
+          
             }
           }
           fetchData()

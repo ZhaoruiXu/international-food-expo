@@ -24,7 +24,6 @@ const swiperFeaturedVendors = new Swiper('.swiper-vendors', {
     },
     800: {
         slidesPerView: 5,
-        spaceBetween: 32
     },
   }
 });
