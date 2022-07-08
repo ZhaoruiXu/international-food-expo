@@ -24,6 +24,8 @@ get_header();
 			get_template_part( 'template-parts/banner' );
 		endif;
 		?>
+
+					<h3><?php the_content() ?></h3>
 		<section>
 			<div class = 'newsgrid'>
 			<?php

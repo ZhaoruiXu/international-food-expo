@@ -1,6 +1,8 @@
-.page-id-42 {
-  //   display: grid;
-  // gap: 2rem;
+.page-id-42  .events{
+    display: grid;
+  gap: 2rem;
+  margin: 15px;
+  grid-template-columns: 1fr 1fr;
 }
 
 // .site-main .events{
@@ -8,3 +10,9 @@
 //     grid-template-columns: 1fr 1fr 1fr 1fr;
 //     gap: 2rem;
 // }
+
+.events .eventwrapper{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10rem;
+}
