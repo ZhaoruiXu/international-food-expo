@@ -5,9 +5,24 @@ h4,
 h5,
 h6 {
 	clear: both;
+	@include use-heading-style;
 }
 
-h1,
+h1 {
+	font-size: 3rem;
+}
+
 h2 {
 	color: $dark_blue;
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+
+	&::before {
+		content: "";
+		width: min(10%, 8rem);
+		height: 0.25rem;
+		background-color: currentColor;
+		display: block;
+	}
 }
