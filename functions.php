@@ -56,6 +56,8 @@ function food_expo_setup() {
 
 	add_image_size('ife-vendor-logo',500,500,true);
 
+	add_image_size('ife-organizer',500,500,true);
+
 
 	// This theme uses wp_nav_menu() in one location.
 	register_nav_menus(

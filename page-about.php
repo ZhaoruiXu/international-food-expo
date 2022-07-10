@@ -61,7 +61,7 @@ get_header();
                         <div class=swiper-slide>
                           <article class="organizer">
                             <?php
-                            echo wp_get_attachment_image( $sub_value_image, 'thumbnail' );
+                            echo wp_get_attachment_image( $sub_value_image, 'ife-organizer' );
                             ?>
                             <h3><?php echo $sub_value_name ?></h3>
                             <p><?php echo $sub_value_description ?></p>
