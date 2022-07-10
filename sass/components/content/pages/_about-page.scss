@@ -3,6 +3,10 @@
 
   .about-organizers {
     @include use-blue-section;
+
+    .organizer-name {
+      text-align: center;
+    }
   }
 
   .about-history {
