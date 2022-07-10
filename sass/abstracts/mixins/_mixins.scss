@@ -1,3 +1,7 @@
+@mixin use-heading-style {
+	font-weight: 500;
+}
+
 // Center block
 @mixin center-block {
 	display: block;
