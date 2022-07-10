@@ -149,33 +149,32 @@ get_header();
           
         <section class="about-location-time">
           
-          <div class="location-time-info">
-            <?php 
-            // Event Dates
-            if ( get_field( 'start_date' ) && get_field( 'end_date' ) ) {
-              ?>
-              <p class="event-dates"><?php the_field( 'start_date' )?> - <?php the_field( 'end_date' )?></p>
+          <div class="content-wrapper">
+            <div class="location-time-info">
               <?php
-            }
-
-            // Event Address
-            if( get_field('event_address') ): 
-              $location = get_field('event_address');
+              // Event Dates
+              if ( get_field( 'start_date' ) && get_field( 'end_date' ) ) {
+                ?>
+                <p class="event-dates"><?php the_field( 'start_date' )?> - <?php the_field( 'end_date' )?></p>
+                <?php
+              }
+              // Event Address
+              if( get_field('event_address') ):
+                $location = get_field('event_address');
+                ?>
+                <p class="event-address"><?php echo $location['address']; ?></p>
+                <?php
+              endif;
               ?>
-              <p class="event-address"><?php echo $location['address']; ?></p>
-              <?php 
-            endif; 
+              <div class="page-links">
+                <a href="<?php echo get_permalink( 40 ) ?>">Vendors</a>
+                <a href="<?php echo get_permalink( 42 ) ?>">Event Schedule</a>
+              </div>
+            </div>
+            <?php
+            get_template_part( 'template-parts/event-map' );
             ?>
-            <p>
-              <?php  ?>
-            </p>
-            <a href="<?php echo home_url('schedule') ?>">Event Schedule</a>
-
           </div>
-
-          <?php 
-          get_template_part( 'template-parts/event-map' );
-          ?>
           
         </section>
 
