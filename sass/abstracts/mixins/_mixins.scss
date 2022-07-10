@@ -32,17 +32,17 @@
 	}
 }
 
-@mixin use-full-width($vertical-padding: 0) {
+@mixin use-full-width($vertical-margin: 0) {
   width: 100vw;
-  margin: $vertical-padding calc(calc(100% - 100vw)/2);
+  margin: $vertical-margin calc(calc(100% - 100vw)/2);
 }
 
-@mixin disable-full-width($vertical-padding: 0) {
+@mixin disable-full-width($vertical-margin: 0) {
   width: 100%;
-  margin: $vertical-padding 0;
+  margin: $vertical-margin 0;
 }
 
-@mixin use-blue-section {
+@mixin use-blue-background {
 	background-color: $blue;
 	h1,
 	h2 {
@@ -50,7 +50,7 @@
 	}
 }
 
-@mixin use-white-section {
+@mixin use-white-background {
 	background-color: transparent;
 	h1,
 	h2 {
@@ -74,6 +74,20 @@
 		grid-column: unset;
 		width: unset;
 	}
+}
+
+// Shortcut to use a the blue section style
+@mixin use-blue-section($vertical-margin: 0) {
+	@include use-full-width($vertical-margin);
+	@include use-center-site-layout;
+	@include use-blue-background;
+}
+
+// Shortcut to disable the blue section style and go back to the default
+@mixin disable-blue-section($vertical-margin: 0) {
+	@include disable-full-width($vertical-margin);
+	@include disable-center-site-layout;
+	@include use-white-background;
 }
 
 @mixin use-button-style {

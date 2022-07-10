@@ -1,5 +1,10 @@
 .page-id-60 {
 
+
+  .about-organizers {
+    @include use-blue-section;
+  }
+
   .about-history {
     .year-btn {
       &.active {
