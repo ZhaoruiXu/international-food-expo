@@ -1,5 +1,9 @@
 .page-id-60 {
 
+  .about-description {
+    margin: 0 auto;
+    max-width: 40rem
+  }
 
   .about-organizers {
     @include use-blue-section;
