@@ -18,9 +18,10 @@
 		else :
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
-
+		
 		if ( 'post' === get_post_type() ) :
 			?>
+				<p class="event-time"><?php the_field('time'); ?></p>
 			<div class="entry-meta">
 				<?php
 				food_expo_posted_on();
