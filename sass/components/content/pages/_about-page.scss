@@ -4,8 +4,12 @@
   .about-organizers {
     @include use-blue-section;
 
-    .organizer-name {
-      text-align: center;
+    .organizer {
+      margin-bottom: 3rem;
+
+      .organizer-name {
+        text-align: center;
+      }
     }
   }
 
