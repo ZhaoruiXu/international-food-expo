@@ -21,7 +21,7 @@ h2 {
 
 	&::before {
 		content: "";
-		width: min(10%, 8rem);
+		width: min(10vw, 8rem);
 		height: 0.25rem;
 		background-color: currentColor;
 		display: block;
