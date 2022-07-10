@@ -1,8 +1,6 @@
 .site-header {
   background-color: $blue;
-  // display: flex;
-  // align-items: center;
-  // justify-content: space-between;
+  height: 8rem;
   display: grid;
   grid-template-columns: minmax($site-padding, 1fr) minmax(0,$max-site-width) minmax($site-padding, 1fr);
   grid-template-areas: ". content .";
@@ -12,6 +10,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .site-title {
+    margin: 0;
   }
 
   .site-logo {

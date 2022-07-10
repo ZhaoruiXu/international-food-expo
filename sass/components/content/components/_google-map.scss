@@ -1,3 +1,7 @@
 .acf-map {
-  height: 30rem;
+  height: 20rem;
+
+  @media (min-width: $bp-laptop) {
+    height: 30rem;
+  }
 }

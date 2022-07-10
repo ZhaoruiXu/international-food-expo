@@ -1,18 +1,132 @@
 .page-id-60 {
 
-  .about-history {
-    .year-btn {
-      &.active {
-        background-color: red;
+  .about-description {
+    margin: 0 auto;
+    max-width: 40rem
+  }
+
+  .about-organizers {
+    @include use-blue-section;
+
+    .organizer {
+      margin-bottom: 3rem;
+
+      .organizer-name {
+        text-align: center;
       }
     }
+  }
 
+  .about-history {
+    max-width: 56.25rem;
+    margin: 0 auto;
 
-    .year-description {
-      display: none;
+    .history-years {
+      position: relative;
+      display: flex;
+      justify-content: space-between;
+      margin: 2rem 0;
+      
+      @media (min-width: $bp-laptop) {
+        margin: 4rem 0;
+      }
 
-      &.active {
-        display: unset;
+      .year-btn {
+        height: 3rem;
+        width: 3rem;
+        border-radius: 8rem;
+        padding: 0;
+        @include use-heading-style;
+
+        @media (min-width: $bp-phone-lg) {
+          height: 4rem;
+          width: 4rem;
+        }
+
+        @media (min-width: $bp-tablet) {
+          height: 5rem;
+          width: 5rem;
+        }
+
+        @media (min-width: $bp-laptop) {
+          height: 8rem;
+          width: 8rem;
+          font-size: 1.5rem;
+        }
+
+        &.active {
+          background-color: $dark-pink;
+        }
+      }
+
+      &::after {
+        content: "";
+        width: 100%;
+        height: 0.125rem;
+        background-color: $black;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: -1;
+      }
+    }
+    
+    .history-description {
+      margin: 0 auto;
+      max-width: 40rem;
+      display: grid;
+      grid-template-areas: "overlap";
+
+      .year-description {
+        opacity: 0;
+        grid-area: overlap;
+
+        &.active {
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  .about-location-time {
+    @include use-blue-section;
+
+    .content-wrapper {
+      max-width: 75rem;
+      margin: 0 auto;
+
+      @media (min-width: $bp-laptop) {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        align-items: center;
+        gap: 2rem;
+      }
+
+      @media (min-width: $bp-desktop) {
+        gap: 8rem;
+      }
+  
+      .location-time-info {
+        text-align: center;
+        .event-dates {
+          @include use-heading-style;
+
+          @media (min-width: $bp-tablet) {
+            font-size: 1.5rem;
+          }
+        }
+      }
+  
+      .page-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        a {
+          @include use-button-style;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
       }
     }
   }

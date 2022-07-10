@@ -1,8 +1,9 @@
 const swiperFeaturedVendors = new Swiper('.swiper-vendors', {
   loop: true,
   autoplay: {
-    delay: 1500,
+    delay: 2000,
     disableOnInteraction: false,
+    pauseOnMouseEnter: true,
   },
   // autoHeight: true,
   navigation: {

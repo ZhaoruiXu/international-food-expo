@@ -4,8 +4,6 @@
   }
 
   .section-featured-vendors {
-    @include use-full-width;
-    @include use-center-site-layout;
     @include use-blue-section;
   }
 
@@ -52,8 +50,7 @@
 
         .vendor-heading {
           display: block;
-          margin: 0;
-          padding: 0.5rem;
+          margin: 1rem 0;
         }
 
         &:hover,
