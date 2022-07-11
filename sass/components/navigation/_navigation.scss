@@ -57,6 +57,10 @@
 		color: $black;
 		text-decoration: none;
 
+		svg {
+			vertical-align: middle;
+		}
+
 		@media (min-width: $bp-laptop) {
 			padding: 0.5rem;
 		}
