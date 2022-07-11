@@ -38,13 +38,13 @@ get_header();
 										$image = get_sub_field('background_image');
 										$page_link = get_sub_field('page_link');
 										?>
-										<div class="swiper-slide">
+										<div class="swiper-slide banner-part">
 											<?php
 												if ($image) :
 													echo wp_get_attachment_image($image,'ife-banner');
 												endif;
 											?>
-											<article class="carousel-content">
+											<article class="banner-content">
 											<?php 
 												if ($text) :
 													?>
