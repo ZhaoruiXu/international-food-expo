@@ -1,10 +1,21 @@
 .single-ife-event {
   
   .guest-wrapper {
-    @include common-grid;
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 2rem;
-    grid-column: 1/5;
-    // display: flex;
+  
+    @media (min-width: $bp-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  
+    @media (min-width: $bp-laptop) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  
+    @media (min-width: $bp-desktop) {
+      grid-template-columns: repeat(5, 1fr);
+    }
 
     .guest {
       img {
