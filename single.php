@@ -15,7 +15,6 @@ get_header();
 	<?php
 		while ( have_posts() ) :
 			the_post();
-			
 			get_template_part( 'template-parts/content', get_post_type() );
 			
 			
@@ -33,10 +32,9 @@ get_header();
 				endwhile; // End of the loop.
 				?>
 				
-		
 				<?php get_template_part('template-parts/featured-vendors'); ?>
-
-				</main><!-- #main -->
+				
+			</main><!-- #main -->
 
 				<?php
 				get_sidebar();
