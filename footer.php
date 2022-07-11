@@ -24,6 +24,18 @@
 				/* translators: 1: Theme name, 2: Theme author. */
 				printf( esc_html__( 'Theme: %1$s by %2$s.', 'food-expo' ), 'food-expo', '<a href="https://foodexpo.bcitwebdeveloper.ca">FWD30</a>' );
 				?>
+
+			
+			<nav id="site-navigation" class="footer-navigation">
+				<?php
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer',
+						'menu_id'        => 'footer-menu',
+					)
+				);
+				?>
+			</nav>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->
