@@ -6,3 +6,8 @@ $bp-tablet: 35rem;      // 560px
 $bp-laptop: 50rem;      // 800px
 $bp-desktop: 75rem;     // 1200px
 $bp-desktop-lg: 90rem;  // 1440px
+
+// Header/Navbar variables
+$header-height: 8rem;
+$buy-tickets-height: 2rem;
+$top-height: $header-height + $buy-tickets-height;
