@@ -50,7 +50,7 @@ function food_expo_setup() {
 	//custom image crop sizes
 	add_image_size('ife-banner',1920,860,true);
 
-	add_image_size('ife-event-thumbnail',600,400,true);
+	add_image_size('ife-event-thumbnail',400,200,true);
 
 	add_image_size('ife-event-guest',300,300,true);
 
@@ -63,6 +63,7 @@ function food_expo_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'food-expo' ),
+			'footer' => esc_html__( 'Footer', 'food-expo' ),
 		)
 	);
 
