@@ -34,19 +34,18 @@ get_header();
 									while( have_rows('carousel_slides') ) :
 										the_row();
 										$text = get_sub_field('text');
+										$subtext = get_sub_field('sub_text');
 										$image = get_sub_field('background_image');
 										$page_link = get_sub_field('page_link');
 										?>
 										<div class="swiper-slide">
 											<?php
-												if ($page_link) :
-													?>
-													<a href=<?php echo $page_link ?>>
-													<?php
-												endif;
 												if ($image) :
-													echo wp_get_attachment_image($image,'full');
+													echo wp_get_attachment_image($image,'ife-banner');
 												endif;
+											?>
+											<article class="carousel-content">
+											<?php 
 												if ($text) :
 													?>
 													<p class="banner-text"><?php echo $text ?></p>
@@ -54,10 +53,13 @@ get_header();
 												endif;
 												if ($page_link) :
 													?>
+													<a href=<?php echo $page_link ?>>
+														<?php echo $subtext ?>
 													</a>
 													<?php
 												endif;
 											?>
+											</article>
 										</div>
 										<?php
 									endwhile;
