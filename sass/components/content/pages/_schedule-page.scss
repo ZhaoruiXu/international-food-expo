@@ -5,22 +5,21 @@
   grid-template-columns: 1fr 1fr;
 }
 
-
-// .site-main .events{
-//     display: grid;
-//     grid-template-columns: 1fr 1fr 1fr 1fr;
-//     gap: 2rem;
-// }
-
 .eventwrapper{
 
   .events {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10rem;
-  
+
+    @media (min-width: $bp-phone-md) {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    @media (min-width: $bp-phone-lg) {
+      grid-template-columns: repeat(1, 1fr);
+    }
     @media (min-width: $bp-tablet) {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(1, 1fr);
     }
   
     @media (min-width: $bp-laptop) {
