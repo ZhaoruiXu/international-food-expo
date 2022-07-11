@@ -68,7 +68,11 @@
 					<p class="site-description"><?php echo $food_expo_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 				<?php endif; ?>
 			</div><!-- .site-branding -->
-			<button class="menu-toggle-button" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'food-expo' ); ?></button>
+			<button class="menu-toggle-button" aria-controls="primary-menu" aria-expanded="false" aria-label="Navigation Menu">
+				<div class="bar bar-1"></div>
+				<div class="bar bar-2"></div>
+				<div class="bar bar-3"></div>
+			</button>
 			<nav id="site-navigation" class="main-navigation">
 				<?php
 				wp_nav_menu(

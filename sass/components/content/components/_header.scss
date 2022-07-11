@@ -1,9 +1,4 @@
 .site-header {
-  // Variables
-  $header-height: 8rem;
-  $buy-tickets-height: 2rem;
-  $top-height: $header-height + $buy-tickets-height;
-
   position: relative;
   background-color: $blue;
   height: $top-height;
@@ -36,6 +31,59 @@
   }
 
   .menu-toggle-button {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $dark_blue;
+    color: $white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 3rem;
+
+    .bar {
+      position: absolute;
+      width: 1.5rem;
+      height: 0.125rem;
+      border-radius: 0.25rem;
+      background-color: currentColor;
+      transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+      
+      &-1 {
+        transform: translateY(-0.5rem);
+      }
+
+      &-2 {
+        opacity: 1;
+      }
+
+      &-3 {
+        transform: translateY(0.5rem);
+      }
+    }
+
+    &.toggled {
+      .bar {
+        &-1 {
+          transform: translateY(0) rotate(135deg);
+        }
+  
+        &-2 {
+          opacity: 0;
+        }
+  
+        &-3 {
+          transform: translateY(0) rotate(225deg);
+        }
+      }
+    }
+
+    &:hover,
+    &:focus {
+      background-color: $white;
+      color: $dark_blue;
+    }
 
     @media (min-width: $bp-laptop) {
       display: none;

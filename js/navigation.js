@@ -34,6 +34,7 @@
 	// Toggle the .toggled class and the aria-expanded value each time the button is clicked.
 	button.addEventListener( 'click', function() {
 		siteNavigation.classList.toggle( 'toggled' );
+		button.classList.toggle( 'toggled' );
 		document.querySelector("body").classList.toggle( 'stop-scroll' );
 		
 		if ( button.getAttribute( 'aria-expanded' ) === 'true' ) {
@@ -45,7 +46,7 @@
 	
 	// Remove the .toggled class and set aria-expanded to false when the user clicks outside the navigation.
 	document.addEventListener( 'click', function( event ) {
-		const isClickInside = siteNavigation.contains( event.target ) || event.target === button;
+		const isClickInside = siteNavigation.contains( event.target ) || event.target === button || button.contains( event.target );
 
 		if ( ! isClickInside ) {
 			siteNavigation.classList.remove( 'toggled' );
