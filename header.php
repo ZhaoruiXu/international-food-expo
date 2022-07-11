@@ -68,18 +68,20 @@
 					<p class="site-description"><?php echo $food_expo_description; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></p>
 				<?php endif; ?>
 			</div><!-- .site-branding -->
+			<button class="menu-toggle-button" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'food-expo' ); ?></button>
 			<nav id="site-navigation" class="main-navigation">
-				<button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false"><?php esc_html_e( 'Primary Menu', 'food-expo' ); ?></button>
 				<?php
 				wp_nav_menu(
 					array(
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
-					)
-				);
-				?>
+						)
+					);
+					?>
 			</nav><!-- #site-navigation -->
+			<a class="buy-tickets-link" href=<?php echo get_permalink(44) ?>>
+				Buy Tickets
+			</a>
 
-			<a href=<?php echo get_permalink(44) ?>>Buy Tickets</a>
 		</div>
 	</header><!-- #masthead -->
