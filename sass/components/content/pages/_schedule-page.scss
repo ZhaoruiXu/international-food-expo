@@ -1,34 +1,29 @@
 .page-id-42  .events{
-    display: grid;
-  gap: 2rem;
-  margin: 15px;
-  grid-template-columns: 1fr 1fr;
-}
-
-.eventwrapper{
-
-  .events {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10rem;
+  gap: 2rem;
+  margin: 0px 0px 0px 0px;
+  padding: 10px 5px;
+  grid-template-columns: 1fr 1fr 1fr;
 
-    @media (min-width: $bp-phone-md) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    @media (min-width: $bp-phone-lg) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-    @media (min-width: $bp-tablet) {
-      grid-template-columns: repeat(1, 1fr);
-    }
-  
-    @media (min-width: $bp-laptop) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  
-    @media (min-width: $bp-desktop) {
-      grid-template-columns: repeat(5, 1fr);
-    }
+     
+  @include common-grid;
   }
-}
+
+  .events .event-type{
+    text-align: center;
+    /* border: 2px solid pink; */
+    border-radius: 17px;
+    background-color: pink;
+    /* width: 88%; */
+    margin: 51px;
+    padding: 9px;
+    text-decoration: none;
+  }
+   
+  
+
+
+
+
+
   

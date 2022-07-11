@@ -1,29 +1,20 @@
-.blog {
 
   .newsgrid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr ;
     gap: 2rem;
     margin: 10px 0;
-  }
-}
 
-.newsgrid{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10rem;
-  
-    @media (min-width: $bp-tablet) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  
-    @media (min-width: $bp-laptop) {
-      grid-template-columns: repeat(3, 1fr);
-    }
-  
-    @media (min-width: $bp-desktop) {
-      grid-template-columns: repeat(5, 1fr);
-    }
+    @include common-grid;
   }
 
-  
+  .moreinfo a{
+    text-align: center;
+    border-radius: 17px;
+    background-color: pink;
+    margin: 51px;
+    margin-top: 1rem;
+    padding: 9px;
+    padding-top: 12px;
+    display: block;
+  }

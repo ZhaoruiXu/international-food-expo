@@ -34,7 +34,7 @@
 	
 	<div class="entry-content">
 
-	<article class = 'description'>
+	<article class = 'moreinfo'>
 		<?php
 		
 		if(is_single()) {
