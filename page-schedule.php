@@ -35,7 +35,7 @@ get_header();
                      class="ife-events">
                         <?php the_post_thumbnail( 'ife-event-thumbnail') ?>
                         
-                            <h2 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h2>
+                            <h3 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h3>
                             <p class="event-time"><?php the_field('time'); ?></p>
                             <div class="event-description">
                                 <?php the_field('description'); ?>
