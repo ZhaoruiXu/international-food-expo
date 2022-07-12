@@ -26,9 +26,7 @@ get_header();
 		?>
 
 		<section class="blog-intro">
-			<p>
-				<?php the_content() ?>
-			</p>
+			<?php the_content() ?>
 		</section>
 		
 		<section>
