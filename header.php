@@ -79,9 +79,9 @@
 					array(
 						'theme_location' => 'menu-1',
 						'menu_id'        => 'primary-menu',
-						)
-					);
-					?>
+					)
+				);
+				?>
 			</nav><!-- #site-navigation -->
 			<a class="buy-tickets-link" href=<?php echo get_permalink(44) ?>>
 				Buy Tickets
