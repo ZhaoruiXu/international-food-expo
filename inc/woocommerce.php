@@ -312,3 +312,10 @@ function ife_remove_cart_product_link( $product_link, $cart_item, $cart_item_key
     return $product->get_title();
 }
 add_filter( 'woocommerce_cart_item_name', 'ife_remove_cart_product_link', 10, 3 );
+
+// Remove WooCommerce Breadcrumbs
+function remove_shop_breadcrumbs(){
+    if (is_product())
+        remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
+}
+add_action('template_redirect', 'remove_shop_breadcrumbs' );
