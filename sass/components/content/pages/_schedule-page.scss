@@ -9,15 +9,15 @@
   @include common-grid;
   }
 
-  .events .event-type{
-    text-align: center;
-    /* border: 2px solid pink; */
-    border-radius: 17px;
-    background-color: pink;
-    /* width: 88%; */
-    margin: 51px;
-    padding: 9px;
-    text-decoration: none;
+  .event-type {
+    @include use-button-style;
+      display: block;
+        text-align: center;
+        border-radius: 17px;
+        margin: 51px;
+        margin-top: 1rem;
+        padding: 9px;
+        padding-top: 12px;
   }
    
   
