@@ -1,12 +1,21 @@
+.blog {
+  
+  .blog-intro {
+    @include use-blue-section(0, 40rem);
+
+    p {
+      margin: 0;
+    }
+  }
 
   .newsgrid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin: 10px 0;
 
     @include common-grid;
   }
+<<<<<<< HEAD
   
   .moreinfo a{
     @include use-button-style;
@@ -19,3 +28,6 @@
         padding-top: 12px;
   }
 
+=======
+}
+>>>>>>> c78f8fd5773af933c6b0d69b01e6beba51fe9bbd
