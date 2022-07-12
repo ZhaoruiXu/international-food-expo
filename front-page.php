@@ -139,16 +139,7 @@ get_header();
 						while ( $query -> have_posts() ) {
 							$query -> the_post();
 							
-							?>
-							<article>
-								<a href=<?php echo get_page_link() ?>>
-									<?php the_post_thumbnail() ?>
-								</a>
-								<h3><?php the_title() ?></h3>
-								<p class="news-date"><?php echo get_the_date() ?></p>
-								<?php the_excerpt() ?>
-							</article>
-							<?php
+							get_template_part( 'template-parts/content', get_post_type() );
 						}
 						wp_reset_postdata();
 					}

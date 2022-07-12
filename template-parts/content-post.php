@@ -12,7 +12,7 @@
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
-		if ( is_singular() ) :
+		if ( is_single() ) :
 			get_template_part( 'template-parts/banner' );
 		else :
 			the_post_thumbnail('ife-thumbnail');
