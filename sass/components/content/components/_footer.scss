@@ -1,53 +1,69 @@
 .site-footer {
   @include use-blue-background;
-  @include use-center-site-layout;
-  padding: 4rem 0;
+  @include use-center-site-layout(50rem);
+  padding: 2rem 0;
   font-size: 0.875rem;
+  
+  .content-wrapper {
 
-  a {
-    color: $black;
-    text-decoration: none;
-
-    &:hover,
-    &:focus {
-      text-decoration: underline;
-    }
-  }
-
-  .footer-navigation {
-    margin: 2rem auto;
-    max-width: 30rem;
     display: flex;
-    justify-content: space-around;
-    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem 4rem;
 
-    ul {
-      list-style-type: none;
-      margin: 0;
-      padding: 0;
+    a {
+      color: $black;
+      text-decoration: none;
+  
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
     }
-  }
-
-  .site-info {
-    // display: flex;
-    gap: 0.25rem;
-    text-align: center;
-
-    .message {
-      @include use-heading-style;
+  
+    .logo {
+      img {
+        width: 5rem;
+        margin: 0 auto;
+      }
     }
-    
-    .credits {
-      list-style-type: none;
-      margin: 0;
-      padding: 0 1rem;
+  
+    .footer-navigation {
+      max-width: 20rem;
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-
-      .separator {
-        padding: 0 0.25rem;
+      gap: 4rem;
+  
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
+  
+    .site-info {
+      gap: 0.25rem;
+      text-align: center;
+      width: 100%;
+  
+      .message {
+        @include use-heading-style;
+      }
+      
+      .credits {
+        list-style-type: none;
+        margin: 0;
+        padding: 0 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+  
+        .separator {
+          padding: 0 0.25rem;
+        }
       }
     }
   }
+
 }

@@ -30,41 +30,55 @@
 ?>
 
 	<footer id="colophon" class="site-footer">
-		<nav id="site-navigation" class="footer-navigation">
-			<?php
-			// Left Column
-			wp_nav_menu(
-				array(
-					'theme_location' => 'footer-left',
-					'menu_id'        => 'footer-left',
-				)
-			);
-			// Right Column
-			wp_nav_menu(
-				array(
-					'theme_location' => 'footer-right',
-					'menu_id'        => 'footer-right',
-				)
-			);
-			?>
-		</nav>
-		<div class="site-info">
-			<span class="message">Built By:</span> 
-			<ul class="credits">
+		<div class="content-wrapper">
+			<div class="logo">
 				<?php
-				foreach($credits as $id=>$credit):
+				$custom_logo_id = get_theme_mod( 'custom_logo' );
+				$logo = wp_get_attachment_image_src( $custom_logo_id , 'thumbnail' );
+				if ( has_custom_logo() ) :
 					?>
-					<li>
-						<a href="<?php echo esc_url( __( $credit["link"], 'food-expo' ) ); ?>"><?php echo $credit["name"] ?></a>
-					</li>
+					<img class="site-logo" src=<?php echo esc_url( $logo[0] ) ?> alt=<?php echo get_bloginfo( 'name' ) ?> >
+					<span class="screen-reader-text"><?php bloginfo( 'name' ) ?></span>
 					<?php
-						if ( $id !== (sizeof($credits)-1) ) :
-							echo "<span class='separator'>" . "·" . "</span>";
-						endif;
-				endforeach;
+				endif;
 				?>
-			</ul>
-		</div><!-- .site-info -->
+			</div>
+			<nav id="site-navigation" class="footer-navigation">
+				<?php
+				// Left Column
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer-left',
+						'menu_id'        => 'footer-left',
+					)
+				);
+				// Right Column
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer-right',
+						'menu_id'        => 'footer-right',
+					)
+				);
+				?>
+			</nav>
+			<div class="site-info">
+				<span class="message">Built By:</span>
+				<ul class="credits">
+					<?php
+					foreach($credits as $id=>$credit):
+						?>
+						<li>
+							<a href="<?php echo esc_url( __( $credit["link"], 'food-expo' ) ); ?>"><?php echo $credit["name"] ?></a>
+						</li>
+						<?php
+							if ( $id !== (sizeof($credits)-1) ) :
+								echo "<span class='separator'>" . "·" . "</span>";
+							endif;
+					endforeach;
+					?>
+				</ul>
+			</div><!-- .site-info -->
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
