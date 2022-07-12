@@ -326,3 +326,6 @@ function add_single_product_page_banner(){
 		get_template_part( 'template-parts/banner' );
 };
 add_action('woocommerce_before_single_product_summary', 'add_single_product_page_banner');
+
+// Remove reset variations button
+add_filter('woocommerce_reset_variations_link', '__return_empty_string');
