@@ -1,7 +1,3 @@
-@mixin use-heading-style {
-	font-weight: 500;
-}
-
 // Center block
 @mixin center-block {
 	display: block;
@@ -14,6 +10,12 @@
 	width: map-get($columns, $numberColumns) - ( ( $columns__margin * ( $numberColumns - 1 ) ) / $numberColumns );
 }
 
+// Use the heading style for site
+@mixin use-heading-style {
+	font-weight: 500;
+}
+
+// Common grid to be used for news and events
 @mixin common-grid {
 	display: grid;
 	grid-template-columns: 1fr;
@@ -26,22 +28,21 @@
 	@media (min-width: $bp-laptop) {
 		grid-template-columns: repeat(3, 1fr);
 	}
-
-	@media (min-width: $bp-desktop) {
-		grid-template-columns: repeat(3, 1fr);
-	}
 }
 
+// Let the wrapper escape the site layout and expand to full page width
 @mixin use-full-width($vertical-margin: 0) {
   width: 100vw;
   margin: $vertical-margin calc(calc(100% - 100vw)/2);
 }
 
+// Reconstrain the wrapper to the site layout
 @mixin disable-full-width($vertical-margin: 0) {
   width: 100%;
   margin: $vertical-margin 0;
 }
 
+// Use the blue background design
 @mixin use-blue-background {
 	background-color: $blue;
 	h1,
@@ -63,6 +64,7 @@
 	}
 }
 
+// Reset the blue background back to white
 @mixin use-white-background {
 	background-color: transparent;
 	h1,
@@ -83,15 +85,17 @@
 	}
 }
 
-@mixin use-center-site-layout {
+// Recenter the wrapper using the default site layout
+@mixin use-center-site-layout($max-center-width: $max-site-width) {
 	display: grid;
-	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $max-site-width) minmax($site-padding, 1fr);
+	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $max-center-width) minmax($site-padding, 1fr);
 	& > * {
 		grid-column: 2/3;
 		width: 100%;
 	}
 }
 
+// Unset the wrapper layout
 @mixin disable-center-site-layout {
 	display: block;
 	grid-template-columns: unset;
@@ -115,6 +119,7 @@
 	@include use-white-background;
 }
 
+// Set the button style to be ink and rounded
 @mixin use-button-style {
 	border: none;
 	border-radius: 0.5rem;

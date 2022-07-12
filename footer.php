@@ -9,22 +9,76 @@
  * @package Food_Expo
  */
 
+	$credits = array(
+		array(
+			"name" => "Clayton Jang",
+			"link" => "https://claytonjang.com/",
+		),
+		array(
+			"name" => "Zhaorui Xu",
+			"link" => "https://zhaoruixu.com/personal-portfolio/",
+		),
+		array(
+			"name" => "Amrik Grewal",
+			"link" => "https://www.amrikgrewal.com/",
+		),
+		array(
+			"name" => "Reuel Sobiono",
+			"link" => "https://sobiono.ca/",
+		),
+	);
 ?>
 
 	<footer id="colophon" class="site-footer">
-		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'food-expo' ) ); ?>">
+		<div class="content-wrapper">
+			<div class="logo">
 				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'food-expo' ), 'WordPress' );
+				$custom_logo_id = get_theme_mod( 'custom_logo' );
+				$logo = wp_get_attachment_image_src( $custom_logo_id , 'thumbnail' );
+				if ( has_custom_logo() ) :
+					?>
+					<img class="site-logo" src=<?php echo esc_url( $logo[0] ) ?> alt=<?php echo get_bloginfo( 'name' ) ?> >
+					<span class="screen-reader-text"><?php bloginfo( 'name' ) ?></span>
+					<?php
+				endif;
 				?>
-			</a>
-			<span class="sep"> | </span>
+			</div>
+			<nav id="site-navigation" class="footer-navigation">
 				<?php
-				/* translators: 1: Theme name, 2: Theme author. */
-				printf( esc_html__( 'Theme: %1$s by %2$s.', 'food-expo' ), 'food-expo', '<a href="https://foodexpo.bcitwebdeveloper.ca">FWD30</a>' );
+				// Left Column
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer-left',
+						'menu_id'        => 'footer-left',
+					)
+				);
+				// Right Column
+				wp_nav_menu(
+					array(
+						'theme_location' => 'footer-right',
+						'menu_id'        => 'footer-right',
+					)
+				);
 				?>
-		</div><!-- .site-info -->
+			</nav>
+			<div class="site-info">
+				<span class="message">Built By:</span>
+				<ul class="credits">
+					<?php
+					foreach($credits as $id=>$credit):
+						?>
+						<li>
+							<a href="<?php echo esc_url( __( $credit["link"], 'food-expo' ) ); ?>"><?php echo $credit["name"] ?></a>
+						</li>
+						<?php
+							if ( $id !== (sizeof($credits)-1) ) :
+								echo "<span class='separator'>" . "·" . "</span>";
+							endif;
+					endforeach;
+					?>
+				</ul>
+			</div><!-- .site-info -->
+		</div>
 	</footer><!-- #colophon -->
 </div><!-- #page -->
 
