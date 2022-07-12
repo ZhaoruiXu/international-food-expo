@@ -86,9 +86,9 @@
 }
 
 // Recenter the wrapper using the default site layout
-@mixin use-center-site-layout {
+@mixin use-center-site-layout($max-center-width: $max-site-width) {
 	display: grid;
-	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $max-site-width) minmax($site-padding, 1fr);
+	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $max-center-width) minmax($site-padding, 1fr);
 	& > * {
 		grid-column: 2/3;
 		width: 100%;

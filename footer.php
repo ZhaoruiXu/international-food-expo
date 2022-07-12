@@ -9,6 +9,24 @@
  * @package Food_Expo
  */
 
+	$credits = array(
+		array(
+			"name" => "Clayton Jang",
+			"link" => "https://claytonjang.com/",
+		),
+		array(
+			"name" => "Zhaorui Xu",
+			"link" => "https://zhaoruixu.com/personal-portfolio/",
+		),
+		array(
+			"name" => "Amrik Grewal",
+			"link" => "https://www.amrikgrewal.com/",
+		),
+		array(
+			"name" => "Reuel Sobiono",
+			"link" => "https://sobiono.ca/",
+		),
+	);
 ?>
 
 	<footer id="colophon" class="site-footer">
@@ -31,17 +49,21 @@
 			?>
 		</nav>
 		<div class="site-info">
-			<a href="<?php echo esc_url( __( 'https://wordpress.org/', 'food-expo' ) ); ?>">
+			<span class="message">Built By:</span> 
+			<ul class="credits">
 				<?php
-				/* translators: %s: CMS name, i.e. WordPress. */
-				printf( esc_html__( 'Proudly powered by %s', 'food-expo' ), 'WordPress' );
+				foreach($credits as $id=>$credit):
+					?>
+					<li>
+						<a href="<?php echo esc_url( __( $credit["link"], 'food-expo' ) ); ?>"><?php echo $credit["name"] ?></a>
+					</li>
+					<?php
+						if ( $id !== (sizeof($credits)-1) ) :
+							echo "<span class='separator'>" . "·" . "</span>";
+						endif;
+				endforeach;
 				?>
-			</a>
-			<span class="sep"> | </span>
-			<?php
-			/* translators: 1: Theme name, 2: Theme author. */
-			printf( esc_html__( 'Theme: %1$s by %2$s.', 'food-expo' ), 'food-expo', '<a href="https://foodexpo.bcitwebdeveloper.ca">FWD30</a>' );
-			?>
+			</ul>
 		</div><!-- .site-info -->
 	</footer><!-- #colophon -->
 </div><!-- #page -->

@@ -1,14 +1,53 @@
 .site-footer {
   @include use-blue-background;
+  @include use-center-site-layout;
+  padding: 4rem 0;
+  font-size: 0.875rem;
+
+  a {
+    color: $black;
+    text-decoration: none;
+
+    &:hover,
+    &:focus {
+      text-decoration: underline;
+    }
+  }
 
   .footer-navigation {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    margin: 2rem auto;
+    max-width: 30rem;
+    display: flex;
+    justify-content: space-around;
+    gap: 2rem;
 
     ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
+    }
+  }
+
+  .site-info {
+    // display: flex;
+    gap: 0.25rem;
+    text-align: center;
+
+    .message {
+      @include use-heading-style;
+    }
+    
+    .credits {
+      list-style-type: none;
+      margin: 0;
+      padding: 0 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+
+      .separator {
+        padding: 0 0.25rem;
+      }
     }
   }
 }
