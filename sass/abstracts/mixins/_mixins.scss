@@ -106,21 +106,21 @@
 }
 
 // Shortcut to use a the blue section style
-@mixin use-blue-section($vertical-margin: 0) {
+@mixin use-blue-section($vertical-margin: 0, $max-center-width: $max-site-width) {
 	@include use-full-width($vertical-margin);
-	@include use-center-site-layout;
+	@include use-center-site-layout($max-center-width);
 	@include use-blue-background;
 }
 
 // Shortcut to disable the blue section style and go back to the default
-@mixin disable-blue-section($vertical-margin: 0) {
+@mixin disable-blue-section($vertical-margin: 0, $max-center-width: $max-site-width) {
 	@include disable-full-width($vertical-margin);
-	@include disable-center-site-layout;
+	@include disable-center-site-layout($max-center-width);
 	@include use-white-background;
 }
 
 // Set the button style to be ink and rounded
-@mixin use-button-style($important: "") {
+@mixin use-button-style() {
 	border: none;
 	border-radius: 0.5rem;
 	background: $pink;
