@@ -120,7 +120,7 @@
 }
 
 // Set the button style to be ink and rounded
-@mixin use-button-style {
+@mixin use-button-style($important: "") {
 	border: none;
 	border-radius: 0.5rem;
 	background: $pink;
