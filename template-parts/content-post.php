@@ -25,7 +25,6 @@
 			<div class="entry-meta">
 				<?php
 				food_expo_posted_on();
-				// food_expo_posted_by();
 				?>
 			</div><!-- .entry-meta -->
 		<?php endif; ?>
@@ -33,19 +32,15 @@
 	
 	
 	<div class="entry-content">
-
-	<article class = 'moreinfo'>
 		<?php
-		
 		if(is_single()) {
 			the_content();
 		}
 		else {
 			the_excerpt();
 		}
-					?>
-			</article>
-			</div><!-- .entry-content -->
+		?>
+	</div><!-- .entry-content -->
 
 	<footer class="entry-footer">
 		<?php food_expo_entry_footer(); ?>
