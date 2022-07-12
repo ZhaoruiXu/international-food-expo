@@ -63,7 +63,8 @@ function food_expo_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'food-expo' ),
-			'footer' => esc_html__( 'Footer', 'food-expo' ),
+			'footer-left' => esc_html__( 'Footer Left', 'food-expo' ),
+			'footer-right' => esc_html__( 'Footer Right', 'food-expo' ),
 		)
 	);
 

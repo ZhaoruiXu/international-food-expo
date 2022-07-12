@@ -14,10 +14,18 @@
 	<footer id="colophon" class="site-footer">
 		<nav id="site-navigation" class="footer-navigation">
 			<?php
+			// Left Column
 			wp_nav_menu(
 				array(
-					'theme_location' => 'footer',
-					'menu_id'        => 'footer-menu',
+					'theme_location' => 'footer-left',
+					'menu_id'        => 'footer-left',
+				)
+			);
+			// Right Column
+			wp_nav_menu(
+				array(
+					'theme_location' => 'footer-right',
+					'menu_id'        => 'footer-right',
 				)
 			);
 			?>
