@@ -15,7 +15,7 @@
 		if ( is_singular() ) :
 			get_template_part( 'template-parts/banner' );
 		else :
-			food_expo_post_thumbnail();
+			the_post_thumbnail('ife-thumbnail');
 			the_title( '<h3 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' );
 		endif;
 		
