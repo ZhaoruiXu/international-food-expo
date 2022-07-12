@@ -92,7 +92,7 @@ function ife_register_custom_post_types() {
         'hierarchical'       => false,
         'menu_position'      => 7,
         'menu_icon'          => 'dashicons-calendar-alt',
-        'supports'           => array( 'title', 'thumbnail' ),
+        'supports'           => array( 'title', 'thumbnail' , 'excerpt' ),
     );
     
     register_post_type( 'ife-event', $args );

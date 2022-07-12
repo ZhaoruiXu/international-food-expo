@@ -7,14 +7,15 @@
 
     @include common-grid;
   }
-
+  
   .moreinfo a{
-    text-align: center;
-    border-radius: 17px;
-    background-color: pink;
-    margin: 51px;
-    margin-top: 1rem;
-    padding: 9px;
-    padding-top: 12px;
-    display: block;
+    @include use-button-style;
+      display: block;
+        text-align: center;
+        border-radius: 17px;
+        margin: 51px;
+        margin-top: 1rem;
+        padding: 9px;
+        padding-top: 12px;
   }
+

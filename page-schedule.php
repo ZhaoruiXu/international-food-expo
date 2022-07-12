@@ -39,6 +39,7 @@ get_header();
                             <p class="event-time"><?php the_field('time'); ?></p>
                             <div class="event-description">
                                 <?php the_field('description'); ?>
+                               
                         </div>
                         <div class="event-type">
                             
