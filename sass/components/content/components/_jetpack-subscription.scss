@@ -1,0 +1,55 @@
+.home {
+  .wp-block-group {
+    padding: 0 0 4rem;
+  
+    .wp-block-group__inner-container {
+      max-width: 40rem;
+      margin: 2rem auto;
+      padding: 2rem 1rem;
+      background-color: $blue;
+      color: $black;
+  
+      @media (min-width: $bp-phone-lg) {
+        padding: 2rem 3rem;
+      }
+  
+      .jetpack_subscription_widget {
+        // Important is used to override jetpack inline styles
+        form {
+          display: block;
+    
+          @media (min-width: $bp-phone-lg) {
+            display: flex;
+          }
+    
+          label {
+            display: block;
+          }
+
+          input {
+            display: block;
+            width: 100%;
+            padding: 0.5rem 1rem !important;
+            border-radius: 0 !important;
+          }
+  
+          button {
+            @include use-button-style;
+            padding: 0.75rem 1.5rem !important;
+            margin: 0.5rem 0 !important;
+            border: none !important;
+            border-radius: 0.5rem !important;
+            width: 100%;
+  
+            @media (min-width: $bp-phone-lg) {
+              width: unset;
+              margin: 0 !important;
+              margin-left: 0.5rem !important;
+            }
+          }
+        }
+      
+      }
+    }
+  }
+}
