@@ -1,4 +1,13 @@
 .blog {
+  
+  .blog-intro {
+    @include use-blue-section(0, 40rem);
+
+    p {
+      margin: 0;
+    }
+  }
+
   .newsgrid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
