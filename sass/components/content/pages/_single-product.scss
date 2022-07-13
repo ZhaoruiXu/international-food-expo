@@ -4,8 +4,16 @@
       display: none;
     }
     .product {
+      .banner-part {
+        margin-bottom: 2rem;
+        @media (min-width: $bp-desktop) {
+          grid-area: banner;
+          margin-bottom: 3rem;
+        }
+      }
       .summary.entry-summary {
         .variations {
+          margin-bottom: 1rem;
           tbody {
             tr {
               display: flex;
@@ -17,18 +25,27 @@
           }
           .label {
             font-size: 1.125rem;
+            margin-bottom: 0.5rem;
             @media (min-width: $bp-wc-cart-table) {
               font-size: 1.35rem;
+              margin-bottom: 1rem;
             }
           }
           .value {
             .variable-items-wrapper {
-              display: flex;
-              flex-direction: column;
+              display: grid;
+              grid-template-columns: 1fr;
+              // flex-direction: column;
+              @media (min-width: $bp-wc-cart-table) {
+                // flex-direction: row;
+                // justify-content: space-around;
+                grid-template-columns: repeat(3, 1fr);
+                column-gap: 1.5rem;
+              }
               .variable-item {
                 @include use-button-style;
                 background-color: $white;
-                padding: 0.5rem 0;
+                padding: 0.75rem 0;
                 margin: 0.25rem 0;
                 &:hover,
                 &:focus {
@@ -43,6 +60,7 @@
                 }
                 @media (min-width: $bp-wc-cart-table) {
                   font-size: 1.125rem;
+                  padding: 1.25rem 0;
                 }
               }
             }
@@ -55,9 +73,10 @@
             font-size: 1.125rem;
             display: block;
             text-align: center;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.85rem;
             @media (min-width: $bp-wc-cart-table) {
               font-size: 1.35rem;
+              margin-bottom: 1.35rem;
             }
           }
           .quantity {
@@ -92,6 +111,9 @@
             .stock.in-stock {
               margin-top: 1rem;
               color: $dark-pink;
+              @media (min-width: $bp-wc-cart-table) {
+                font-size: 1.25rem;
+              }
             }
           }
           .wc-box-office-ticket-form {
@@ -99,6 +121,17 @@
               h3 {
                 a {
                   color: $dark-blue;
+                }
+              }
+              .wc-box-office-ticket-fields-body {
+                .form-row {
+                  display: grid;
+                  grid-template-columns: 1fr 1fr;
+                  justify-items: flex-start;
+                  align-items: center;
+                  @media (min-width: $bp-desktop) {
+                    grid-template-columns: 1fr;
+                  }
                 }
               }
             }
@@ -113,12 +146,25 @@
             margin: 0 auto;
           }
         }
+        @media (min-width: $bp-desktop) {
+          grid-area: summary;
+        }
       }
       .cart-title {
         margin: 0;
+        @media (min-width: $bp-desktop) {
+          grid-area: cart-title;
+          justify-self: flex-start;
+          align-self: flex-end;
+          // padding-top: 3rem;
+        }
       }
       .woocommerce {
         margin-bottom: 4rem;
+        @media (min-width: $bp-desktop) {
+          grid-area: woocommerce;
+          justify-self: flex-start;
+        }
         .cart-empty.woocommerce-info {
           text-align: center;
           margin: 5rem 0;
@@ -186,7 +232,7 @@
                       display: flex;
                       justify-content: flex-start;
                       align-items: center;
-                      column-gap: 0.5rem;
+                      column-gap: 0.325rem;
                       margin: 0;
                     }
                   }
@@ -210,7 +256,7 @@
                   th,
                   td {
                     @media (min-width: $bp-wc-cart-table) {
-                      text-align: center !important;
+                      text-align: center;
                     }
                   }
                 }
@@ -226,6 +272,18 @@
           }
         }
       }
+      @media (min-width: $bp-desktop) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+        align-items: flex-start;
+        grid-template-areas:
+          "banner banner"
+          "summary cart-title"
+          "summary woocommerce";
+      }
+      grid-template-rows: auto 4.125rem auto;
+      column-gap: 8rem;
     }
   }
 }
