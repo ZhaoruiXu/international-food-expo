@@ -1,3 +1,56 @@
 .page-id-36 {
   
+  
+  .vendor-application-form {
+    .acf-fields {
+      display: grid;
+      grid-template-areas: 
+        "companyName"
+        "website"
+        "description"
+        "fullName"
+        "phone"
+        "email"
+        "tier"
+        "logo"
+      ;
+
+      .acf-field {
+
+        // Fields setup
+        // Company Name
+        &[data-name="_post_title"] {
+          grid-area: companyName;
+        }
+        // Full (Contact) Name
+        &[data-name="full_name"] {
+          grid-area: fullName;
+        }
+        // Phone Number
+        &[data-name="phone_number"] {
+          grid-area: phone;
+        }
+        // Company Website
+        &[data-name="company_website"] {
+          grid-area: website;
+        }
+        // Email Address
+        &[data-name="email_address"] {
+          grid-area: email;
+        }
+        // Vendor Tier Selector
+        &[data-name="select_vendor_tier"] {
+          grid-area: tier;
+        }
+        // Company Description
+        &[data-name="company_description"] {
+          grid-area: description;
+        }
+        // Company Logo
+        &[data-name="upload_company_logo"] {
+          grid-area: logo;
+        }
+      }
+    }
+  }
 }
