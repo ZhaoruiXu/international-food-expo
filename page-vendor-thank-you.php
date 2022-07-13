@@ -24,24 +24,59 @@ get_header();
 			get_template_part( 'template-parts/banner' ); 
 
       $new_post_id = $_GET["thankid"];
-
-      if(function_exists( 'get_field' )){
-        if(get_field('full_name', $new_post_id )){
-          $full_name = get_field('full_name', $new_post_id );
-          echo $full_name;
-        }
-        if(get_field('select_vendor_tier', $new_post_id )){
-          $select_vendor_tier = get_field('select_vendor_tier', $new_post_id );
-          echo $select_vendor_tier->name;
-          // echo '<pre>'; print_r($select_vendor_tier); echo '</pre>';
-        }
-      }
-     
-
-      $new_post = get_post( $new_post_id );
-      echo $new_post -> post_title;
-
-      echo "Today is " . date("M d, Y") . "<br>";
+      
+      if (get_post( $new_post_id ) ) : 
+        $new_post = get_post( $new_post_id );
+        ?>
+        <section>
+          <p>We will process your application and get back to shortly.</p>
+          <table>
+            <caption>Application Info</caption>
+            <tbody>
+              <?php
+              if(function_exists( 'get_field' )){
+                if(get_field('select_vendor_tier', $new_post_id )){
+                  ?>
+                  <tr><td>Company Name</td><td><?php echo $new_post -> post_title ?></td></tr>
+                  <?php
+                }
+                if(get_field('company_website', $new_post_id )){
+                  ?>
+                  <tr><td>Company Website</td><td><?php echo get_field('company_website', $new_post_id ) ?></td></tr>
+                  <?php
+                }
+                if(get_field('company_description', $new_post_id )){
+                  ?>
+                  <tr><td>Company Description</td><td><?php echo get_field('company_description', $new_post_id ) ?></td></tr>
+                  <?php
+                }
+                if(get_field('select_vendor_tier', $new_post_id )){
+                  ?>
+                  <tr><td>Selected Vendor Tier</td><td><?php echo get_field('select_vendor_tier', $new_post_id )->name ?></td></tr>
+                  <?php
+                }
+                if(get_field('full_name', $new_post_id )){
+                  ?>
+                  <tr><td>Contact Name</td><td><?php echo get_field('full_name', $new_post_id ) ?></td></tr>
+                  <?php
+                }
+                if(get_field('email_address', $new_post_id )){
+                  ?>
+                  <tr><td>Email</td><td><?php echo get_field('email_address', $new_post_id ) ?></td></tr>
+                  <?php
+                }
+                if(get_field('phone_number', $new_post_id )){
+                  ?>
+                  <tr><td>Phone Number</td><td><?php echo get_field('phone_number', $new_post_id ) ?></td></tr>
+                  <?php
+                }
+              }
+              ?>
+            </tbody>
+          </table>
+        </section>
+        <?php
+      endif;
 
       get_template_part( 'template-parts/featured-vendors' );
      
