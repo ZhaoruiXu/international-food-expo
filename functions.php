@@ -455,7 +455,6 @@ function my_save_post( $post_id ) {
 
 	}
 
-	
 }
 
 add_action('acf/save_post', 'my_save_post', 99);
