@@ -297,7 +297,7 @@ add_action( 'woocommerce_before_main_content', 'ife_remove_sidebar_product_pages
 
 // Add wc cart in the single product page
 function ife_cart_on_single_product_page() {
-	
+	echo "<h2 class='cart-title'>Cart</h2>";
 	echo do_shortcode('[woocommerce_cart]');
 	
 }
