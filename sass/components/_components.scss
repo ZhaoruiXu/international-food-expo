@@ -2,8 +2,6 @@
 --------------------------------------------- */
 @import "navigation/navigation";
 
-
-
 /* Posts and pages
 --------------------------------------------- */
 @import "content/posts-and-pages";
@@ -21,7 +19,6 @@
 @import "content/components/featured-vendors";
 @import "content/components/vendor-modal";
 
-
 /* Pages
 --------------------------------------------- */
 @import "content/pages/home-page";
@@ -31,6 +28,7 @@
 @import "content/pages/single-event-page";
 @import "content/pages/news-page";
 @import "content/pages/single-news-page";
+@import "content/pages/single-product";
 
 /* Comments
 --------------------------------------------- */

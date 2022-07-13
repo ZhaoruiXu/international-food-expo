@@ -396,53 +396,26 @@ function my_save_post( $post_id ) {
 		return;
 	}
 	
-	// vars
-	// $post = get_post( $post_id );
+	$post_title = get_the_title( $post_id );
+	$post_url 	= get_permalink( $post_id );
+	$subject 	= "A New Vendor Application Has Been Submmited to Your Site";
+	$message 	= "Please review the application before publishing:\n\n";
+	$message   .= $post_title . ": " . $post_url;
 	
-	// if ( function_exists ( 'get_field' ) ) {
+	// To send all admin accounts the email notification
+	$administrators = get_users(array(
+	'role'	=> 'administrator'
+	));
 
-	// 	// get custom fields (field group exists for ife-vendor CPT)
-	// 	if ( get_field( 'full_name', $post_id ) ) {
-	// 			$full_name = get_field( 'full_name', $post_id );
-	// 	}
+	foreach ($administrators as &$administrator) {
+		wp_mail( $administrator->data->user_email, $subject, $message );
+	}
 
-	// 	if ( get_field( 'email_address', $post_id ) ) {
-	// 			$email_address = get_field( 'email_address', $post_id );
-	// 	}
-		
-		// email data
-		$to = 'xzr0429@gmail.com';
-		// $headers = 'From: ' . $full_name . ' <' . $email_address . '>' . "\r\n";
-		// $subject = $post->post_title;
-		// $body = $post->post_content;
+	// Redirect to thank-you page with the newly created post id embedded
+	if ($_POST['issubmitform'] === "yes"){
+			wp_redirect( home_url('vendor-thank-you/?thankid=' . $post_id) ); exit;
+	}
 
-		$post_title = get_the_title( $post_id );
-		$post_url 	= get_permalink( $post_id );
-		$subject 	= "A New Vendor Application Has Been Submmited to Your Site";
-		$message 	= "Please review the application before publishing:\n\n";
-		$message   .= $post_title . ": " . $post_url;
-		
-		// To send all admin accounts the email notification
-		// $administrators 	= get_users(array(
-		// 'role'	=> 'administrator'
-		// ));
-
-		// foreach ($administrators as &$administrator) {
-		// 	wp_mail( $administrator->data->user_email, $subject, $body );
-		// }
-
-		
-		// send one email
-		wp_mail($to, $subject, $message );
-
-		// Redirect to thank-you page with the newly created post id embedded
-		if ($_POST['issubmitform'] === "yes"){
-        wp_redirect( home_url('vendor-thank-you/?thankid=' . $post_id) ); exit;
-    }
-
-	// }
-
-	
 }
 
 add_action('acf/save_post', 'my_save_post', 99);
