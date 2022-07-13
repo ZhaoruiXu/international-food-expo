@@ -53,18 +53,20 @@ get_header();
 
       if( $terms && !is_wp_error( $terms ) ) :
         ?>
-        <section class="vendor-tiers-wrapper">
-          <h2>Vendor Tier Reference</h2>
-          <?php 
-          foreach($terms as $term) :
-            ?>
-            <article class="vendor-tier vendor-tier-<?php echo strtolower($term->name) ?>">
-              <h3><?php echo $term->name ?></h3>
-              <p><?php echo $term->description ?></p>
-            </article>
+        <section class="vendor-tiers-section">
+          <div class="content-wrapper">
+            <h2>Vendor Tier Reference</h2>
             <?php
-          endforeach;
-          ?>
+            foreach($terms as $term) :
+              ?>
+              <article class="vendor-tier vendor-tier-<?php echo strtolower($term->name) ?>">
+                <h3><?php echo $term->name ?></h3>
+                <p><?php echo $term->description ?></p>
+              </article>
+              <?php
+            endforeach;
+            ?>
+          </div>
         </section>
         <?php
       endif;

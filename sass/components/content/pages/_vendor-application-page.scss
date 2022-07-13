@@ -109,4 +109,8 @@
       }
     }
   }
+
+  .vendor-tiers-section {
+    @include use-blue-section(0, 40rem);
+  }
 }
