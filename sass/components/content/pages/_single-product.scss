@@ -17,6 +17,9 @@
           }
           .label {
             font-size: 1.125rem;
+            @media (min-width: $bp-wc-cart-table) {
+              font-size: 1.35rem;
+            }
           }
           .value {
             .variable-items-wrapper {
@@ -38,6 +41,9 @@
                   box-shadow: none;
                   color: $white;
                 }
+                @media (min-width: $bp-wc-cart-table) {
+                  font-size: 1.125rem;
+                }
               }
             }
           }
@@ -50,6 +56,9 @@
             display: block;
             text-align: center;
             margin-bottom: 0.5rem;
+            @media (min-width: $bp-wc-cart-table) {
+              font-size: 1.35rem;
+            }
           }
           .quantity {
             .input-text {
@@ -63,11 +72,17 @@
               .amount {
                 font-weight: 500;
                 font-size: 1rem;
+                @media (min-width: $bp-wc-cart-table) {
+                  font-size: 1.25rem;
+                }
               }
               ins {
                 background-color: $blue;
                 bdi {
                   font-size: 1.25rem;
+                  @media (min-width: $bp-wc-cart-table) {
+                    font-size: 1.5rem;
+                  }
                 }
               }
             }
@@ -86,6 +101,11 @@
                   color: $dark-blue;
                 }
               }
+            }
+            @media (min-width: $bp-wc-cart-table) {
+              display: grid;
+              grid-template-columns: repeat(2, 1fr);
+              column-gap: 5rem;
             }
           }
           .single_add_to_cart_button {
@@ -109,17 +129,19 @@
         .woocommerce-cart-form {
           .shop_table {
             border-spacing: 0 2rem;
+            @media (min-width: $bp-wc-cart-table) {
+              border-spacing: 2rem;
+            }
             .product-thumbnail {
               display: none;
             }
             tbody {
               .woocommerce-cart-form__cart-item.cart_item {
-                // @include use-blue-section;
-                // background-color: $blue;
                 font-size: 1rem;
                 .product-remove {
-                  display: flex;
-                  justify-content: flex-end;
+                  display: grid;
+                  grid-template-columns: 1fr;
+                  justify-items: flex-end;
                   .remove {
                     display: flex;
                     justify-content: center;
@@ -132,6 +154,9 @@
                     border-radius: 100%;
                     color: $black;
                     margin-bottom: 1rem;
+                    @media (min-width: $bp-wc-cart-table) {
+                      margin-bottom: 0;
+                    }
                   }
                 }
                 .product-name {
@@ -141,11 +166,14 @@
                     justify-content: flex-start;
                     align-items: center;
                     grid-template-columns: 2fr 1fr;
+
                     dt {
                       margin: 0;
-                      // font-size: 0.9rem;
                       font-weight: 400;
                       text-align: left;
+                      @media (min-width: $bp-wc-cart-table) {
+                        display: none;
+                      }
                     }
                     dd {
                       margin: 0;
@@ -153,6 +181,13 @@
                         margin: 0;
                         font-weight: 600;
                       }
+                    }
+                    @media (min-width: $bp-wc-cart-table) {
+                      display: flex;
+                      justify-content: flex-start;
+                      align-items: center;
+                      column-gap: 0.5rem;
+                      margin: 0;
                     }
                   }
                 }
@@ -169,6 +204,18 @@
         }
         .cart-collaterals {
           .cart_totals {
+            .shop_table.shop_table_responsive {
+              tbody {
+                tr {
+                  th,
+                  td {
+                    @media (min-width: $bp-wc-cart-table) {
+                      text-align: center !important;
+                    }
+                  }
+                }
+              }
+            }
             .wc-proceed-to-checkout {
               .checkout-button {
                 @include use-button-style;
