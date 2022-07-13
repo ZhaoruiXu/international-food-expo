@@ -22,6 +22,13 @@ get_header();
 			the_post();
 
 			get_template_part( 'template-parts/banner' );
+			
+			?>
+			<section class="vendor-application-section">
+				<h2>Want to showcase at the Expo?</h2>
+				<a href=<?php echo get_permalink(36) ?>>Apply to be a Vendor</a>
+			</section>
+			<?php
 
 			get_template_part( 'template-parts/featured-vendors' );
 			

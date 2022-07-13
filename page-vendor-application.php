@@ -24,26 +24,27 @@ get_header();
       get_template_part( 'template-parts/banner' );
       ?>
 
-      <div id="vendor-application-form">
-	
-      <?php
-      // To create a new vendor post (typeof ife-vendor CPT)
-      acf_form(array(
-        'post_id'		=> 'new_post',
-        'post_title'	=> true,
-        'post_content'	=> false,
-        'new_post'		=> array(
-          'post_type'		=> 'ife-vendor',
-          'post_status'	=> 'pending'
-        ),
-        'html_before_fields' => '<input type="text" id="issubmitform" name="issubmitform" value="yes" style="display:none;">',
-        // 'return'		=> home_url('vendor-thank-you/?thankid=' . $post_id), // redirect to thank-you page
-        'submit_value'	=> 'Submit Application'
-      ));
-      
-      ?>
-      
-      </div>
+      <section id="vendor-application-form" class="vendor-application-form">
+    
+        <?php
+        // To create a new vendor post (typeof ife-vendor CPT)
+        acf_form(array(
+          'post_id'		=> 'new_post',
+          'post_title'	=> true,
+          'post_content'	=> false,
+          'new_post'		=> array(
+            'post_type'		=> 'ife-vendor',
+            'post_status'	=> 'pending'
+          ),
+          'uploader' => 'basic',
+          'html_before_fields' => '<input type="text" id="issubmitform" name="issubmitform" value="yes" style="display:none;">',
+          // 'return'		=> home_url('vendor-thank-you/?thankid=' . $post_id), // redirect to thank-you page
+          'submit_value'	=> 'Submit Application'
+        ));
+        
+        ?>
+        
+      </section>
 
       <?php  
       $terms = get_terms(array(
@@ -51,12 +52,23 @@ get_header();
       ));
 
       if( $terms && !is_wp_error( $terms ) ) :
-        foreach($terms as $term) :
-          ?>
-          <p><?php echo $term->name ?></p>
-          <p><?php echo $term->description ?></p>
-          <?php
-        endforeach;
+        ?>
+        <section class="vendor-tiers-section">
+          <div class="content-wrapper">
+            <h2>Vendor Tier Reference</h2>
+            <?php
+            foreach($terms as $term) :
+              ?>
+              <article class="vendor-tier vendor-tier-<?php echo strtolower($term->name) ?>">
+                <h3><?php echo $term->name ?></h3>
+                <p><?php echo $term->description ?></p>
+              </article>
+              <?php
+            endforeach;
+            ?>
+          </div>
+        </section>
+        <?php
       endif;
 
       get_template_part( 'template-parts/featured-vendors' );
