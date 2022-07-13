@@ -34,13 +34,19 @@
 			display: flex;
 			justify-content: space-between;
 
-			.sub-menu{
+			.sub-menu {
 				position: absolute;
 				display: none;
 				background-color: $blue;
 
-				&:hover {
-					background-color: $dark-blue;
+				a {
+					border-bottom: none;
+					
+					&:hover,
+					&:focus {
+						background-color: $dark-blue;
+						border-bottom: none;
+					}
 				}
 			}
 
