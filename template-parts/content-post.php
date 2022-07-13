@@ -10,25 +10,29 @@
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<header class="entry-header">
-		<?php
+	<?php
 		if ( is_single() ) :
 			get_template_part( 'template-parts/banner' );
 		else :
-			the_post_thumbnail('ife-thumbnail');
-			the_title( '<h3 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' );
+			?>
+			<header class="entry-header">
+				<?php
+				the_post_thumbnail('ife-thumbnail');
+				the_title( '<h3 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h3>' );
+				?>
+			</header><!-- .entry-header -->
+			<?php
 		endif;
 		
 		if ( 'post' === get_post_type() ) :
 			?>
+	<?php endif; ?>
 
-			<div class="entry-meta">
-				<?php
-				food_expo_posted_on();
-				?>
-			</div><!-- .entry-meta -->
-		<?php endif; ?>
-	</header><!-- .entry-header -->
+	<div class="entry-meta">
+		<?php
+		food_expo_posted_on();
+		?>
+	</div><!-- .entry-meta -->
 	
 	
 	<div class="entry-content">

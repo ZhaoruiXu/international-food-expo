@@ -397,30 +397,42 @@ function my_save_post( $post_id ) {
 	}
 	
 	// vars
-	// $post = get_post( $post_id );
+	$post = get_post( $post_id );
 	
-	// if ( function_exists ( 'get_field' ) ) {
+	if ( function_exists ( 'get_field' ) ) {
 
-	// 	// get custom fields (field group exists for ife-vendor CPT)
-	// 	if ( get_field( 'full_name', $post_id ) ) {
-	// 			$full_name = get_field( 'full_name', $post_id );
-	// 	}
+		// get custom fields (field group exists for ife-vendor CPT)
+		if ( get_field( 'full_name', $post_id ) ) {
+				$full_name = get_field( 'full_name', $post_id );
+		}
 
-	// 	if ( get_field( 'email_address', $post_id ) ) {
-	// 			$email_address = get_field( 'email_address', $post_id );
-	// 	}
+		if ( get_field( 'email_address', $post_id ) ) {
+				$email_address = get_field( 'email_address', $post_id );
+		}
+
+		if ( get_field( 'company_website', $post_id ) ) {
+				$company_website = get_field( 'company_website', $post_id );
+		}
+
+		
+		if ( get_field( 'company_description', $post_id ) ) {
+			$company_description = get_field( 'company_description', $post_id );
+		}
+		
 		
 		// email data
 		$to = 'xzr0429@gmail.com';
-		// $headers = 'From: ' . $full_name . ' <' . $email_address . '>' . "\r\n";
-		// $subject = $post->post_title;
-		// $body = $post->post_content;
+		$headers = array('Content-Type: text/html; charset=UTF-8');
 
 		$post_title = get_the_title( $post_id );
-		$post_url 	= get_permalink( $post_id );
-		$subject 	= "A New Vendor Application Has Been Submmited to Your Site";
-		$message 	= "Please review the application before publishing:\n\n";
-		$message   .= $post_title . ": " . $post_url;
+
+		$subject 	= get_bloginfo( 'name' ) . " - A new vendor application has been submitted to your site.";
+		$message 	= "<p>Please review the application before publishing:</p><br>";
+		$message   .= "<table>";
+		$message   .= "<tr><td>Company Name</td><td>" . $post_title . "</td></tr>";
+		$message   .= "<tr><td>Company Website</td><td>" . $company_website . "</td></tr>";
+		$message   .= "<tr><td>Company Name</td><td>" . $company_description . "</td></tr>";
+		$message   .= "</table>";
 		
 		// To send all admin accounts the email notification
 		// $administrators 	= get_users(array(
@@ -428,21 +440,21 @@ function my_save_post( $post_id ) {
 		// ));
 
 		// foreach ($administrators as &$administrator) {
-		// 	wp_mail( $administrator->data->user_email, $subject, $body );
+		// // 	wp_mail( $administrator->data->user_email, $subject, $body );
+		// 	wp_mail($to, $subject, $message, $headers );
 		// }
 
 		
 		// send one email
-		wp_mail($to, $subject, $message );
+		// wp_mail($to, $subject, $message, $headers );
 
 		// Redirect to thank-you page with the newly created post id embedded
 		if ($_POST['issubmitform'] === "yes"){
         wp_redirect( home_url('vendor-thank-you/?thankid=' . $post_id) ); exit;
     }
 
-	// }
+	}
 
-	
 }
 
 add_action('acf/save_post', 'my_save_post', 99);

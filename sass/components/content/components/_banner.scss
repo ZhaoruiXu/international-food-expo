@@ -1,6 +1,6 @@
 .banner-part {
   display: grid;
-  grid-template-columns: minmax($site-padding, 1fr) minmax(0, 30rem) minmax($site-padding, 1fr);
+  grid-template-columns: minmax($site-padding, 1fr) minmax(0, 50rem) minmax($site-padding, 1fr);
   grid-template-rows: $site-padding 1fr $site-padding;
   grid-template-areas: 
     ". . ."
@@ -28,7 +28,7 @@
   .banner-content {
     grid-area: content;
     width: 100%;
-    max-width: 30rem;
+    max-width: 50rem;
     margin: 0;
     color: $white;
     z-index: 1;

@@ -1,4 +1,9 @@
 .single-ife-event {
+
+  .event-details {
+    max-width: 40rem;
+    margin: 0 auto;
+  }
   
   .guest-wrapper {
     display: grid;
@@ -14,12 +19,13 @@
     }
   
     @media (min-width: $bp-desktop) {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(5, 1fr);
     }
 
     .guest {
       img {
         width: 100%;
+        margin-bottom: 1rem;
       }
     }
   }

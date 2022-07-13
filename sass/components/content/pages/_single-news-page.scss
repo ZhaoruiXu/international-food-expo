@@ -1,8 +1,14 @@
 .single-post {
-  
     
-    .news h2{
-        text-align: center;
+    .entry-meta,
+    .entry-content,
+    .post-navigation {
+        max-width: 40rem;
+        margin: 0 auto;
+    }
+
+    .entry-meta {
+      margin: 2rem auto;
     }
 }
 

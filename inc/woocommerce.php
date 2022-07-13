@@ -270,8 +270,8 @@ add_action( 'woocommerce_before_add_to_cart_form', 'move_variation_price' );
 // Add label in front of the variation price
 function wp_echo_label_front_var_price($price) {
 	// echo '<label class="qty">Price per Selected Ticket</label>'; 
-	$text_to_add_before_price  = ' Price per Selected Ticket '; //change text in bracket to your preferred text 
-	return $text_to_add_before_price . $price   ;
+	$text_to_add_before_price  = ' per ticket '; //change text in bracket to your preferred text 
+	return  $price . $text_to_add_before_price;
 }
 add_filter( 'woocommerce_get_price_html', 'wp_echo_label_front_var_price' );
 
@@ -280,7 +280,7 @@ function change_in_stock_text( $availability, $product ) {
 
 	// Change In Stock Text
 	if ( $product->managing_stock() ) {
-		$availability['availability'] = __('There are only (' . $product->get_stock_quantity() . ') tickets left available for selected ticket', 'woocommerce');
+		$availability['availability'] = __('' . $product->get_stock_quantity() . ' Ticket(s) Remaining!', 'woocommerce');
 	} 
 	
 	return $availability;
@@ -297,7 +297,7 @@ add_action( 'woocommerce_before_main_content', 'ife_remove_sidebar_product_pages
 
 // Add wc cart in the single product page
 function ife_cart_on_single_product_page() {
-	
+	echo "<h2 class='cart-title'>Cart</h2>";
 	echo do_shortcode('[woocommerce_cart]');
 	
 }
@@ -312,3 +312,24 @@ function ife_remove_cart_product_link( $product_link, $cart_item, $cart_item_key
     return $product->get_title();
 }
 add_filter( 'woocommerce_cart_item_name', 'ife_remove_cart_product_link', 10, 3 );
+
+// Remove WooCommerce Breadcrumbs
+function remove_shop_breadcrumbs(){
+    if (is_product())
+        remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
+}
+add_action('template_redirect', 'remove_shop_breadcrumbs' );
+
+
+// Add banner to single product pages
+function add_single_product_page_banner(){
+		get_template_part( 'template-parts/banner' );
+};
+add_action('woocommerce_before_single_product_summary', 'add_single_product_page_banner');
+
+// Remove reset variations button
+add_filter('woocommerce_reset_variations_link', '__return_empty_string');
+
+// Remove wc message in single product page
+add_filter( 'wc_add_to_cart_message_html', '__return_false' );
+
