@@ -72,7 +72,12 @@
 
 		&:hover,
 		&:focus {
-			border-bottom: 0.25rem solid $dark-blue;
+			background-color: $dark-blue;
+
+			@media (min-width: $bp-laptop) {
+				background-color: $blue;
+				border-bottom: 0.25rem solid $dark-blue;
+			}
 		}
 	}
 	

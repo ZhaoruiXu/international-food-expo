@@ -1,18 +1,9 @@
 a {
-	color: $color__link;
-
-	&:visited {
-		color: $color__link-visited;
-	}
-
+	text-decoration: none;
+	color: $dark-blue;
+	
 	&:hover,
-	&:focus,
-	&:active {
-		color: $color__link-hover;
-	}
-
-	&:hover,
-	&:active {
-		outline: 0;
+	&:focus {
+		text-decoration: underline;
 	}
 }

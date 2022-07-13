@@ -1,20 +1,18 @@
+.blog {
+  
+  .blog-intro {
+    @include use-blue-section(0, 40rem);
+
+    p {
+      margin: 0;
+    }
+  }
 
   .newsgrid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
-    margin: 10px 0;
 
     @include common-grid;
   }
-
-  .moreinfo a{
-    text-align: center;
-    border-radius: 17px;
-    background-color: pink;
-    margin: 51px;
-    margin-top: 1rem;
-    padding: 9px;
-    padding-top: 12px;
-    display: block;
-  }
+}
