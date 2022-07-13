@@ -1,21 +1,37 @@
-// @media screen and (min-width: 768px) {
+.woocommerce-checkout {
+  h1 {
+    text-align: center;
+  }
+  .woocommerce-billing-fields {
+    max-width: 40rem;
+    margin: 0 auto;
+    padding: 4rem 1rem;
+    background-color: $blue;
 
-// 	.col2-set {
+    @media (min-width: $bp-tablet) {
+      padding: 4rem;
+    }
 
-// 		.form-row-first {
-// 			float: left;
-// 			margin-right: $columns__margin;
-// 		}
+    .woocommerce-billing-fields__field-wrapper {
+      font-size: 1rem;
 
-// 		.form-row-last {
-// 			float: right;
-// 			margin-right: 0;
-// 		}
+      label {
+        font-size: 1.125rem;
+      }
 
-// 		.form-row-first,
-// 		.form-row-last {
+      input {
+        font-size: inherit;
+        width: 100%;
+      }
+  
+      .required {
+        text-decoration: none;
+        color: red;
+      }
+    }
 
-// 			@include column-width(2);
-// 		}
-// 	}
-// }
+
+  }
+
+
+}
