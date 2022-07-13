@@ -11,7 +11,16 @@
           margin-bottom: 3rem;
         }
       }
+      .woocommerce-product-gallery {
+        display: none;
+      }
+      .onsale {
+        display: none;
+      }
       .summary.entry-summary {
+        .price {
+          display: none;
+        }
         .variations {
           margin-bottom: 1rem;
           tbody {
