@@ -8,7 +8,7 @@
 	height: $menu-height;
 	max-height: 0;
 	transition: max-height 0.5s ease-in-out;
-	overflow: hidden;
+	overflow: scroll;
 	background-color: $blue;
 
 	@media (min-width: $bp-laptop) {
