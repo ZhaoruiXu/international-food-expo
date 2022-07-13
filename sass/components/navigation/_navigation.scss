@@ -8,13 +8,14 @@
 	height: $menu-height;
 	max-height: 0;
 	transition: max-height 0.5s ease-in-out;
-	overflow: hidden;
+	overflow: scroll;
 	background-color: $blue;
 
 	@media (min-width: $bp-laptop) {
 		position: unset;
 		height: unset;
 		max-height: unset;
+		transition: none;
 		overflow: unset;
 		background-color: unset;
 		max-width: 40rem;
@@ -51,7 +52,10 @@
 			}
 
 			.menu-item {
-				&:hover {
+				&:hover,
+				&.focus,
+				a:hover,
+				a:focus {
 					.sub-menu {
 						display: unset;
 					}

@@ -57,6 +57,8 @@
 	// Get all the link elements within the menu.
 	const links = menu.getElementsByTagName( 'a' );
 
+	const parentLIs = menu.querySelectorAll(":scope > li")
+
 	// Get all the link elements with children within the menu.
 	const linksWithChildren = menu.querySelectorAll( '.menu-item-has-children > a, .page_item_has_children > a' );
 
@@ -67,35 +69,38 @@
 	}
 
 	// Toggle focus each time a menu link with children receive a touch event.
-	for ( const link of linksWithChildren ) {
-		link.addEventListener( 'touchstart', toggleFocus, false );
-	}
+	// for ( const link of linksWithChildren ) {
+	// 	link.addEventListener( 'touchstart', toggleFocus, false );
+	// }
 
 	/**
 	 * Sets or removes .focus class on an element.
 	 */
 	function toggleFocus() {
-		if ( event.type === 'focus' || event.type === 'blur' ) {
+		if ( event.type === 'focus' ) {
 			let self = this;
-			// Move up through the ancestors of the current link until we hit .nav-menu.
+
+			
+			// Find the highest parent <li> within the menu relative this 
+			let topLI = this;
 			while ( ! self.classList.contains( 'nav-menu' ) ) {
 				// On li elements toggle the class .focus.
 				if ( 'li' === self.tagName.toLowerCase() ) {
-					self.classList.toggle( 'focus' );
+					// self.classList.toggle( 'focus' );
+					topLI = self;
 				}
 				self = self.parentNode;
 			}
-		}
 
-		if ( event.type === 'touchstart' ) {
-			const menuItem = this.parentNode;
-			event.preventDefault();
-			for ( const link of menuItem.parentNode.children ) {
-				if ( menuItem !== link ) {
-					link.classList.remove( 'focus' );
-				}
+			// If this highest <li> of this is in the parent li list, remove all the other focus classes  
+			if ([...parentLIs].includes(topLI)) {
+				[...parentLIs].forEach(li => {
+					li.classList.remove( 'focus' )
+				})
 			}
-			menuItem.classList.toggle( 'focus' );
+
+			// Add the focus class to the relevant parent li
+			topLI.classList.add('focus')
 		}
 	}
 }() );
