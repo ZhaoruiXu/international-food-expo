@@ -36,6 +36,7 @@ get_header();
           'post_type'		=> 'ife-vendor',
           'post_status'	=> 'pending'
         ),
+        'uploader' => 'basic',
         'html_before_fields' => '<input type="text" id="issubmitform" name="issubmitform" value="yes" style="display:none;">',
         // 'return'		=> home_url('vendor-thank-you/?thankid=' . $post_id), // redirect to thank-you page
         'submit_value'	=> 'Submit Application'
@@ -51,12 +52,20 @@ get_header();
       ));
 
       if( $terms && !is_wp_error( $terms ) ) :
-        foreach($terms as $term) :
+        ?>
+        <section class="vendor-tiers-wrapper">
+          <?php 
+          foreach($terms as $term) :
+            ?>
+            <article class="vendor-tier vendor-tier-<?php echo strtolower($term->name) ?>">
+              <h3><?php echo $term->name ?></h3>
+              <p><?php echo $term->description ?></p>
+            </article>
+            <?php
+          endforeach;
           ?>
-          <p><?php echo $term->name ?></p>
-          <p><?php echo $term->description ?></p>
-          <?php
-        endforeach;
+        </section>
+        <?php
       endif;
 
       get_template_part( 'template-parts/featured-vendors' );
