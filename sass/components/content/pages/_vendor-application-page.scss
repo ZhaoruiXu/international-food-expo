@@ -5,8 +5,12 @@
     .acf-form {
       max-width: 40rem;
       margin: 0 auto;
-      padding: 4rem;
+      padding: 4rem 1rem;
       background-color: $blue;
+
+      @media (min-width: $bp-tablet) {
+        padding: 4rem;
+      }
 
       .acf-fields {
         display: grid;
@@ -24,6 +28,10 @@
         
         label {
           @include use-heading-style;
+        }
+
+        input {
+          width: 100%;
         }
 
         .description {
@@ -61,7 +69,29 @@
   
             .categorychecklist-holder {
               background-color: $white;
+
+              label {
+                display: block;
+                padding: 0.5rem;
+                text-align: center;
+                font-weight: 400;
+                display: flex;
+  
+                &.selected,
+                &:hover,
+                &:focus {
+                  background-color: $dark-blue;
+                }
+  
+                input {
+                  width: 1rem;
+                }
+                span {
+                  flex-grow: 1;
+                }
+              }
             }
+
           }
           // Company Description
           &[data-name="company_description"] {

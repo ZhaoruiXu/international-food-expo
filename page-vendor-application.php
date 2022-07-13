@@ -54,6 +54,7 @@ get_header();
       if( $terms && !is_wp_error( $terms ) ) :
         ?>
         <section class="vendor-tiers-wrapper">
+          <h2>Vendor Tier Reference</h2>
           <?php 
           foreach($terms as $term) :
             ?>
