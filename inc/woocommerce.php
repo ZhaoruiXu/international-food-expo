@@ -331,5 +331,5 @@ add_action('woocommerce_before_single_product_summary', 'add_single_product_page
 add_filter('woocommerce_reset_variations_link', '__return_empty_string');
 
 // Remove wc message in single product page
-add_filter( 'wc_add_to_cart_message_html', '__return_false' );
+// add_filter( 'wc_add_to_cart_message_html', '__return_false' );
 
