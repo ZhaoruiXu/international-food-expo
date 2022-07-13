@@ -52,7 +52,10 @@
 			}
 
 			.menu-item {
-				&:hover {
+				&:hover,
+				&.focus,
+				a:hover,
+				a:focus {
 					.sub-menu {
 						display: unset;
 					}
