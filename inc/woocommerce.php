@@ -330,6 +330,32 @@ add_action('woocommerce_before_single_product_summary', 'add_single_product_page
 // Remove reset variations button
 add_filter('woocommerce_reset_variations_link', '__return_empty_string');
 
-// Remove wc message in single product page
-// add_filter( 'wc_add_to_cart_message_html', '__return_false' );
+// Redirect WooCommerce Shop URL
+function ife_woocommerce_shop_url(){
+	return get_permalink(44);
+}
+add_filter( 'woocommerce_return_to_shop_redirect', 'ife_woocommerce_shop_url' );
+
+
+// Change 'Return to Shop' text on button
+function prefix_store_button() {
+	$store_button = "Back to Ticketing"; // Change text as required
+	return $store_button;
+}
+add_filter('woocommerce_return_to_shop_text', 'prefix_store_button');
+
+// Add featured vendors after single product in ticketing page
+function ife_featured_vendors_after_single_product(){
+		get_template_part( 'template-parts/featured-vendors' );
+}
+add_action( 'woocommerce_after_single_product', 'ife_featured_vendors_after_single_product' );
+
+// Add featured vendors after cart in cart page
+function ife_featured_vendors_after_cart(){
+	if(!is_product()){
+		get_template_part( 'template-parts/featured-vendors' );
+	}
+}
+add_action( 'woocommerce_after_cart', 'ife_featured_vendors_after_cart' );
+
 
