@@ -1,35 +1,103 @@
 .single-product {
-  table {
-    // display: table-cell;
-  }
-  .variations {
-    tbody {
-      tr {
-        display: flex;
-        flex-direction: column;
-        &:last-child {
-          margin-top: 1rem;
-        }
-      }
+  .site-main {
+    .woocommerce-notices-wrapper {
+      display: none;
     }
-    .label {
-      font-size: 1rem;
-    }
-    .value {
-      .variable-items-wrapper {
-        display: flex;
-        flex-direction: column;
-        .variable-item {
-          @include use-button-style;
-          box-shadow: none;
-          padding: 0.5rem 0;
-          margin: 0.25rem 0;
-          &.selected {
-            background-color: $blue !important;
+    .product {
+      .summary.entry-summary {
+        .variations {
+          tbody {
+            tr {
+              display: flex;
+              flex-direction: column;
+              &:last-child {
+                margin-top: 1rem;
+              }
+            }
+          }
+          .label {
+            font-size: 1rem;
+          }
+          .value {
+            .variable-items-wrapper {
+              display: flex;
+              flex-direction: column;
+              .variable-item {
+                @include use-button-style;
+                background-color: $white;
+                // box-shadow: none;
+                padding: 0.5rem 0;
+                margin: 0.25rem 0;
+                &.selected {
+                  background-color: $dark-blue;
+                  box-shadow: none;
+                  color: $white;
+                }
+              }
+            }
           }
         }
-        // &.variable-item:not(.radio-variable-item).button-variable-item.selected:not(.no-stock) {
-        // }
+        .single_variation_wrap {
+          margin-bottom: 4rem;
+          .qty {
+            font-weight: 700;
+            font-size: 1rem;
+            display: block;
+            text-align: center;
+            margin-bottom: 0.5rem;
+          }
+          .quantity {
+            .input-text {
+              width: 100%;
+            }
+          }
+          .woocommerce-variation-price {
+            text-align: center;
+            margin-top: 1.5rem;
+            .price {
+              .amount {
+                font-weight: 500;
+                font-size: 1rem;
+              }
+              ins {
+                background-color: $blue;
+                bdi {
+                  font-size: 1.25rem;
+                }
+              }
+            }
+          }
+          .woocommerce-variation-availability {
+            text-align: center;
+            .stock.in-stock {
+              margin-top: 1rem;
+              color: $dark-pink;
+            }
+          }
+          .wc-box-office-ticket-form {
+            .wc-box-office-ticket-fields {
+              h3 {
+                a {
+                  color: $dark-blue;
+                }
+              }
+            }
+          }
+          .single_add_to_cart_button {
+            display: block;
+            margin: 0 auto;
+          }
+        }
+      }
+      .woocommerce {
+        .woocommerce-notices-wrapper {
+        }
+        .cart-empty.woocommerce-info {
+          display: none;
+        }
+        .return-to-shop {
+          display: none;
+        }
       }
     }
   }
