@@ -41,7 +41,9 @@
 
 				a {
 					border-bottom: none;
-					&:hover {
+					
+					&:hover,
+					&:focus {
 						background-color: $dark-blue;
 						border-bottom: none;
 					}
