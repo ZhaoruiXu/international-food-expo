@@ -136,3 +136,100 @@
 		background-color: $dark-pink;
 	}
 }
+
+// Style WooCommerce shop table
+@mixin style-shop-table {
+	
+	@media (min-width: $bp-wc-cart-table) {
+		border-spacing: 2.5rem 1rem;
+	}
+	@media (min-width: $bp-desktop) {
+		border-spacing: 5rem 2rem;
+	}
+	.product-thumbnail {
+		display: none;
+	}
+	thead {
+		tr {
+			th {
+				@media (min-width: $bp-desktop) {
+					font-size: 1.25rem;
+				}
+			}
+		}
+	}
+	tbody {
+		.cart_item {
+			font-size: 1rem;
+			.product-remove {
+				display: grid;
+				grid-template-columns: 1fr;
+				justify-items: flex-end;
+				@media (min-width: $bp-wc-cart-table) {
+					justify-items: center;
+				}
+				.remove {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 2rem;
+					height: 2rem;
+					text-decoration: none;
+					padding: 0.5rem;
+					background-color: $pink;
+					border-radius: 100%;
+					color: $black;
+					margin-bottom: 1rem;
+					@media (min-width: $bp-wc-cart-table) {
+						margin-bottom: 0;
+					}
+				}
+			}
+			.product-name {
+				.variation {
+					display: grid;
+					row-gap: 1rem;
+					justify-content: flex-start;
+					align-items: center;
+					grid-template-columns: 2fr 1fr;
+					dt {
+						margin: 0;
+						font-weight: 400;
+						text-align: left;
+						@media (min-width: $bp-wc-cart-table) {
+							display: none;
+						}
+					}
+					dd {
+						margin: 0;
+						p {
+							margin: 0;
+							@include use-heading-style;
+						}
+					}
+					@media (min-width: $bp-wc-cart-table) {
+						display: flex;
+						justify-content: flex-start;
+						align-items: center;
+						column-gap: 0.325rem;
+						margin: 0;
+					}
+				}
+			}
+			.product-subtotal {
+				.woocommerce-Price-amount {
+					bdi {
+						@include use-heading-style;
+					}
+				}
+			}
+		}
+		tr {
+			td {
+				@media (min-width: $bp-desktop) {
+					font-size: 1.125rem;
+				}
+			}
+		}
+	}
+}
