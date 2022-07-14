@@ -25,33 +25,28 @@ get_header();
 
             $query = new WP_Query( $args );
             if( $query -> have_posts() ) {
-                echo '<section class="events">';
+                ?>
+                <section class="events">
+                <?php
                 while(  $query->have_posts() ) {
                     $query->the_post();
                     ?>
-                    <article
-                     class = "eventwrapper">
-                    <article
-                     class="ife-events">
+                    <article class="ife-event">
                         <?php the_post_thumbnail( 'ife-thumbnail') ?>
-                        
-                            <h3 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h3>
-                            <p class="event-time"><?php the_field('time'); ?></p>
-                            <div class="event-description">
-                                <p><?php the_field('description'); ?><?php the_excerpt(); ?></p>
-                                <div class="read-more">
-                                <a class="read-more-button" title="Read More" href="<?php the_permalink() ?>">More Info</a>
-                                </div>
-                               
-                        </div>
-                        <div class="event-type">
-                            
+                        <h3 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h3>
+                        <p class="event-time"><?php the_field('time'); ?></p>
+                        <div class="event-description">
+                            <p>
+                                <?php the_field('description'); ?><?php the_excerpt(); ?>
+                                <a class="read-more" href="<?php the_permalink() ?>">More Info<span class="screen-reader-text"> about <?php the_title() ?></span></a>
+                            </p>
                         </div>
                     </article>
-                </article>
                     <?php
                 }
-                echo '</section>';
+                ?>
+                </section>
+                <?php
                 wp_reset_postdata();
             };
             ?>
