@@ -492,7 +492,7 @@ add_filter( 'excerpt_length', 'ife_excerpt_length', 999 );
 
 // Change the excerpt ending
 function ife_excerpt_more ( $more ) {
-	$more = "... <a href='" . get_permalink() . "' class='read-more'>More info</a>";
+	$more = "... <a href='" . get_permalink() . "' class='read-more'>More Info</a>";
 	return $more;
 }
 add_filter( 'excerpt_more', 'ife_excerpt_more' );
