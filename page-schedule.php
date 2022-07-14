@@ -38,12 +38,14 @@ get_header();
                             <h3 class="event-heading"><a href="<?php the_permalink(); ?> "><?php the_title() ?></a></h3>
                             <p class="event-time"><?php the_field('time'); ?></p>
                             <div class="event-description">
-                                <?php the_field('description'); ?>
+                                <p><?php the_field('description'); ?><?php the_excerpt(); ?></p>
+                                <div class="read-more">
+                                <a class="read-more-button" title="Read More" href="<?php the_permalink() ?>">More Info</a>
+                                </div>
                                
                         </div>
                         <div class="event-type">
                             
-                            <a href="<?php the_permalink();  ?> ">More Info</a>
                         </div>
                     </article>
                 </article>
