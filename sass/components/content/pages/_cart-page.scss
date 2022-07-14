@@ -1,14 +1,29 @@
 .page-id-16 {
   #primary {
     #post-16 {
+      .entry-header {
+        .entry-title {
+          margin: 5rem 0 2rem 0;
+          @media (min-width: $bp-wc-cart-table) {
+            margin: 2rem 0;
+          }
+        }
+      }
       .entry-content {
         .woocommerce {
+          @media (min-width: $bp-desktop) {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            grid-template-areas:
+              "summary cart"
+              "vendor vendor";
+          }
           .woocommerce-notices-wrapper {
             position: absolute;
-            top: 1rem;
+            top: 14rem;
             left: 0;
             right: 0;
-            z-index: 99;
+            z-index: 1;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,8 +42,17 @@
                 padding: 0.875rem 1.75rem;
               }
             }
+            @media (min-width: $bp-wc-cart-table) {
+              top: 13rem;
+            }
+            @media (min-width: $bp-laptop) {
+              top: 11rem;
+            }
           }
           .woocommerce-cart-form {
+            @media (min-width: $bp-desktop) {
+              grid-area: summary;
+            }
             .shop_table {
               @media (min-width: $bp-wc-cart-table) {
                 border-spacing: 2.5rem 1rem;
@@ -128,14 +152,35 @@
             }
           }
           .cart-collaterals {
+            @media (min-width: $bp-desktop) {
+              grid-area: cart;
+              h2::before {
+                display: none;
+              }
+            }
             .cart_totals {
+              h2 {
+                text-transform: capitalize;
+              }
               .shop_table.shop_table_responsive {
                 tbody {
                   tr {
-                    th,
-                    td {
+                    th {
                       @media (min-width: $bp-wc-cart-table) {
                         text-align: center;
+                      }
+                      @media (min-width: $bp-desktop) {
+                        text-align: left;
+                      }
+                    }
+                    td {
+                      font-size: 1rem;
+
+                      @media (min-width: $bp-wc-cart-table) {
+                        text-align: center;
+                      }
+                      @media (min-width: $bp-desktop) {
+                        text-align: right;
                       }
                     }
                     @media (min-width: $bp-desktop) {
@@ -151,6 +196,17 @@
                   margin-top: 3rem;
                 }
               }
+            }
+          }
+          .section-featured-vendors {
+            @media (min-width: $bp-desktop) {
+              grid-area: vendor;
+            }
+          }
+          .return-to-shop {
+            .button {
+              @include use-button-style;
+              color: $black;
             }
           }
         }
