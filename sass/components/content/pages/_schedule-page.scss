@@ -2,5 +2,11 @@
 
   .events{
     @include common-grid;
+
+    .ife-event {
+      img {
+        width: 100%;
+      }
+    }
   }
 }
