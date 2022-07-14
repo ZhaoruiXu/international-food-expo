@@ -37,8 +37,9 @@
 
 			.sub-menu {
 				position: absolute;
-				display: none;
 				background-color: $blue;
+				max-height: 0;
+				overflow: hidden;
 
 				a {
 					border-bottom: none;
@@ -53,11 +54,10 @@
 
 			.menu-item {
 				&:hover,
-				&.focus,
-				a:hover,
-				a:focus {
+				&.focus {
 					.sub-menu {
-						display: unset;
+						max-height: unset;
+						overflow: unset;
 					}
 				}
 			}
