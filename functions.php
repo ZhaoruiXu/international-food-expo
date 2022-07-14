@@ -339,6 +339,11 @@ if ( class_exists( 'WooCommerce' ) ) {
  */
 require get_template_directory() . '/inc/move-yoast-metabox.php';
 
+/**
+ * Customize Dashboard.
+ */
+require get_template_directory() . '/inc/dashboard.php';
+
 // Hide block editor on selected pages
 function ife_post_filter( $use_block_editor, $post ) {
 	// ID: 60 - About Page
