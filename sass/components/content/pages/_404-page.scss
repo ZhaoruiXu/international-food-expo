@@ -1,0 +1,12 @@
+.error404 {
+  #primary {
+    .error-404.not-found {
+      text-align: center;
+      .page-header {
+        .page-title {
+          font-size: clamp(1.25rem, 5vw, 2.75rem);
+        }
+      }
+    }
+  }
+}
