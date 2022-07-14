@@ -37,7 +37,21 @@ get_header();
                         <p class="event-time"><?php the_field('time'); ?></p>
                         <div class="event-description">
                             <p>
-                                <?php the_field('description'); ?><?php the_excerpt(); ?>
+                                <?php 
+                                $description_array = explode( " ", get_field('description') ); 
+                                $excerpt_length = 30;
+                                $excerpt_array = array_slice( $description_array, 0, $excerpt_length );
+                                $excerpt = implode( " ", $excerpt_array );
+
+                                // Add "..." if description is longer than excerpt_length
+                                if ( sizeof($description_array) > $excerpt_length ) :
+                                    $excerpt .= "...";
+                                endif;
+
+                                // Output excerpt
+                                echo $excerpt;
+                                ?>
+                                
                                 <a class="read-more" href="<?php the_permalink() ?>">More Info<span class="screen-reader-text"> about <?php the_title() ?></span></a>
                             </p>
                         </div>
