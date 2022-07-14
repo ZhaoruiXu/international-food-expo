@@ -344,6 +344,11 @@ require get_template_directory() . '/inc/move-yoast-metabox.php';
  */
 require get_template_directory() . '/inc/dashboard.php';
 
+/**
+ * Customize Admin Links.
+ */
+require get_template_directory() . '/inc/admin-links.php';
+
 // Hide block editor on selected pages
 function ife_post_filter( $use_block_editor, $post ) {
 	// ID: 60 - About Page
