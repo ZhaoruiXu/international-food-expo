@@ -11,7 +11,8 @@
       justify-content: center;
       align-items: center;
       & > * {
-        background-color: $pink;
+        background-color: $white;
+        border: 1px solid $black;
         font-size: 1rem;
         padding: 0.75rem 1.5rem;
         border-radius: 10rem;
@@ -220,6 +221,9 @@
                   display: grid;
                   grid-template-columns: 1fr;
                   justify-items: flex-end;
+                  @media (min-width: $bp-wc-cart-table) {
+                    justify-items: center;
+                  }
                   .remove {
                     display: flex;
                     justify-content: center;
