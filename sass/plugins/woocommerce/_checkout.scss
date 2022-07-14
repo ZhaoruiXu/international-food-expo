@@ -2,40 +2,115 @@
   h1 {
     text-align: center;
   }
-  .woocommerce-billing-fields {
+
+  form.checkout {
     max-width: 40rem;
     margin: 0 auto;
-    padding: 4rem 1rem;
-    background-color: $blue;
 
-    @media (min-width: $bp-tablet) {
-      padding: 4rem;
+    @media (min-width: $bp-desktop) {
+      max-width: unset;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto 1fr;
+      grid-template-areas: 
+        "details order-heading"
+        "details order-review"
+      ;
+      gap: 0 4rem;
     }
+  }
 
-    .woocommerce-billing-fields__field-wrapper {
-      font-size: 1rem;
+  #customer_details {
+    grid-area: details;
 
-      label {
-        font-size: 1.125rem;
-      }
-
-      input {
-        font-size: inherit;
-        width: 100%;
+    .woocommerce-billing-fields {
+      margin: 0;
+      padding: 4rem 1rem;
+      background-color: $blue;
+  
+      @media (min-width: $bp-tablet) {
+        padding: 4rem;
       }
   
-      .required {
-        text-decoration: none;
-        color: red;
+      .woocommerce-billing-fields__field-wrapper {
+        font-size: 1rem;
+  
+        label {
+          font-size: 1.125rem;
+        }
+  
+        input {
+          font-size: inherit;
+          width: 100%;
+        }
+    
+        .required {
+          text-decoration: none;
+          color: red;
+        }
+      }
+    }
+  }
+
+  #order_review_heading {
+    grid-area: order-heading;
+    margin: 4rem 0 1rem;
+
+    @media (min-width: $bp-desktop) {
+      margin: 0 0 1rem;
+    }
+  }
+
+  .woocommerce-checkout-review-order {
+    grid-area: order-review;
+
+    .shop_table {
+      @include style-shop-table;
+      margin: 0 0 4rem;
+      border-spacing: 0;
+      // Cancel out breakpoints
+      @media (min-width: $bp-wc-cart-table) {
+        border-spacing: 0;
+      }
+      @media (min-width: $bp-desktop) {
+        border-spacing: 0;
+      }
+  
+      thead,
+      tbody,
+      tfoot {
+        & > * {
+          display: grid;
+          grid-template-columns: 1fr 6rem;
+        }
+      }
+  
+      tbody {
+        .cart_item {
+          margin-bottom: 0.5rem;
+          .product-name {
+            .variation {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              column-gap: 0.325rem;
+              margin: 0;
+  
+              dt {
+                display: none;
+              }
+            }
+          }
+        }
       }
     }
 
-
+    .woocommerce-checkout-payment {
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+    }
   }
-
-  .shop_table {
-    @include style-shop-table;
-  }
-
-
 }
