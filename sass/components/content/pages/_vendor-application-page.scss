@@ -46,6 +46,7 @@
           // Company Name
           &[data-name="_post_title"] {
             grid-area: companyName;
+            padding-top: 0;
           }
           // Full (Contact) Name
           &[data-name="full_name"] {
