@@ -149,9 +149,6 @@
 	.product-thumbnail {
 		display: none;
 	}
-	th {
-		@include use-heading-style;
-	}
 	thead {
 		tr {
 			th {
