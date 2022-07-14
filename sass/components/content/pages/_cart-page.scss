@@ -168,16 +168,18 @@
                     th {
                       @media (min-width: $bp-wc-cart-table) {
                         text-align: center;
+                        width: 50%;
                       }
                       @media (min-width: $bp-desktop) {
                         text-align: left;
+                        width: 70%;
                       }
                     }
                     td {
                       font-size: 1rem;
-
                       @media (min-width: $bp-wc-cart-table) {
                         text-align: center;
+                        font-size: 1.125rem;
                       }
                       @media (min-width: $bp-desktop) {
                         text-align: right;
