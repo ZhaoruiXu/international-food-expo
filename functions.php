@@ -285,15 +285,6 @@ function food_expo_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
 
-
-//acf for banner image
-
-if( function_exists('acf_add_options_page') ) {
-	
-	acf_add_options_page();
-	
-}
-
 /**
  * Implement the Custom Header feature.
  */
