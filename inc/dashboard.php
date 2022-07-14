@@ -15,6 +15,9 @@ function ife_edit_dashboard_metaboxes() {
 
   // Disable setup widget in WooCommerce
   remove_meta_box( 'wc_admin_dashboard_setup', 'dashboard', 'normal');
+
+  // Disable Yoast SEO widget
+  remove_meta_box( 'wpseo-dashboard-overview', 'dashboard', 'side' );
   
   // Add custom widget
   wp_add_dashboard_widget(
