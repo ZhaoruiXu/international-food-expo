@@ -1,0 +1,154 @@
+.page-id-16 {
+  #primary {
+    #post-16 {
+      .entry-header {
+        .entry-title {
+          margin: 5rem 0 2rem 0;
+          @media (min-width: $bp-wc-cart-table) {
+            margin: 2rem 0;
+          }
+        }
+      }
+      .entry-content {
+        .woocommerce {
+          @media (min-width: $bp-desktop) {
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            grid-template-areas:
+              "summary cart"
+              "vendor vendor";
+          }
+          .woocommerce-notices-wrapper {
+            position: absolute;
+            top: 14rem;
+            left: 0;
+            right: 0;
+            z-index: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            & > * {
+              background-color: $white;
+              border: 1px solid $black;
+              font-size: 1rem;
+              padding: 0.75rem 1.5rem;
+              border-radius: 10rem;
+              margin: 0;
+              li {
+                list-style-type: none;
+              }
+              @media (min-width: $bp-wc-cart-table) {
+                font-size: 1.125rem;
+                padding: 0.875rem 1.75rem;
+              }
+            }
+            @media (min-width: $bp-wc-cart-table) {
+              top: 13rem;
+            }
+            @media (min-width: $bp-laptop) {
+              top: 11rem;
+            }
+            .cart-empty.woocommerce-info {
+              display: none;
+            }
+          }
+          .woocommerce-cart-form {
+            @media (min-width: $bp-desktop) {
+              grid-area: summary;
+            }
+            .shop_table {
+              
+              @include style-shop-table;
+
+              tbody {
+                tr:last-child {
+                  display: none !important;
+                }
+              }
+            }
+          }
+          .cart-collaterals {
+            @media (min-width: $bp-desktop) {
+              grid-area: cart;
+              h2::before {
+                display: none;
+              }
+            }
+            .cart_totals {
+              h2 {
+                text-transform: capitalize;
+              }
+              .shop_table.shop_table_responsive {
+                tbody {
+                  tr {
+                    th {
+                      @media (min-width: $bp-wc-cart-table) {
+                        text-align: center;
+                        width: 50%;
+                      }
+                      @media (min-width: $bp-desktop) {
+                        text-align: left;
+                        width: 70%;
+                      }
+                    }
+                    td {
+                      font-size: 1rem;
+                      @media (min-width: $bp-wc-cart-table) {
+                        text-align: center;
+                        font-size: 1.125rem;
+                      }
+                      @media (min-width: $bp-desktop) {
+                        text-align: right;
+                      }
+                    }
+                    @media (min-width: $bp-desktop) {
+                      font-size: 1.25rem;
+                    }
+                  }
+                }
+              }
+              .wc-proceed-to-checkout {
+                .checkout-button {
+                  @include use-button-style;
+                  display: block;
+                  margin-top: 3rem;
+                }
+              }
+            }
+          }
+          .section-featured-vendors {
+            @media (min-width: $bp-desktop) {
+              grid-area: vendor;
+            }
+          }
+          .return-to-shop {
+            position: relative;
+            margin-top: 5.375rem;
+            @media (min-width: $bp-desktop) {
+              grid-area: 2/1/3/2;
+              margin-top: 3.375rem;
+            }
+            .button {
+              @include use-button-style;
+              color: $black;
+              &::before {
+                content: "Your cart is currently empty.";
+                position: absolute;
+                top: -3.1rem;
+                left: 0;
+              }
+            }
+          }
+          .cart-empty.woocommerce-info + .return-to-shop {
+            margin-top: 0;
+            .button {
+              &::before {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,8 @@
 .site {
 	display: grid;
+	min-height: 100vh;
 	grid-template-columns: minmax($site-padding, 1fr) minmax(0, $max-site-width) minmax($site-padding, 1fr);
+	grid-template-rows: auto 1fr auto auto;
 	grid-template-areas:
 		"header header header"
 		". main ."

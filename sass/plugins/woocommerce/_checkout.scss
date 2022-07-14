@@ -1,21 +1,186 @@
-// @media screen and (min-width: 768px) {
+.page-id-17.woocommerce-checkout {
 
-// 	.col2-set {
+  article.post-17 {
+    padding: 4rem 0 0;
+  }
 
-// 		.form-row-first {
-// 			float: left;
-// 			margin-right: $columns__margin;
-// 		}
+  h1 {
+    text-align: center;
+  }
 
-// 		.form-row-last {
-// 			float: right;
-// 			margin-right: 0;
-// 		}
+  form.checkout {
+    max-width: 40rem;
+    margin: 0 auto;
 
-// 		.form-row-first,
-// 		.form-row-last {
+    @media (min-width: $bp-desktop) {
+      max-width: unset;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: auto 1fr;
+      grid-template-areas: 
+        "details order-heading"
+        "details order-review"
+      ;
+      gap: 0 4rem;
+    }
+  }
 
-// 			@include column-width(2);
-// 		}
-// 	}
-// }
+  #customer_details {
+    grid-area: details;
+
+    .woocommerce-billing-fields {
+      margin: 0;
+      padding: 4rem 1rem;
+      background-color: $blue;
+  
+      @media (min-width: $bp-tablet) {
+        padding: 4rem;
+      }
+
+      h3 {
+        margin-top: 0;
+      }
+  
+      .woocommerce-billing-fields__field-wrapper {
+        font-size: 1rem;
+  
+        label {
+          font-size: 1.125rem;
+        }
+  
+        input {
+          font-size: inherit;
+          width: 100%;
+        }
+    
+        .required {
+          text-decoration: none;
+          color: red;
+        }
+      }
+    }
+  }
+
+  #order_review_heading {
+    grid-area: order-heading;
+    margin: 4rem 0 1rem;
+  }
+
+  .woocommerce-checkout-review-order {
+    grid-area: order-review;
+
+    .woocommerce-checkout-payment {
+      .payment_methods  {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        
+        .payment_box {
+          
+          fieldset {
+            padding: 0;
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  .shop_table {
+    @include style-shop-table;
+    margin: 0 0 4rem;
+    border-spacing: 0;
+    // Cancel out breakpoints
+    @media (min-width: $bp-wc-cart-table) {
+      border-spacing: 0;
+    }
+    @media (min-width: $bp-desktop) {
+      border-spacing: 0;
+    }
+
+    thead,
+    tbody,
+    tfoot {
+      & > * {
+        display: grid;
+        grid-template-columns: 1fr 6rem;
+      }
+    }
+
+    thead {
+      th:last-child {
+        text-align: right;
+      }
+    }
+
+    tbody,
+    tfoot {
+      td:last-child {
+        text-align: right;
+      }
+    }
+
+    tbody {
+      .cart_item {
+        margin-bottom: 1rem;
+        .product-name {
+          .variation {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            column-gap: 0.325rem;
+            margin: 0;
+
+            dt {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .woocommerce-order {
+    margin: 0 auto;
+    max-width: 40rem;
+
+    .shop_table {
+      tfoot {
+        & > * {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      } 
+      
+      .wc-item-meta {
+        margin: 0 0 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        align-items: center;
+        column-gap: 0.325rem;
+
+        li {
+          p {
+            margin: 0;
+          }
+
+          &:last-of-type {
+            width: 100%;
+          }
+        }
+
+        .wc-item-meta-label {
+          display: none;
+        }
+      }
+
+    }
+  }
+}

@@ -11,7 +11,8 @@
       justify-content: center;
       align-items: center;
       & > * {
-        background-color: $pink;
+        background-color: $white;
+        border: 1px solid $black;
         font-size: 1rem;
         padding: 0.75rem 1.5rem;
         border-radius: 10rem;
@@ -97,7 +98,7 @@
         .single_variation_wrap {
           margin-bottom: 4rem;
           .qty {
-            font-weight: 700;
+            @include use-heading-style;
             font-size: 1.125rem;
             display: block;
             text-align: center;
@@ -117,7 +118,7 @@
             margin-top: 1.5rem;
             .price {
               .amount {
-                font-weight: 500;
+                @include use-heading-style;
                 font-size: 1rem;
                 @media (min-width: $bp-wc-cart-table) {
                   font-size: 1.25rem;
@@ -206,79 +207,24 @@
 
         .woocommerce-cart-form {
           .shop_table {
+            @include style-shop-table;
+
             border-spacing: 0 2rem;
             @media (min-width: $bp-wc-cart-table) {
               border-spacing: 2rem;
             }
-            .product-thumbnail {
-              display: none;
+            @media (min-width: $bp-desktop) {
+              border-spacing: 2rem;
             }
-            tbody {
-              .woocommerce-cart-form__cart-item.cart_item {
-                font-size: 1rem;
-                .product-remove {
-                  display: grid;
-                  grid-template-columns: 1fr;
-                  justify-items: flex-end;
-                  .remove {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    width: 2rem;
-                    height: 2rem;
-                    text-decoration: none;
-                    padding: 0.5rem;
-                    background-color: $pink;
-                    border-radius: 100%;
-                    color: $black;
-                    margin-bottom: 1rem;
-                    @media (min-width: $bp-wc-cart-table) {
-                      margin-bottom: 0;
-                    }
-                  }
-                }
-                .product-name {
-                  .variation {
-                    display: grid;
-                    row-gap: 1rem;
-                    justify-content: flex-start;
-                    align-items: center;
-                    grid-template-columns: 2fr 1fr;
 
-                    dt {
-                      margin: 0;
-                      font-weight: 400;
-                      text-align: left;
-                      @media (min-width: $bp-wc-cart-table) {
-                        display: none;
-                      }
-                    }
-                    dd {
-                      margin: 0;
-                      p {
-                        margin: 0;
-                        font-weight: 600;
-                      }
-                    }
-                    @media (min-width: $bp-wc-cart-table) {
-                      display: flex;
-                      justify-content: flex-start;
-                      align-items: center;
-                      column-gap: 0.325rem;
-                      margin: 0;
-                    }
-                  }
-                }
-                .product-subtotal {
-                  .woocommerce-Price-amount {
-                    bdi {
-                      font-weight: 600;
-                    }
-                  }
+            tbody {
+              tr td {
+                @media (min-width: $bp-desktop) {
+                  font-size: 1rem;
                 }
               }
               tr:last-child {
-                display: none;
+                display: none !important;
               }
             }
           }

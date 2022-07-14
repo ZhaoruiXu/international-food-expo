@@ -359,3 +359,11 @@ function ife_featured_vendors_after_cart(){
 add_action( 'woocommerce_after_cart', 'ife_featured_vendors_after_cart' );
 
 
+// Add featured vendors to checkout page
+function ife_featured_vendors_after_checkout(){
+	get_template_part( 'template-parts/featured-vendors' );
+}
+add_action( 'woocommerce_after_checkout_form', 'ife_featured_vendors_after_checkout' );
+
+
+

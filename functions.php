@@ -497,3 +497,27 @@ function ife_excerpt_more ( $more ) {
 }
 add_filter( 'excerpt_more', 'ife_excerpt_more' );
 
+// Customize login page 
+function wpb_login_logo() { ?> 
+	<style type="text/css"> 
+		#login h1 a, .login h1 a { 
+			background-image: url(http://localhost:8888/Capstone/food-expo/wp-content/uploads/2022/07/IFE-Logo-Transparent.png); 
+			height:150px; /* those lines are for custom styling for the logo */ 
+			width:150px; 
+			background-size: 150px 150px; 
+			background-repeat: no-repeat; 
+			padding-bottom: 10px; 
+		} 
+	</style> 
+<?php } 
+add_action( 'login_enqueue_scripts', 'wpb_login_logo' );
+
+function my_login_form() { ?> 
+	<style type="text/css"> 
+		body.login div#login form#loginform { 
+			background-color:#D5EAEE; 
+			border-radius:1rem; 
+		} 
+	</style> 
+<?php } 
+add_action( 'login_enqueue_scripts', 'my_login_form' );

@@ -50,3 +50,7 @@ ins {
 big {
 	font-size: 125%;
 }
+
+strong {
+	@include use-heading-style;
+}
