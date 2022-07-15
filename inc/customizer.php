@@ -59,3 +59,13 @@ function food_expo_customize_preview_js() {
 	wp_enqueue_script( 'food-expo-customizer', get_template_directory_uri() . '/js/customizer.js', array( 'customize-preview' ), _S_VERSION, true );
 }
 add_action( 'customize_preview_init', 'food_expo_customize_preview_js' );
+
+function ife_remove_customizer_options( $wp_customize ) {
+	if ( !current_user_can( 'manage_options' ) ) {
+		$wp_customize->remove_section( 'colors' );
+		$wp_customize->remove_panel( 'nav_menus' );
+		$wp_customize->remove_section( 'jetpack_content_options' );
+		$wp_customize->remove_panel( 'woocommerce' );
+	}
+}
+add_action( 'customize_register', 'ife_remove_customizer_options', 30 );

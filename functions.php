@@ -85,18 +85,6 @@ function food_expo_setup() {
 		)
 	);
 
-	// Set up the WordPress core custom background feature.
-	add_theme_support(
-		'custom-background',
-		apply_filters(
-			'food_expo_custom_background_args',
-			array(
-				'default-color' => 'ffffff',
-				'default-image' => '',
-			)
-		)
-	);
-
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
 
@@ -128,26 +116,6 @@ function food_expo_content_width() {
 	$GLOBALS['content_width'] = apply_filters( 'food_expo_content_width', 640 );
 }
 add_action( 'after_setup_theme', 'food_expo_content_width', 0 );
-
-/**
- * Register widget area.
- *
- * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
- */
-function food_expo_widgets_init() {
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'Sidebar', 'food-expo' ),
-			'id'            => 'sidebar-1',
-			'description'   => esc_html__( 'Add widgets here.', 'food-expo' ),
-			'before_widget' => '<section id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</section>',
-			'before_title'  => '<h2 class="widget-title">',
-			'after_title'   => '</h2>',
-		)
-	);
-}
-add_action( 'widgets_init', 'food_expo_widgets_init' );
 
 /**
  * Enqueue scripts and styles.
@@ -285,20 +253,6 @@ function food_expo_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'food_expo_scripts' );
 
-
-//acf for banner image
-
-if( function_exists('acf_add_options_page') ) {
-	
-	acf_add_options_page();
-	
-}
-
-/**
- * Implement the Custom Header feature.
- */
-require get_template_directory() . '/inc/custom-header.php';
-
 // Custom post types & taxonomies
 require get_template_directory() . '/inc/cpt-taxonomy.php';
 
@@ -343,6 +297,11 @@ require get_template_directory() . '/inc/move-yoast-metabox.php';
  * Customize Dashboard.
  */
 require get_template_directory() . '/inc/dashboard.php';
+
+/**
+ * Customize Admin Links.
+ */
+require get_template_directory() . '/inc/admin-links.php';
 
 // Hide block editor on selected pages
 function ife_post_filter( $use_block_editor, $post ) {
