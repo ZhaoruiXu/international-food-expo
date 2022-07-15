@@ -331,7 +331,6 @@ function wpb_change_title_text( $title ){
 
      return $title;
 }
-   
 add_filter( 'enter_title_here', 'wpb_change_title_text' );
 
 // Add a new customized WYSIWYG toolbar
@@ -344,7 +343,6 @@ function my_toolbars( $toolbars )
 	// return $toolbars - IMPORTANT!
 	return $toolbars;
 }
-
 add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
 
 // Save acf_form to send an email to admin
@@ -378,18 +376,14 @@ function my_save_post( $post_id ) {
 				$company_website = get_field( 'company_website', $post_id );
 		}
 
-		
 		if ( get_field( 'company_description', $post_id ) ) {
 			$company_description = get_field( 'company_description', $post_id );
 		}
 		
-		
 		// email data
-		$to = 'xzr0429@gmail.com';
+		$to = 'zxu80@my.bcit.ca';
 		$headers = array('Content-Type: text/html; charset=UTF-8');
-
 		$post_title = get_the_title( $post_id );
-
 		$subject 	= get_bloginfo( 'name' ) . " - A new vendor application has been submitted to your site.";
 		$message 	= "<p>Please review the application before publishing:</p><br>";
 		$message   .= "<table>";
@@ -408,9 +402,8 @@ function my_save_post( $post_id ) {
 		// 	wp_mail($to, $subject, $message, $headers );
 		// }
 
-		
 		// send one email
-		// wp_mail($to, $subject, $message, $headers );
+		wp_mail($to, $subject, $message, $headers);
 
 		// Redirect to thank-you page with the newly created post id embedded
 		if ($_POST['issubmitform'] === "yes"){
@@ -420,7 +413,6 @@ function my_save_post( $post_id ) {
 	}
 
 }
-
 add_action('acf/save_post', 'my_save_post', 99);
 
 // Modify ACF Form Label for Post Title Field
