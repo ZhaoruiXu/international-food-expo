@@ -25,25 +25,23 @@ get_header();
       ?>
 
       <section id="vendor-application-form" class="vendor-application-form">
-    
         <?php
-        // To create a new vendor post (typeof ife-vendor CPT)
-        acf_form(array(
-          'post_id'		=> 'new_post',
-          'post_title'	=> true,
-          'post_content'	=> false,
-          'new_post'		=> array(
-            'post_type'		=> 'ife-vendor',
-            'post_status'	=> 'pending'
-          ),
-          'uploader' => 'basic',
-          'html_before_fields' => '<input type="text" id="issubmitform" name="issubmitform" value="yes" style="display:none;">',
-          // 'return'		=> home_url('vendor-thank-you/?thankid=' . $post_id), // redirect to thank-you page
-          'submit_value'	=> 'Submit Application'
-        ));
-        
+        if ( function_exists( 'acf_form' ) ) :
+          // To create a new vendor post (typeof ife-vendor CPT)
+          acf_form(array(
+            'post_id'		=> 'new_post',
+            'post_title'	=> true,
+            'post_content'	=> false,
+            'new_post'		=> array(
+              'post_type'		=> 'ife-vendor',
+              'post_status'	=> 'pending'
+            ),
+            'uploader' => 'basic',
+            'html_before_fields' => '<input type="text" id="issubmitform" name="issubmitform" value="yes" style="display:none;">',
+            'submit_value'	=> 'Submit Application'
+          ));
+        endif;
         ?>
-        
       </section>
 
       <?php  
