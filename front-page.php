@@ -22,7 +22,7 @@ get_header();
 			the_post();
 			
 			// Home Banner Carousel
-			if ( function_exists('have_rows') ) :
+			if ( function_exists('have_rows') && function_exists('get_sub_field') ) :
 				if( have_rows('carousel_slides') ):
 					?>
 					<section class="section-home-banner">
@@ -127,7 +127,7 @@ get_header();
 			<section class="section-news">
 				<h2>News and Updates</h2>
 				<div class="section-news-wrapper">
-						<?php 
+					<?php 
 					$args = array(
 						'post_type' => 'post',
 						'posts_per_page' => 3,
