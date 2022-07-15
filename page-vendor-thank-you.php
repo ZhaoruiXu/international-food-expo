@@ -37,11 +37,9 @@ get_header();
               <tbody>
                 <?php
                 if(function_exists( 'get_field' )){
-                  if(get_field('select_vendor_tier', $new_post_id )){
-                    ?>
-                    <tr><td>Company Name</td><td><?php echo $new_post -> post_title ?></td></tr>
-                    <?php
-                  }
+                  ?>
+                  <tr><td>Company Name</td><td><?php echo $new_post -> post_title ?></td></tr>
+                  <?php
                   if(get_field('company_website', $new_post_id )){
                     ?>
                     <tr><td>Company Website</td><td><?php echo get_field('company_website', $new_post_id ) ?></td></tr>
