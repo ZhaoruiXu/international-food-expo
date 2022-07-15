@@ -133,29 +133,29 @@ function ife_register_taxonomies() {
     
     //Add Events Taxonomy
     
-$labels = array(
-    'name'              => _x( 'Event Types', 'taxonomy general name' ),
-    'singular_name'     => _x( 'Event Type', 'taxonomy singular name' ),
-    'search_items'      => __( 'Search Event Types' ),
-    'all_items'         => __( 'All Events Types' ),
-    'parent_item'       => __( 'Parent Event Type' ),
-    'parent_item_colon' => __( 'Parent Event Type:' ),
-    'edit_item'         => __( 'Edit Event Type' ),
-    'update_item'       => __( 'Update Event Type' ),
-    'add_new_item'      => __( 'Add New Event Type' ),
-    'new_item_name'     => __( 'New Work Event Type' ),
-    'menu_name'         => __( 'Event Type' ),
-);
-$args = array(
-    'hierarchical'      => true,
-    'labels'            => $labels,
-    'show_ui'           => true,
-    'show_in_menu'      => true,
-    'show_in_nav_menu'  => true,
-    'show_admin_column' => true,
-    'show_in_rest'      => true,
-    'query_var'         => true,
-    'rewrite'           => array( 'slug' => 'event-type' ),
+    $labels = array(
+        'name'              => _x( 'Event Types', 'taxonomy general name' ),
+        'singular_name'     => _x( 'Event Type', 'taxonomy singular name' ),
+        'search_items'      => __( 'Search Event Types' ),
+        'all_items'         => __( 'All Events Types' ),
+        'parent_item'       => __( 'Parent Event Type' ),
+        'parent_item_colon' => __( 'Parent Event Type:' ),
+        'edit_item'         => __( 'Edit Event Type' ),
+        'update_item'       => __( 'Update Event Type' ),
+        'add_new_item'      => __( 'Add New Event Type' ),
+        'new_item_name'     => __( 'New Work Event Type' ),
+        'menu_name'         => __( 'Event Type' ),
+    );
+    $args = array(
+        'hierarchical'      => true,
+        'labels'            => $labels,
+        'show_ui'           => true,
+        'show_in_menu'      => true,
+        'show_in_nav_menu'  => true,
+        'show_admin_column' => true,
+        'show_in_rest'      => true,
+        'query_var'         => true,
+        'rewrite'           => array( 'slug' => 'event-type' ),
     );
     
     register_taxonomy( 'ife-event-type', array( 'ife-event' ), $args );
