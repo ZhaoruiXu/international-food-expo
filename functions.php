@@ -303,18 +303,6 @@ require get_template_directory() . '/inc/dashboard.php';
  */
 require get_template_directory() . '/inc/admin-links.php';
 
-// Hide block editor on selected pages
-function ife_post_filter( $use_block_editor, $post ) {
-	// ID: 60 - About Page
-	$page_ids = array( 60 );
-	if( in_array( $post->ID, $page_ids ) ) {
-		return false;
-	} else {
-		return $use_block_editor;
-	}
-}
-add_filter( 'use_block_editor_for_post', 'ife_post_filter', 10, 2 );
-
 // Replacing The Title Placeholder Text in WordPress
 function ife_change_title_text( $title ){
      $screen = get_current_screen();
@@ -482,3 +470,25 @@ function ife_login_form () { ?>
 	</style> 
 <?php } 
 add_action( 'login_enqueue_scripts', 'ife_login_form' );
+
+// Disable Content Editor
+// https://www.scorp13.com/en/workflow/how-to-turn-off-the-editor-for-certain-pages-posts-in-wordpress.html
+function ife_disable_content_editor()
+{
+    if (isset($_GET['post'])) {
+			$post_ID = $_GET['post'];
+    } else if (isset($_POST['post_ID'])) {
+			$post_ID = $_POST['post_ID'];
+    }
+
+    if (!isset($post_ID) || empty($post_ID)) {
+			return;
+    }
+
+    $disabled_IDs = array(15, 29, 36, 38, 40, 42, 60);
+    if (in_array($post_ID, $disabled_IDs)) {
+			remove_post_type_support('page', 'editor');
+    }
+}
+
+add_action('admin_init', 'ife_disable_content_editor');
