@@ -454,10 +454,13 @@ function ife_excerpt_more ( $more ) {
 add_filter( 'excerpt_more', 'ife_excerpt_more' );
 
 // Customize login page 
-function wpb_login_logo() { ?> 
+function ife_login_logo() { 
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	$logo = wp_get_attachment_image_src( $custom_logo_id , 'thumbnail' );
+	?> 
 	<style type="text/css"> 
 		#login h1 a, .login h1 a { 
-			background-image: url(http://foodexpo.bcitwebdeveloper.ca/wp-content/uploads/2022/07/IFE-Logo-Transparent.png); 
+			background-image: url(<?php echo esc_url( $logo[0] ) ?>); 
 			height:150px; /* those lines are for custom styling for the logo */ 
 			width:150px; 
 			background-size: 150px 150px; 
@@ -465,8 +468,19 @@ function wpb_login_logo() { ?>
 			padding-bottom: 10px; 
 		} 
 	</style> 
-<?php } 
-add_action( 'login_enqueue_scripts', 'wpb_login_logo' );
+	<?php 
+} 
+add_action( 'login_enqueue_scripts', 'ife_login_logo' );
+
+function ife_login_logo_url() {
+	return home_url();
+}
+add_filter( 'login_headerurl', 'ife_login_logo_url' );
+
+function ife_login_logo_url_title() {
+	return get_bloginfo( 'name' );
+}
+add_filter( 'login_headertext', 'ife_login_logo_url_title' );
 
 function my_login_form() { ?> 
 	<style type="text/css"> 
