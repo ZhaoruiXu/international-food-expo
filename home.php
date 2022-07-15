@@ -26,7 +26,15 @@ get_header();
 		?>
 
 		<section class="blog-intro">
-			<?php the_content() ?>
+			<?php
+			if ( function_exists('get_field') ) :
+				if ( get_field('news_intro', 29) ) :
+					?>
+					<p><?php echo get_field('news_intro', 29) ?></p>
+					<?php
+				endif;
+			endif;
+			?>
 		</section>
 		
 		<section>
