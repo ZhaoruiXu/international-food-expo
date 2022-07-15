@@ -3,7 +3,6 @@
   
   img {
     transform-origin: center;
-    // animation: name duration timing-function delay iteration-count direction fill-mode;
     animation: spin 1s linear infinite;
 
     @keyframes spin {

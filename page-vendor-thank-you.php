@@ -36,43 +36,41 @@ get_header();
               <caption>Application Info</caption>
               <tbody>
                 <?php
-                if(function_exists( 'get_field' )){
-                  if(get_field('select_vendor_tier', $new_post_id )){
-                    ?>
-                    <tr><td>Company Name</td><td><?php echo $new_post -> post_title ?></td></tr>
-                    <?php
-                  }
-                  if(get_field('company_website', $new_post_id )){
+                if(function_exists( 'get_field' )) :
+                  ?>
+                  <tr><td>Company Name</td><td><?php echo $new_post -> post_title ?></td></tr>
+                  <?php
+                  if(get_field('company_website', $new_post_id )) :
                     ?>
                     <tr><td>Company Website</td><td><?php echo get_field('company_website', $new_post_id ) ?></td></tr>
                     <?php
-                  }
-                  if(get_field('company_description', $new_post_id )){
+                  endif;
+                  if(get_field('company_description', $new_post_id )) :
                     ?>
                     <tr><td>Company Description</td><td><?php echo get_field('company_description', $new_post_id ) ?></td></tr>
                     <?php
-                  }
-                  if(get_field('select_vendor_tier', $new_post_id )){
+                  endif;
+                  if(get_field('select_vendor_tier', $new_post_id )) :
                     ?>
                     <tr><td>Selected Vendor Tier</td><td><?php echo get_field('select_vendor_tier', $new_post_id )->name ?></td></tr>
                     <?php
-                  }
-                  if(get_field('full_name', $new_post_id )){
+                  endif;
+                  if(get_field('full_name', $new_post_id )) :
                     ?>
                     <tr><td>Contact Name</td><td><?php echo get_field('full_name', $new_post_id ) ?></td></tr>
                     <?php
-                  }
-                  if(get_field('email_address', $new_post_id )){
+                  endif;
+                  if(get_field('email_address', $new_post_id )) :
                     ?>
                     <tr><td>Email</td><td><?php echo get_field('email_address', $new_post_id ) ?></td></tr>
                     <?php
-                  }
-                  if(get_field('phone_number', $new_post_id )){
+                  endif;
+                  if(get_field('phone_number', $new_post_id )) :
                     ?>
                     <tr><td>Phone Number</td><td><?php echo get_field('phone_number', $new_post_id ) ?></td></tr>
                     <?php
-                  }
-                }
+                  endif;
+                endif;
                 ?>
               </tbody>
             </table>
@@ -89,5 +87,4 @@ get_header();
 	</main><!-- #main -->
 
 <?php
-// get_sidebar();
 get_footer();
