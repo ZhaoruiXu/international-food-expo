@@ -442,7 +442,7 @@ function ife_excerpt_more ( $more ) {
 add_filter( 'excerpt_more', 'ife_excerpt_more' );
 
 // Customize login logo 
-function ife_login_logo() { 
+function ife_login_logo () { 
 	$custom_logo_id = get_theme_mod( 'custom_logo' );
 	$logo = wp_get_attachment_image_src( $custom_logo_id , 'thumbnail' );
 	?> 
@@ -461,19 +461,19 @@ function ife_login_logo() {
 add_action( 'login_enqueue_scripts', 'ife_login_logo' );
 
 // Change Login form logo url
-function ife_login_logo_url() {
+function ife_login_logo_url () {
 	return home_url();
 }
 add_filter( 'login_headerurl', 'ife_login_logo_url' );
 
 // Change Login form logo text
-function ife_login_logo_url_title() {
+function ife_login_logo_url_title () {
 	return get_bloginfo( 'name' );
 }
 add_filter( 'login_headertext', 'ife_login_logo_url_title' );
 
 // Style Login form
-function ife_login_form() { ?> 
+function ife_login_form () { ?> 
 	<style type="text/css"> 
 		body.login div#login form#loginform { 
 			background-color:#D5EAEE; 
