@@ -316,7 +316,7 @@ function ife_post_filter( $use_block_editor, $post ) {
 add_filter( 'use_block_editor_for_post', 'ife_post_filter', 10, 2 );
 
 // Replacing The Title Placeholder Text in WordPress
-function wpb_change_title_text( $title ){
+function ife_change_title_text( $title ){
      $screen = get_current_screen();
    
 		 // target the individual CPT
@@ -331,22 +331,10 @@ function wpb_change_title_text( $title ){
 
      return $title;
 }
-add_filter( 'enter_title_here', 'wpb_change_title_text' );
-
-// Add a new customized WYSIWYG toolbar
-function my_toolbars( $toolbars )
-{
-	// Add a new toolbar called "Very Simple"
-	// this toolbar has only 1 row of buttons
-	$toolbars['Very Simple' ][1] = array('bold' , 'italic' , 'underline' );
-
-	// return $toolbars - IMPORTANT!
-	return $toolbars;
-}
-add_filter( 'acf/fields/wysiwyg/toolbars' , 'my_toolbars'  );
+add_filter( 'enter_title_here', 'ife_change_title_text' );
 
 // Save acf_form to send an email to admin
-function my_save_post( $post_id ) {
+function ife_save_vendor ( $post_id ) {
 	
 	// bail early if not a ife-vendor post
 	if( get_post_type($post_id) !== 'ife-vendor' ) {
@@ -392,14 +380,15 @@ function my_save_post( $post_id ) {
 		$message   .= "<tr><td>Company Name</td><td>" . $company_description . "</td></tr>";
 		$message   .= "</table>";
 		
-		// To send all admin accounts the email notification
+		/* 
+		Uncomment this code to send all admin accounts the email notification when an application is received
+		*/
 		// $administrators 	= get_users(array(
 		// 'role'	=> 'administrator'
 		// ));
 
-		// foreach ($administrators as &$administrator) {
-		// // 	wp_mail( $administrator->data->user_email, $subject, $body );
-		// 	wp_mail($to, $subject, $message, $headers );
+		// foreach ($administrators as $administrator) {
+		// 	wp_mail($administrator->data->user_email, $subject, $message, $headers );
 		// }
 
 		// send one email
@@ -413,10 +402,10 @@ function my_save_post( $post_id ) {
 	}
 
 }
-add_action('acf/save_post', 'my_save_post', 99);
+add_action('acf/save_post', 'ife_save_vendor', 99);
 
 // Modify ACF Form Label for Post Title Field
-function wd_post_title_acf_name( $field ) {
+function ife_post_title_acf_name( $field ) {
      if( is_page($page = 'vendor-application') ) { // if on the vendor page
           $field['label'] = 'Company Name';
      } else {
@@ -424,10 +413,10 @@ function wd_post_title_acf_name( $field ) {
      }
      return $field;
 }
-add_filter('acf/load_field/name=_post_title', 'wd_post_title_acf_name');
+add_filter('acf/load_field/name=_post_title', 'ife_post_title_acf_name');
 
 // Set ACF image as featured image
-function acf_set_featured_image( $value, $post_id ){
+function ife_acf_set_featured_image( $value, $post_id ){
     
     if($value != ''){
 	    //Add the value which is the image ID to the _thumbnail_id meta data for the current post
@@ -436,9 +425,8 @@ function acf_set_featured_image( $value, $post_id ){
  
     return $value;
 }
-
 // acf/update_value/name={$field_name} - filter for a specific field based on it's name
-add_filter('acf/update_value/name=upload_company_logo', 'acf_set_featured_image', 10, 3);
+add_filter('acf/update_value/name=upload_company_logo', 'ife_acf_set_featured_image', 10, 3);
  
 // Change the excerpt length
 function ife_excerpt_length ( $length ) {
@@ -453,7 +441,7 @@ function ife_excerpt_more ( $more ) {
 }
 add_filter( 'excerpt_more', 'ife_excerpt_more' );
 
-// Customize login page 
+// Customize login logo 
 function ife_login_logo() { 
 	$custom_logo_id = get_theme_mod( 'custom_logo' );
 	$logo = wp_get_attachment_image_src( $custom_logo_id , 'thumbnail' );
@@ -472,17 +460,20 @@ function ife_login_logo() {
 } 
 add_action( 'login_enqueue_scripts', 'ife_login_logo' );
 
+// Change Login form logo url
 function ife_login_logo_url() {
 	return home_url();
 }
 add_filter( 'login_headerurl', 'ife_login_logo_url' );
 
+// Change Login form logo text
 function ife_login_logo_url_title() {
 	return get_bloginfo( 'name' );
 }
 add_filter( 'login_headertext', 'ife_login_logo_url_title' );
 
-function my_login_form() { ?> 
+// Style Login form
+function ife_login_form() { ?> 
 	<style type="text/css"> 
 		body.login div#login form#loginform { 
 			background-color:#D5EAEE; 
@@ -490,4 +481,4 @@ function my_login_form() { ?>
 		} 
 	</style> 
 <?php } 
-add_action( 'login_enqueue_scripts', 'my_login_form' );
+add_action( 'login_enqueue_scripts', 'ife_login_form' );
